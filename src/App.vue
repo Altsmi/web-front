@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="min-h-screen bg-neutral-900 text-color-text-000 flex flex-col font-mono text-xl">
-    <header class="bg-brand-primary border-b-3 border-neutral-900 py-6 sticky top-0 z-50">
+    <header class="bg-brand-primary border-b-3 border-neutral-900 py-6 sticky to p-0 z-50">
       <nav class="max-w-5xl mx-auto flex justify-between items-center px-4 sm:px-6 md:px-6">
         <div>
           <RouterLink to="/"
