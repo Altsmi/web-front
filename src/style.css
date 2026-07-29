@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/tasa-orbiter');
+
+@theme {
+  --color-brand-primary: #db4a2b;
+
+  --color-neutral-900: #191919;
+  --color-neutral-300: #ebebeb;
+  --color-neutral-000: #f8f8f8;
+
+  --color-text-900: #191919;
+  --color-text-700: #575757;
+  --color-text-000: #f8f8f8;
+
+  --font-header: 'TASA Orbiter', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+:root {
+  --nav-height: 91px;
+  --project-header-height: 180px;
+}
+
+/* fade for image + text */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* fade for tools list */
+.fade-tools-enter-active,
+.fade-tools-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-tools-enter-from,
+.fade-tools-leave-to {
+  opacity: 0;
+}
+.fade-tools-leave-active {
+  position: absolute;
+}
+.fade-tools-move {
+  transition: transform 0.5s ease-in-out;
+}
