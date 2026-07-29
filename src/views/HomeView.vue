@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, type ComponentPublicInstance } from 'vue'
+import { ref, onMounted, onUnmounted, computed, type ComponentPublicInstance } from 'vue'
 import { projectPreviewData } from '@/data/ProjectPreviewData'
 
+const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
 const stepRefs = ref<(HTMLElement | null)[]>([])
 const activeIndex = ref(0)
 
@@ -149,9 +150,9 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
           <div class="bg-neutral-000 px-3.5 py-4 flex flex-col gap-6">
             <Transition name="fade" mode="out-in">
               <div :key="activeIndex" class="space-y-2">
-                <h3 class="text-2xl font-bold">{{ projectPreviewData[activeIndex].name }}</h3>
+                <h3 class="text-2xl font-bold">{{ activeProject.name }}</h3>
                 <p class="text-lg h-47 font-medium">
-                  {{ projectPreviewData[activeIndex].description }}
+                  {{ activeProject.description }}
                 </p>
               </div>
             </Transition>
@@ -162,7 +163,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
               class="h-15 bg-neutral-900 flex flex-row gap-2 p-2 justify-end items-center"
             >
               <img
-                v-for="tool in projectPreviewData[activeIndex].tools"
+                v-for="tool in activeProject.tools"
                 :key="`${activeIndex}-${tool}`"
                 :src="tool"
                 class="h-10 w-10"
@@ -180,7 +181,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
         <Transition name="fade" mode="out-in">
           <img
             :key="activeIndex"
-            :src="projectPreviewData[activeIndex].img"
+            :src="activeProject.img"
             alt="project"
             class="h-136 w-136 object-cover"
           />
