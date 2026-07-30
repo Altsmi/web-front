@@ -59,7 +59,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 
 <template>
   <section class="bg-brand-primary">
-    <div class="max-w-5xl mx-auto py-10 px-4 sm:px-6 md:py-20">
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 md:py-20">
       <div
         class="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8 md:gap-10"
       >
@@ -95,7 +95,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
   </section>
   <!-- Skills Section -->
   <section class="bg-neutral-300">
-    <div class="max-w-5xl mx-auto py-8 px-6">
+    <div class="max-w-7xl mx-auto py-8 px-6">
       <ul class="flex flex-wrap justify-between text-lg gap-10 text-text-700">
         <li>print & branding</li>
         <li>editorial</li>
@@ -108,7 +108,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 
   <!-- Project preview Dekstop-->
   <section
-    class="max-w-5xl mx-auto px-4 sm:px-6 pb-10 relative"
+    class="max-w-7xl mx-auto px-4 sm:px-6 pb-10 relative"
     :style="{ height: `${(projectPreviewData.length - 1) * 100 + 30}vh` }"
   >
     <!--Project header -->
@@ -175,7 +175,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
       <!--Rigt side -->
       <div
         id="project-img"
-        class="sticky"
+        class="w-1/2 sticky"
         style="top: calc(var(--nav-height) + var(--project-header-height))"
       >
         <Transition name="fade" mode="out-in">
@@ -183,7 +183,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
             :key="activeIndex"
             :src="activeProject.img"
             alt="project"
-            class="h-136 w-136 object-cover"
+            class="h-136 w-full object-cover"
           />
         </Transition>
       </div>
