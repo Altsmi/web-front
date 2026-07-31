@@ -83,11 +83,11 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
           </div>
         </div>
 
-        <div class="w-full md:w-2/5 items-center justify-center hidden md:block lg:block">
+        <div class="w-1/2 md:w-2/5 items-center hidden md:block lg:block">
           <img
             src="/banner_element.svg"
             alt="Hero Image"
-            class="max-h-64 md:max-h-full h-auto w-auto object-contain"
+            class="max-h-64 md:max-h-full h-auto w-auto object-contain ml-auto"
           />
         </div>
       </div>
