@@ -1,64 +1,38 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, type ComponentPublicInstance } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { projectPreviewData } from '@/data/ProjectPreviewData'
 import FormComponent from '@/components/formComponent.vue'
 
-const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
-const stepRefs = ref<(HTMLElement | null)[]>([])
 const activeIndex = ref(0)
+const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
+const isPaused = ref(false)
 
-function setStepRef(el: Element | ComponentPublicInstance | null, index: number) {
-  stepRefs.value[index] = el as HTMLElement | null
+let intervalId: number | undefined
+
+function advance() {
+  activeIndex.value = (activeIndex.value + 1) % projectPreviewData.length
 }
 
-let observer: IntersectionObserver | null = null
+function goToIndex(index: number) {
+  activeIndex.value = index
+}
+
+function startAutoAdvance() {
+  intervalId = window.setInterval(() => {
+    if (!isPaused.value) advance()
+  }, 3000)
+}
 
 onMounted(() => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      const visibleEntries = entries.filter((entry) => entry.isIntersecting)
-      if (visibleEntries.length === 0) return
-
-      const viewportCenter = window.innerHeight / 2
-
-      let closestEntry = visibleEntries[0]
-      let closestDistance = Math.abs(
-        closestEntry!.boundingClientRect.top +
-          closestEntry!.boundingClientRect.height / 2 -
-          viewportCenter,
-      )
-
-      for (const entry of visibleEntries) {
-        const entryCenter = entry.boundingClientRect.top + entry.boundingClientRect.height / 2
-        const distance = Math.abs(entryCenter - viewportCenter)
-        if (distance < closestDistance) {
-          closestDistance = distance
-          closestEntry = entry
-        }
-      }
-
-      const index = stepRefs.value.indexOf(closestEntry!.target as HTMLElement)
-      if (index !== -1) activeIndex.value = index
-    },
-    {
-      rootMargin: '-70% 0px -10% 0px',
-      threshold: 0,
-    },
-  )
-
-  stepRefs.value.forEach((el) => {
-    if (el) observer!.observe(el)
-  })
+  startAutoAdvance()
 })
 
 onUnmounted(() => {
-  observer?.disconnect()
+  if (intervalId) clearInterval(intervalId)
 })
 
-//Opacity for info bars
+// Opacity for info bars
 const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
-
-//Contact Section
 </script>
 
 <template>
@@ -110,13 +84,10 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
     </div>
   </section>
 
-  <!-- Project preview Dekstop-->
-  <section
-    class="max-w-7xl mx-auto px-4 sm:px-6 pb-10 relative"
-    :style="{ height: `${(projectPreviewData.length - 1) * 100 + 30}vh` }"
-  >
+  <!-- Project preview -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-10">
     <!--Project header -->
-    <div class="bg-neutral-900 sticky z-40 md:py-10" style="top: var(--nav-height)">
+    <div class="bg-neutral-900 md:py-10">
       <div class="flex flex-col gap-2 pb-4">
         <p class="text-brand-primary text-lg">design.build.deliver</p>
         <div class="flex flex-wrap justify-between gap-6">
@@ -131,24 +102,22 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
     </div>
 
     <div
-      class="flex flex-row gap-5 items-start"
-      style="height: calc(100% - var(--project-header-height))"
+      class="flex flex-row gap-5 items-start hover:"
+      @mouseenter="isPaused = true"
+      @mouseleave="isPaused = false"
     >
       <!--left side -->
-      <div
-        id="info-section"
-        class="w-1/2 sticky"
-        style="top: calc(var(--nav-height) + var(--project-header-height))"
-      >
+      <div id="info-section" class="w-1/2">
         <div class="flex flex-col gap-2.5">
           <div
             v-for="(project, index) in projectPreviewData"
             :key="project.id"
-            class="h-10 w-auto transition-colors duration-300"
+            class="h-10 w-auto transition-colors duration-300 cursor-pointer"
             :class="[
               index === activeIndex ? 'bg-brand-primary' : 'bg-neutral-000',
               barOpacities[index],
             ]"
+            @click="goToIndex(index)"
           ></div>
           <!--Info Section-->
           <div class="bg-neutral-000 px-3.5 py-4 flex flex-col gap-6">
@@ -177,11 +146,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
         </div>
       </div>
       <!--Rigt side -->
-      <div
-        id="project-img"
-        class="w-1/2 sticky"
-        style="top: calc(var(--nav-height) + var(--project-header-height))"
-      >
+      <div id="project-img" class="w-1/2">
         <Transition name="fade" mode="out-in">
           <img
             :key="activeIndex"
@@ -192,27 +157,11 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
         </Transition>
       </div>
     </div>
-
-    <!--Sticky scroll -->
-    <div class="absolute top-0 left-0 w-full">
-      <div
-        v-for="(step, index) in projectPreviewData"
-        :key="step.id"
-        class="h-screen"
-        :ref="(el) => setStepRef(el, index)"
-      ></div>
-    </div>
   </section>
 
   <!--Q-->
   <section class="bg-brand-primary flex items-center">
-    <div class="max-w-7xl mx-auto">
-      <h2
-        class="font-semibold text-text-900 tracking-tight font-header text-6xl sm:text-6xl md:text-6xl text-center px-4 sm:px-6 py-10"
-      >
-        " Form follows function. "— Louis Sullivan
-      </h2>
-    </div>
+    <div class="max-w-7xl mx-auto h-10"></div>
   </section>
 
   <!--Contact Section-->

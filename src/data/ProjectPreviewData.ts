@@ -31,6 +31,6 @@ export const projectPreviewData: ProjectPreview[] = [
     description:
       'A series of eye-catching posters for a clothing festival in Germany, showcasing vibrant visuals and engaging content to attract a wide audience.',
     img: '/project_img/clothing_banner.jpg',
-    tools: ['/icons/logo_html.svg', '/icons/logo_css.svg'],
+    tools: ['/icons/logo_illustrator.svg', '/icons/logo_photoshop.svg'],
   },
 ]

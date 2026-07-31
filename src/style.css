@@ -16,10 +16,8 @@
   --font-header: 'TASA Orbiter', sans-serif;
   --font-mono: 'Geist Mono', monospace;
 }
-
-:root {
-  --nav-height: 91px;
-  --project-header-height: 180px;
+html {
+  overflow-y: scroll;
 }
 
 /* fade for image + text */
