@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, type ComponentPublicInstance } from 'vue'
 import { projectPreviewData } from '@/data/ProjectPreviewData'
+import FormComponent from '@/components/formComponent.vue'
 
 const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
 const stepRefs = ref<(HTMLElement | null)[]>([])
@@ -54,7 +55,10 @@ onUnmounted(() => {
   observer?.disconnect()
 })
 
+//Opacity for info bars
 const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
+
+//Contact Section
 </script>
 
 <template>
@@ -199,12 +203,20 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
       ></div>
     </div>
   </section>
-  <!--Quotation MAYBE?-->
-  <section class="bg-neutral-300 h-50">
-    <div class=""></div>
+
+  <!--Q-->
+  <section class="bg-brand-primary flex items-center">
+    <div class="max-w-7xl mx-auto">
+      <h2
+        class="font-semibold text-text-900 tracking-tight font-header text-6xl sm:text-6xl md:text-6xl text-center px-4 sm:px-6 py-10"
+      >
+        " Form follows function. "— Louis Sullivan
+      </h2>
+    </div>
   </section>
+
   <!--Contact Section-->
-  <section class="bg-neutral-900 h-300">
-    <div></div>
+  <section class="bg-neutral-300">
+    <FormComponent />
   </section>
 </template>
