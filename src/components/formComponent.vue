@@ -12,7 +12,7 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto pt-10 px-4 sm:px-6 md:pt-10 space-y-6">
+  <div class="max-w-7xl mx-auto py-15 px-4 sm:px-6 md:py-15 space-y-6">
     <h1
       class="font-black text-text-900 tracking-tight font-header text-6xl sm:text-6xl md:text-6xl"
     >
@@ -23,7 +23,7 @@ function handleSubmit() {
       day.
     </p>
   </div>
-  <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 md:py-10 space-y-6">
+  <div class="max-w-7xl mx-auto pb-10 px-4 sm:px-6 md:pb-15 space-y-6">
     <form action="" class="space-y-2">
       <!--Name-->
       <div class="flex flex-col gap-2">
