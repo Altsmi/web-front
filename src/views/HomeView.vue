@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { projectPreviewData } from '@/data/ProjectPreviewData'
-import FormComponent from '@/components/formComponent.vue'
+import ContactSection from '@/components/ContactSection.vue'
 
 const activeIndex = ref(0)
 const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
@@ -20,7 +20,7 @@ function goToIndex(index: number) {
 function startAutoAdvance() {
   intervalId = window.setInterval(() => {
     if (!isPaused.value) advance()
-  }, 3000)
+  }, 2000)
 }
 
 onMounted(() => {
@@ -33,6 +33,8 @@ onUnmounted(() => {
 
 // Opacity for info bars
 const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
+
+//reveal on scroll
 </script>
 
 <template>
@@ -74,7 +76,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
   <!-- Skills Section -->
   <section class="bg-neutral-300">
     <div class="max-w-7xl mx-auto py-15 px-6">
-      <div class="flex flex-col gap-2 pb-10">
+      <div class="flex flex-col gap-2 pb-10 items-center">
         <p class="text-brand-primary text-lg font-bold">what i do</p>
         <h2 class="text-text-900 text-4xl font-header font-bold">EXPERTISE</h2>
       </div>
@@ -120,9 +122,9 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
   </section>
 
   <!-- Project preview -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-15">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-25">
     <!--Project header -->
-    <div class="bg-neutral-900 md:pb-10 md:pt-15">
+    <div class="bg-neutral-900 md:pb-10 md:pt-25">
       <div class="flex flex-col gap-2 pb-4">
         <p class="text-brand-primary text-lg">design.build.deliver</p>
         <div class="flex flex-wrap justify-between gap-6">
@@ -194,27 +196,36 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
     </div>
   </section>
 
-  <!--just space-->
-  <section class="bg-brand-primary flex items-center">
-    <div class="max-w-7xl mx-auto h-10"></div>
+  <!--About Teaser-->
+  <section class="bg-neutral-300">
+    <div class="max-w-7xl mx-auto py-20 px-6">
+      <!--Grid section-->
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 justify-center">
+        <!--img-->
+        <div class="w-40 md:w-56 flex-shrink-0">
+          <img
+            src="/project_img/About_picture.JPG"
+            alt="avatar"
+            class="w-full h-auto object-cover rounded-full aspect-square"
+          />
+        </div>
+        <!--info-->
+        <div class="flex flex-col gap-4 justify-center max-w-4xl">
+          <p class="text-brand-primary text-lg font-bold">who i am</p>
+          <p class="text-text-900 text-xl font-bold">
+            Toronto-based — half designer, half developer. I craft brand identities and editorial
+            layouts, then build the front-end systems that bring them to life.
+          </p>
+          <RouterLink to="about" class="font-medium hover:underline transition-all self-baseline"
+            >more about me →</RouterLink
+          >
+        </div>
+      </div>
+    </div>
   </section>
 
   <!--Contact Section-->
-  <section class="bg-neutral-300">
-    <div>
-      <!--Email-->
-      <div></div>
-      <!--Linkidin-->
-      <div></div>
-      <!--socials-->
-      <div></div>
-    </div>
-    <!--Email form Component-->
-    <div></div>
-  </section>
-
-  <!--just space-->
-  <section class="bg-brand-primary flex items-center">
-    <div class="max-w-7xl mx-auto h-10"></div>
+  <section class="bg-neutral-000">
+    <ContactSection />
   </section>
 </template>

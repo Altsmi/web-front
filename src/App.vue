@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import ContactSection from './components/ContactSection.vue'
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import { RouterLink, RouterView } from 'vue-router'
           /></RouterLink>
         </div>
         <div class="flex gap-20">
-          <button type="button" class="font-medium">menu</button>
+          <button type="button" class="font-medium hover:underline">menu</button>
           <button type="button" class="border-3 px-4 py-2 font-medium">reach out →</button>
         </div>
       </nav>
