@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import ContactSection from './components/ContactSection.vue'
+
+function scrollToContact() {
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -12,9 +16,11 @@ import ContactSection from './components/ContactSection.vue'
             ><img src="/logo_classic.svg" alt="Logo" class="h-10 w-auto"
           /></RouterLink>
         </div>
-        <div class="flex gap-20">
-          <button type="button" class="font-medium hover:underline">menu</button>
-          <button type="button" class="border-3 px-4 py-2 font-medium">reach out →</button>
+        <div class="flex space-x-50 items-center">
+          <NavMenu />
+          <button type="button" @click="scrollToContact" class="border-3 px-4 py-2 font-medium">
+            reach out →
+          </button>
         </div>
       </nav>
     </header>
@@ -24,6 +30,7 @@ import ContactSection from './components/ContactSection.vue'
     </main>
 
     <footer class="w-full bg-neutral-900 text-center p-6 text-xl text-text-000">
+      <ContactSection id="contact" />
       <div class="">
         &copy; {{ new Date().getFullYear() }} - Built with Vue 3, TS & ASP.NET By Illya Shpylka
       </div>

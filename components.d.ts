@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ContactSection: typeof import('./src/components/ContactSection.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
+    NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TestButton: typeof import('./src/components/TestButton.vue')['default']

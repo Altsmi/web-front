@@ -202,7 +202,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
       <!--Grid section-->
       <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 justify-center">
         <!--img-->
-        <div class="w-40 md:w-56 flex-shrink-0">
+        <div class="w-40 md:w-56 shrink-0">
           <img
             src="/project_img/About_picture.JPG"
             alt="avatar"
@@ -222,10 +222,5 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
         </div>
       </div>
     </div>
-  </section>
-
-  <!--Contact Section-->
-  <section class="bg-neutral-000">
-    <ContactSection />
   </section>
 </template>
