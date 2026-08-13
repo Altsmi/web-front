@@ -34,12 +34,22 @@ onUnmounted(() => {
 // Opacity for info bars
 const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 
-//reveal on scroll
+// reveal on scroll
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
+const { isVisible: expertiseVisible, sectionRef: expertiseRef } = useScrollReveal(0.3)
+const { isVisible: aboutVisible, sectionRef: aboutRef } = useScrollReveal(0.3)
+const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.3)
 </script>
 
 <template>
   <section class="bg-brand-primary">
-    <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 md:py-20">
+    <div
+      ref="heroRef"
+      class="max-w-7xl mx-auto py-20 px-4 sm:px-6 md:py-20 transition-all duration-1000"
+      :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+    >
       <div
         class="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8 md:gap-10"
       >
@@ -75,7 +85,11 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
   </section>
   <!-- Skills Section -->
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-15 px-6">
+    <div
+      class="max-w-7xl mx-auto py-15 px-6 transition-all duration-1000"
+      ref="expertiseRef"
+      :class="expertiseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+    >
       <div class="flex flex-col gap-2 pb-10 items-center">
         <p class="text-brand-primary text-lg font-bold">what i do</p>
         <h2 class="text-text-900 text-4xl font-header font-bold">EXPERTISE</h2>
@@ -198,7 +212,11 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 
   <!--About Teaser-->
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-20 px-6">
+    <div
+      class="max-w-7xl mx-auto py-20 px-6 transition-all duration-1000"
+      ref="aboutRef"
+      :class="aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+    >
       <!--Grid section-->
       <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 justify-center">
         <!--img-->

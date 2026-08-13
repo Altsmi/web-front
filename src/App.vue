@@ -5,6 +5,10 @@ import ContactSection from './components/ContactSection.vue'
 function scrollToContact() {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
 }
+
+// reveal on scroll
+import { useScrollReveal } from '@/composables/useScrollReveal'
+const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.3)
 </script>
 
 <template>
@@ -30,7 +34,7 @@ function scrollToContact() {
     </main>
 
     <footer class="w-full bg-neutral-900 text-center p-6 text-xl text-text-000">
-      <ContactSection id="contact" />
+      <ContactSection />
       <div class="">
         &copy; {{ new Date().getFullYear() }} - Built with Vue 3, TS & ASP.NET By Illya Shpylka
       </div>
