@@ -12,6 +12,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ContactSection: typeof import('./src/components/ContactSection.vue')['default']
+    Experience: typeof import('./src/components/Experience.vue')['default']
+    Experince: typeof import('./src/components/Experince.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
