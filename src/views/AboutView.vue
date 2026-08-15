@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import Experience from '@/components/Experience.vue'
+
+//scroll reveal
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
+const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrollReveal(0.3)
 </script>
 
 <template>
   <!--About Header-->
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 md:py-25 transition-all duration-1000">
+    <div
+      class="max-w-7xl mx-auto py-20 px-4 sm:px-6 md:py-25 transition-all duration-1000"
+      ref="heroRef"
+      :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+    >
       <div class="flex flex-col justify-center gap-6 md:gap-8 w-full">
         <h1
           class="font-bold text-text-900 tracking-tight font-header text-6xl sm:text-6xl md:text-6xl"
@@ -49,9 +59,13 @@ import Experience from '@/components/Experience.vue'
   </section>
 
   <!--Experience Section-->
-  <section class="bg-neutral-300">
+  <section class="bg-neutral-000">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-      <div class="">
+      <div
+        class="transition-all duration-1000"
+        ref="ladderHeaderRef"
+        :class="ladderHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+      >
         <div class="flex flex-col gap-2 pb-10">
           <p class="text-brand-primary text-lg">my progress</p>
           <div class="flex flex-wrap justify-between gap-6">
@@ -66,10 +80,23 @@ import Experience from '@/components/Experience.vue'
           <template #position> Graphic Designer (Contract)</template>
           <template #year>Sept 2024 – Present</template>
           <template #description>
-            Building and maintaining layout templates in Adobe InDesign for recurring magazine
-            production, handling high-volume asset integration under tight deadlines, and preparing
-            digital assets in Photoshop to professional print/digital standards — working daily with
-            editors and project managers to turn briefs into polished designs.
+            <li>
+              Built and maintained comprehensive layout templates using Adobe InDesign, improving
+              workflow consistency and speeding up production for recurring magazine projects.
+            </li>
+            <li>
+              Executed high-volume asset integration, accurately placing complex text, images, and
+              data into established templates under tight publishing deadlines.
+            </li>
+            <li>
+              Handled digital asset preparation, using Adobe Photoshop for photo retouching, color
+              correction, and formatting to ensure all visual content met professional print and
+              digital standards.
+            </li>
+            <li>
+              Collaborated daily with editors and project managers to turn creative briefs into
+              polished, production-ready editorial designs.
+            </li>
           </template>
         </Experience>
         <!--2-->
@@ -77,10 +104,23 @@ import Experience from '@/components/Experience.vue'
           <template #position>Graphic Designer — Remote</template>
           <template #year>2021 – 2024</template>
           <template #description>
-            Developed visual identities, logos, and style guides for a range of clients; built
-            scalable Figma layouts and interactive prototypes bridging design and front-end
-            execution; managed full production lifecycles across print and digital media, from
-            marketing collateral to custom digital cover art.
+            <li>
+              Created visual identities and digital assets for diverse clients, developing logos,
+              typography guidelines, and style guides based on client requirements.
+            </li>
+            <li>
+              Built scalable Figma layouts and interactive prototypes, bridging the gap between
+              visual design and frontend execution.
+            </li>
+            <li>
+              Prepared and presented design concepts and project update decks directly to clients,
+              explaining visual choices and gathering feedback.
+            </li>
+            <li>
+              Managed full-lifecycle production for print and digital media, balancing artistic
+              direction with commercial viability to deliver marketing collateral, large-format
+              assets, and custom digital cover art for independent creators.
+            </li>
           </template>
         </Experience>
         <!--3-->
@@ -88,8 +128,11 @@ import Experience from '@/components/Experience.vue'
           <template #position> Graphic Design Assistant — Stellar Biotics LLC</template>
           <template #year>Aug 2020 – Aug 2021</template>
           <template #description>
-            Supported presentation deck production and research for internal and client-facing
-            design direction.
+            <li>
+              Assisted in preparing presentation decks and supporting files for internal and
+              client-facing use.
+            </li>
+            <li>Conducted research to inform presentation content and design direction.</li>
           </template>
         </Experience>
       </div>

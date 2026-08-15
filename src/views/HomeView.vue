@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { projectPreviewData } from '@/data/ProjectPreviewData'
-import ContactSection from '@/components/ContactSection.vue'
 
 const activeIndex = ref(0)
 const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
@@ -38,7 +37,7 @@ const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
-const { isVisible: expertiseVisible, sectionRef: expertiseRef } = useScrollReveal(0.3)
+const { isVisible: expertiseVisible, sectionRef: expertiseRef } = useScrollReveal(0.2)
 const { isVisible: aboutVisible, sectionRef: aboutRef } = useScrollReveal(0.3)
 const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.3)
 </script>
@@ -107,7 +106,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--Editorial-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/edit_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">EDITORIAL</h3>
@@ -116,7 +115,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--UX/UI-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/ux_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">UX/UI</h3>
@@ -125,7 +124,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--Web development-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/dev_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">WEB DEVELOPMENT</h3>

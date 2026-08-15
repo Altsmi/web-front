@@ -18,7 +18,11 @@ function scrollToContact() {
         </div>
         <div class="flex space-x-50 items-center">
           <NavMenu />
-          <button type="button" @click="scrollToContact" class="border-3 px-4 py-2 font-medium">
+          <button
+            type="button"
+            @click="scrollToContact"
+            class="border-3 px-4 py-2 font-medium hover:bg-neutral-900 hover:text-text-000 hover:border-neutral-900 transition-all duration-200"
+          >
             reach out →
           </button>
         </div>
