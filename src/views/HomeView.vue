@@ -65,7 +65,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <div class="flex justify-start md:justify-start">
             <RouterLink
               to="/about"
-              class="inline-block bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000"
+              class="inline-block bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
             >
               learn more →
             </RouterLink>
@@ -144,7 +144,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <h2 class="text-text-000 text-4xl font-header font-bold">PROJECT PREVIEW</h2>
           <RouterLink
             to="Project"
-            class="inline-block bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000"
+            class="inline-block bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
             >more projects →</RouterLink
           >
         </div>

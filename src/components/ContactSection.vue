@@ -61,7 +61,7 @@ async function handleSubmit(event: Event) {
           ></textarea>
           <button
             type="submit"
-            class="bg-neutral-900 px-4 py-2 font-medium self-start hover:bg-brand-primary text-text-000 transition-colors"
+            class="bg-neutral-900 px-4 py-2 font-medium self-start hover:bg-brand-primary text-text-000 transition-all duration-300"
           >
             send →
           </button>
