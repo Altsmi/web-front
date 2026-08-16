@@ -147,7 +147,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
         </Experience>
 
         <!--Tools-->
-        <div class="flex flex-col gap-2 py-5 text-center">
+        <div class="flex flex-col gap-2 pt-10 pb-5 text-center">
           <p class="text-brand-primary text-lg">what i use</p>
           <h2 class="text-text-900 text-4xl font-header font-bold">TOOLS & SKILLS</h2>
         </div>
