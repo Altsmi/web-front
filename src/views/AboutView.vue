@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Experience from '@/components/Experience.vue'
+import Skills from '@/components/Skills.vue'
 
 //scroll reveal
 import { useScrollReveal } from '@/composables/useScrollReveal'
@@ -68,7 +69,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
       >
         <div class="flex flex-col gap-2 pb-10">
           <p class="text-brand-primary text-lg">my progress</p>
-          <div class="flex flex-wrap justify-between gap-6">
+          <div>
             <h2 class="text-text-900 text-4xl font-header font-bold">EXPERIENCE LADDER</h2>
           </div>
         </div>
@@ -135,6 +136,87 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
             <li>Conducted research to inform presentation content and design direction.</li>
           </template>
         </Experience>
+        <!--Education-->
+        <h2 class="text-text-900 text-4xl font-header font-bold py-5">EDUCATION</h2>
+        <Experience>
+          <template #position> Algonquin college</template>
+          <template #year>2019 - 2022</template>
+          <template #description>
+            <li class="list-none">Interactive media Design course | Ottawa, Canada</li>
+          </template>
+        </Experience>
+
+        <!--Tools-->
+        <div class="flex flex-col gap-2 py-5 text-center">
+          <p class="text-brand-primary text-lg">what i use</p>
+          <h2 class="text-text-900 text-4xl font-header font-bold">TOOLS & SKILLS</h2>
+        </div>
+        <!--Tools Icons-->
+        <div class="">
+          <!--Design Tools-->
+          <p class="text-text-700 text-lg font-bold pb-6">design</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6">
+            <!--1-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_figma.svg" alt="" class="h-10 w-10"
+              /></template>
+              <template #tool>Figma</template>
+            </Skills>
+            <!--2-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_photoshop.svg" alt="" class="h-10 w-10"
+              /></template>
+              <template #tool>Photoshop</template>
+            </Skills>
+            <!--3-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_illustrator.svg" alt="" class="h-10 w-10"
+              /></template>
+              <template #tool>Illustrator</template>
+            </Skills>
+            <!--4-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_indesign.svg" alt="" class="h-10 w-10"
+              /></template>
+              <template #tool>InDesign</template>
+            </Skills>
+          </div>
+          <!--Devolopment Tools-->
+          <p class="text-text-700 text-lg font-bold pb-6">development</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!--1-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_html.svg" alt="" class="h-10 w-10" /><img
+                  src="/icons/logo_css.svg"
+                  alt=""
+                  class="h-10 w-10"
+              /></template>
+              <template #tool>Html & Css</template>
+            </Skills>
+            <!--2-->
+            <Skills>
+              <template #icon><img src="/icons/logo_vue.svg" alt="" class="h-10 w-10" /></template>
+              <template #tool>Vue</template>
+            </Skills>
+            <!--3-->
+            <Skills>
+              <template #icon><img src="/icons/logo_ts.svg" alt="" class="h-10 w-10" /></template>
+              <template #tool>Typescript</template>
+            </Skills>
+            <!--4-->
+            <Skills>
+              <template #icon
+                ><img src="/icons/logo_csharp.svg" alt="" class="h-10 w-10"
+              /></template>
+              <template #tool>C#</template>
+            </Skills>
+          </div>
+        </div>
       </div>
     </div>
   </section>

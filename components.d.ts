@@ -18,6 +18,7 @@ declare module 'vue' {
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Skills: typeof import('./src/components/Skills.vue')['default']
     TestButton: typeof import('./src/components/TestButton.vue')['default']
   }
 }
