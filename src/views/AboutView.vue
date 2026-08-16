@@ -139,10 +139,10 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
         <!--Education-->
         <h2 class="text-text-900 text-4xl font-header font-bold py-5">EDUCATION</h2>
         <Experience>
-          <template #position> Algonquin college</template>
+          <template #position> Algonquin College</template>
           <template #year>2019 - 2022</template>
           <template #description>
-            <li class="list-none">Interactive media Design course | Ottawa, Canada</li>
+            <li class="list-none">Interactive media design Diploma | Ottawa, Canada</li>
           </template>
         </Experience>
 
