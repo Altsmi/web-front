@@ -7,7 +7,7 @@
         <h1
           class="font-bold text-text-900 tracking-tight font-header text-6xl sm:text-6xl md:text-6xl"
         >
-          UNDER CONSTRUCTION ! ! !
+          UNDER CONSTRUCTION ! ! ! ?
         </h1>
         <p class="text-xl sm:text-xl md:text-xl text-text-900 font-semibold">
           This section will be available soon.
