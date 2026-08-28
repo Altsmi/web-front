@@ -16,6 +16,7 @@ declare module 'vue' {
     Experince: typeof import('./src/components/Experince.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
+    ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Skills: typeof import('./src/components/Skills.vue')['default']
