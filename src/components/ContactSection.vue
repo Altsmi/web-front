@@ -72,9 +72,9 @@ async function handleSubmit(event: Event) {
       <div class="w-full sm:w-1/2 flex flex-col gap-6">
         <!--Socials-->
         <div
-          class="bg-brand-primary text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
+          class="bg-neutral-000 text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-lg font-bold">socials</p>
+          <p class="text-lg font-bold text-text-900">socials</p>
           <div class="flex gap-3">
             <a
               href="https://www.linkedin.com/in/illya-shpylka-a60315198/"
@@ -90,9 +90,9 @@ async function handleSubmit(event: Event) {
 
         <!--Third square-->
         <div
-          class="bg-brand-primary text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
+          class="bg-neutral-000 text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-lg font-bold text-center">
+          <p class="text-lg font-bold text-center text-text-900">
             Open for work: <br />
             Remote / Hybrid / Onsite
           </p>

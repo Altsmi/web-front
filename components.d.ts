@@ -11,15 +11,20 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ArcaneDetail: typeof import('./src/components/project-details/ArcaneDetail.vue')['default']
     ContactSection: typeof import('./src/components/ContactSection.vue')['default']
     Experience: typeof import('./src/components/Experience.vue')['default']
     Experince: typeof import('./src/components/Experince.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
+    Project1Detail: typeof import('./src/components/project-details/Project1Detail.vue')['default']
+    Project2Detail: typeof import('./src/components/project-details/Project2Detail.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
+    ProjectModal: typeof import('./src/components/ProjectModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Skills: typeof import('./src/components/Skills.vue')['default']
+    SwiftDetail: typeof import('./src/components/project-details/SwiftDetail.vue')['default']
     TestButton: typeof import('./src/components/TestButton.vue')['default']
   }
 }

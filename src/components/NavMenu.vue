@@ -33,14 +33,32 @@ onUnmounted(() => {
       menu
     </button>
 
-    <div
-      v-if="isOpen"
-      class="absolute top-full mt-2 right-0 bg-neutral-900 text-neutral-300 flex flex-col gap-2 p-4 w-50 z-70"
-    >
-      <RouterLink to="/about" class="hover:text-brand-primary" @click="closeMenu">about</RouterLink>
-      <RouterLink to="/projects" class="hover:text-brand-primary" @click="closeMenu"
-        >projects</RouterLink
+    <Transition name="menu-slide">
+      <div
+        v-if="isOpen"
+        class="absolute top-full mt-2 right-0 bg-neutral-900 text-neutral-300 flex flex-col gap-2 p-4 w-50 z-70 transition-all"
       >
-    </div>
+        <RouterLink to="/about" class="hover:text-brand-primary" @click="closeMenu"
+          >about</RouterLink
+        >
+        <RouterLink to="/projects" class="hover:text-brand-primary" @click="closeMenu"
+          >projects</RouterLink
+        >
+      </div>
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.menu-slide-enter-active,
+.menu-slide-leave-active {
+  transition:
+    opacity 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+.menu-slide-enter-from,
+.menu-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+</style>

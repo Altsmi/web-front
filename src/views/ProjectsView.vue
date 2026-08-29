@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ProjectCard from '@/components/ProjectCard.vue'
+import ProjectModal from '@/components/ProjectModal.vue'
 import { projectCardData } from '@/data/ProjectCardData'
+
+const selectedSlug = ref<string | null>(null)
+
+function openProject(slug: string) {
+  selectedSlug.value = slug
+}
+
+function closeProject() {
+  selectedSlug.value = null
+}
 </script>
 
 <template>
@@ -24,10 +36,17 @@ import { projectCardData } from '@/data/ProjectCardData'
 
   <!--Projects-->
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 md:py-10 transition-all duration-1000">
+    <div class="max-w-7xl mx-auto py-10 px-6 sm:px-6 md:py-10 transition-all duration-1000">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <ProjectCard v-for="card in projectCardData" :key="card.id" :card="card" />
+        <ProjectCard
+          v-for="card in projectCardData"
+          :key="card.slug"
+          :card="card"
+          @click="openProject(card.slug)"
+        />
       </div>
     </div>
   </section>
+
+  <ProjectModal :selectedSlug="selectedSlug" @close="closeProject" />
 </template>

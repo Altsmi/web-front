@@ -5,10 +5,12 @@ interface Prop {
   card: Card
 }
 const props = defineProps<Prop>()
+
+defineEmits<{ click: [] }>()
 </script>
 
 <template>
-  <div class="relative overflow-hidden aspect-square group cursor-pointer">
+  <div class="relative overflow-hidden aspect-square group cursor-pointer" @click="$emit('click')">
     <img :src="props.card.previewImg" :alt="props.card.title" class="w-full h-full object-cover" />
 
     <div
