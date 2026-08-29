@@ -1,7 +1,29 @@
 <script setup lang="ts"></script>
-
 <template>
-  <h2 class="text-3xl font-bold mb-4">Project 2 Title</h2>
-  <img src="/Placeholder-Square.svg" alt="project" class="w-full mb-4" />
-  <p class="text-lg">Description for project 2 goes here.</p>
+  <div>
+    <div class="py-10 space-y-3">
+      <h2 class="text-4xl font-bold">Swift Venture Delivery</h2>
+      <p class="text-lg text-text-700">Tools: Illustrator , Photoshop</p>
+    </div>
+
+    <!--Images-->
+    <div class="space-y-3">
+      <div class="grid-cols-1">
+        <img loading="lazy" src="/project_img/swift/swift_img4.jpg" alt="project" class="w-full" />
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <img loading="lazy" src="/project_img/swift/swift_img2.jpg" alt="project" class="w-full" />
+        <img loading="lazy" src="/project_img/swift/swift_img7.jpg" alt="project" class="w-full" />
+      </div>
+      <img loading="lazy" src="/project_img/swift/swift_img5.jpg" alt="project" class="w-full" />
+
+      <div class="grid grid-cols-2 gap-3">
+        <img loading="lazy" src="/project_img/swift/swift_img6.jpg" alt="project" class="w-full" />
+        <img loading="lazy" src="/project_img/swift/swift_img3.jpg" alt="project" class="w-full" />
+      </div>
+
+      <img loading="lazy" src="/project_img/swift/swift_img1.jpg" alt="project" class="w-full" />
+      <img loading="lazy" src="/project_img/swift/swift_img8.jpg" alt="project" class="w-full" />
+    </div>
+  </div>
 </template>

@@ -27,8 +27,8 @@ async function handleSubmit(event: Event) {
 </script>
 
 <template>
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-    <div class="flex flex-col sm:flex-row gap-6 h-80">
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="flex flex-col sm:flex-row gap-6 md:h-100">
       <!--Email-->
       <div class="bg-neutral-000 text-neutral-300 w-full sm:w-1/2 relative p-2">
         <!--Success message-->
@@ -42,6 +42,7 @@ async function handleSubmit(event: Event) {
 
         <!--Form-->
         <form v-else class="w-full h-full p-6 flex flex-col gap-3" @submit.prevent="handleSubmit">
+          <h3 class="text-text-900 text-2xl font-bold">Lets Get in touch</h3>
           <input
             type="text"
             name="Subject"
@@ -74,7 +75,7 @@ async function handleSubmit(event: Event) {
         <div
           class="bg-neutral-000 text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-lg font-bold text-text-900">socials</p>
+          <p class="text-xl font-bold text-text-900">socials</p>
           <div class="flex gap-3">
             <a
               href="https://www.linkedin.com/in/illya-shpylka-a60315198/"
@@ -92,7 +93,7 @@ async function handleSubmit(event: Event) {
         <div
           class="bg-neutral-000 text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-lg font-bold text-center text-text-900">
+          <p class="text-xl font-bold text-center text-text-900">
             Open for work: <br />
             Remote / Hybrid / Onsite
           </p>

@@ -135,7 +135,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
   </section>
 
   <!-- Project preview -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-25">
+  <section class="max-w-7xl mx-auto px-6 pb-25">
     <!--Project header -->
     <div class="bg-neutral-900 pt-25 md:pb-10 md:pt-25">
       <div class="flex flex-col gap-2 pb-4">

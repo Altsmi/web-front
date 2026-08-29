@@ -13,7 +13,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
   <!--About Header-->
   <section class="bg-neutral-300">
     <div
-      class="max-w-7xl mx-auto py-20 px-4 sm:px-6 md:py-25 transition-all duration-1000"
+      class="max-w-7xl mx-auto py-20 px-6 md:py-25 transition-all duration-1000"
       ref="heroRef"
       :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
     >
@@ -61,7 +61,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
 
   <!--Experience Section-->
   <section class="bg-neutral-000">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+    <div class="max-w-7xl mx-auto px-6 py-20">
       <div
         class="transition-all duration-1000"
         ref="ladderHeaderRef"

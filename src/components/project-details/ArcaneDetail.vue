@@ -15,6 +15,7 @@
       <img loading="lazy" src="/project_img/arcane/Arcane_Img5.jpg" alt="project" class="w-full" />
       <img loading="lazy" src="/project_img/arcane/Arcane_Img6.jpg" alt="project" class="w-full" />
       <img loading="lazy" src="/project_img/arcane/Arcane_Img7.jpg" alt="project" class="w-full" />
+      <img loading="lazy" src="/project_img/arcane/Arcane_Img8.jpg" alt="project" class="w-full" />
     </div>
   </div>
 </template>
