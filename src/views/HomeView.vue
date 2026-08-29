@@ -157,7 +157,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
       @mouseleave="isPaused = false"
     >
       <!--left side -->
-      <div id="info-section" class="w-1/2">
+      <div id="info-section" class="md:w-1/2 hidden md:block">
         <div class="flex flex-col gap-2.5">
           <div
             v-for="(project, index) in projectPreviewData"
@@ -196,7 +196,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
         </div>
       </div>
       <!--Rigt side -->
-      <div id="project-img" class="w-1/2">
+      <div id="project-img" class="md:w-1/2">
         <Transition name="fade" mode="out-in">
           <img
             :key="activeIndex"

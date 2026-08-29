@@ -16,8 +16,9 @@ function scrollToContact() {
             ><img src="/logo_classic.svg" alt="Logo" class="h-10 w-auto"
           /></RouterLink>
         </div>
-        <div class="flex space-x-50 items-center">
-          <NavMenu />
+        <div class="flex space-x-20 items-center">
+          <RouterLink to="/about" class="hover:text-brand-primary">about</RouterLink>
+          <RouterLink to="/projects" class="hover:text-brand-primary">projects</RouterLink>
           <button
             type="button"
             @click="scrollToContact"
