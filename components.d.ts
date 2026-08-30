@@ -26,5 +26,6 @@ declare module 'vue' {
     Skills: typeof import('./src/components/Skills.vue')['default']
     SwiftDetail: typeof import('./src/components/project-details/SwiftDetail.vue')['default']
     TestButton: typeof import('./src/components/TestButton.vue')['default']
+    WildWhispers: typeof import('./src/components/project-details/WildWhispers.vue')['default']
   }
 }

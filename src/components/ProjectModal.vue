@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ArcaneDetail from '@/components/project-details/ArcaneDetail.vue'
 import SwiftDetail from '@/components/project-details/SwiftDetail.vue'
+import WildWhispers from './project-details/WildWhispers.vue'
 
 defineProps<{ selectedSlug: string | null }>()
 const emit = defineEmits<{ close: [] }>()
@@ -13,7 +14,7 @@ const emit = defineEmits<{ close: [] }>()
       class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
       @click.self="emit('close')"
     >
-      <div class="bg-neutral-000 w-[90vw] h-[90vh] relative">
+      <div class="bg-neutral-000 w-[80vw] h-[90vh] relative border-3 border-neutral-000 rounded-sm">
         <button
           type="button"
           class="absolute top-4 right-8 text-neutral-900 hover:text-brand-primary z-10"
@@ -26,6 +27,7 @@ const emit = defineEmits<{ close: [] }>()
           <div class="mx-auto px-10 transition-all duration-1000">
             <ArcaneDetail v-if="selectedSlug === 'arcane'" />
             <SwiftDetail v-if="selectedSlug === 'swift'" />
+            <WildWhispers v-if="selectedSlug === 'wild'" />
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const { isVisible: skillVisible, sectionRef: skillRef } = useScrollReveal(0.3)
     :class="skillVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
   >
     <div
-      class="p-10 bg-neutral-300 border-3 border-neutral-300 hover:border-3 hover:border-brand-primary transition-discrete duration-300"
+      class="p-10 rounded-sm bg-neutral-300 border-3 border-neutral-300 hover:border-3 hover:border-brand-primary transition-discrete duration-300"
     >
       <div class="flex flex-row items-center gap-6">
         <slot name="icon"></slot>

@@ -33,7 +33,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:pt-5 md:pt-10">
           <!--Design Experince-->
           <div
-            class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+            class="rounded-sm px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
           >
             <h3 class="text-4xl font-bold pb-2">5+ YEARS</h3>
             <p class="text-xl font-medium">Graphic design experience</p>
@@ -41,7 +41,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
 
           <!--Project Delivered-->
           <div
-            class="px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+            class="rounded-sm px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
           >
             <h3 class="text-4xl font-bold pb-2">100%</h3>
             <p class="text-xl font-medium">Hands-on, from concept to delivery</p>
@@ -49,7 +49,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
 
           <!--Developer-->
           <div
-            class="px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+            class="rounded-sm px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
           >
             <h3 class="text-4xl font-bold pb-2">IN PROGRESS</h3>
             <p class="text-xl font-medium">Self-taught, full-stack developer</p>

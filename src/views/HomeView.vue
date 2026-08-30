@@ -65,7 +65,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <div class="flex justify-start md:justify-start">
             <RouterLink
               to="/about"
-              class="inline-block bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
+              class="inline-block rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
             >
               learn more →
             </RouterLink>
@@ -97,7 +97,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
         <!--Brand-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/print_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">PRINT & BRANDING</h3>
@@ -106,7 +106,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--Editorial-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/edit_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">EDITORIAL</h3>
@@ -115,7 +115,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--UX/UI-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/ux_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">UX/UI</h3>
@@ -124,7 +124,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
 
         <!--Web development-->
         <div
-          class="px-10 py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
         >
           <img src="/icons/dev_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">WEB DEVELOPMENT</h3>
@@ -144,7 +144,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <h2 class="text-text-000 text-4xl font-header font-bold">PROJECT PREVIEW</h2>
           <RouterLink
             to="projects"
-            class="inline-block bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
+            class="inline-block rounded-sm bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
             >more projects →</RouterLink
           >
         </div>
@@ -162,7 +162,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <div
             v-for="(project, index) in projectPreviewData"
             :key="project.id"
-            class="h-10 w-auto transition-colors duration-300 cursor-pointer"
+            class="h-10 w-auto transition-colors duration-300 cursor-pointer rounded-sm"
             :class="[
               index === activeIndex ? 'bg-brand-primary' : 'bg-neutral-000',
               barOpacities[index],
@@ -170,7 +170,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
             @click="goToIndex(index)"
           ></div>
           <!--Info Section-->
-          <div class="bg-neutral-000 px-10 py-10 flex flex-col gap-6">
+          <div class="bg-neutral-000 px-10 py-10 flex flex-col gap-6 rounded-sm">
             <Transition name="fade" mode="out-in">
               <div :key="activeIndex" class="space-y-4">
                 <h3 class="text-4xl font-bold">{{ activeProject.name }}</h3>
@@ -183,7 +183,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
             <TransitionGroup
               name="fade-tools"
               tag="div"
-              class="h-15 bg-neutral-900 flex flex-row gap-2 p-2 justify-end items-center"
+              class="h-15 bg-neutral-900 flex flex-row gap-2 p-2 justify-end items-center rounded-sm"
             >
               <img
                 v-for="tool in activeProject.tools"
@@ -202,7 +202,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
             :key="activeIndex"
             :src="activeProject.img"
             alt="project"
-            class="h-145 w-full object-cover"
+            class="h-145 w-full object-cover rounded-sm"
           />
         </Transition>
       </div>
