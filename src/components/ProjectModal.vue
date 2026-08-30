@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ArcaneDetail from '@/components/project-details/ArcaneDetail.vue'
 import SwiftDetail from '@/components/project-details/SwiftDetail.vue'
-import WildWhispers from './project-details/WildWhispers.vue'
+import WildWhispers from './project-details/WildWhispersDetails.vue'
+import SketchDetails from './project-details/SketchDetails.vue'
 
 defineProps<{ selectedSlug: string | null }>()
 const emit = defineEmits<{ close: [] }>()
@@ -28,6 +29,7 @@ const emit = defineEmits<{ close: [] }>()
             <ArcaneDetail v-if="selectedSlug === 'arcane'" />
             <SwiftDetail v-if="selectedSlug === 'swift'" />
             <WildWhispers v-if="selectedSlug === 'wild'" />
+            <SketchDetails v-if="selectedSlug === 'sketch'" />
           </div>
         </div>
       </div>

@@ -23,9 +23,11 @@ declare module 'vue' {
     ProjectModal: typeof import('./src/components/ProjectModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SketchDetails: typeof import('./src/components/project-details/SketchDetails.vue')['default']
     Skills: typeof import('./src/components/Skills.vue')['default']
     SwiftDetail: typeof import('./src/components/project-details/SwiftDetail.vue')['default']
     TestButton: typeof import('./src/components/TestButton.vue')['default']
     WildWhispers: typeof import('./src/components/project-details/WildWhispers.vue')['default']
+    WildWhispersDetails: typeof import('./src/components/project-details/WildWhispersDetails.vue')['default']
   }
 }
