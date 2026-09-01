@@ -13,11 +13,19 @@ function openProject(slug: string) {
 function closeProject() {
   selectedSlug.value = null
 }
+
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
 </script>
 
 <template>
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-20 px-6 md:pt-25 md:pb-10 transition-all duration-1000">
+    <div
+      class="max-w-7xl mx-auto py-20 px-6 md:pt-25 md:pb-10 transition-all duration-1000"
+      ref="heroRef"
+      :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+    >
       <div
         class="flex flex-col justify-center items-center md:items-start text-center md:text-left gap-6 md:gap-8 w-full"
       >

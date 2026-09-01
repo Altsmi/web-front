@@ -7,12 +7,17 @@ interface Prop {
 const props = defineProps<Prop>()
 
 defineEmits<{ click: [] }>()
+
+import { useScrollReveal } from '@/composables/useScrollReveal'
+const { isVisible: projectVisible, sectionRef: projectRef } = useScrollReveal(0.3)
 </script>
 
 <template>
   <div
-    class="rounded-sm relative overflow-hidden aspect-square group cursor-pointer"
+    class="rounded-sm relative overflow-hidden aspect-square group cursor-pointer transition-all duration-1000"
     @click="$emit('click')"
+    ref="projectRef"
+    :class="projectVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
   >
     <img :src="props.card.previewImg" :alt="props.card.title" class="w-full h-full object-cover" />
 
