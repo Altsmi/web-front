@@ -29,7 +29,6 @@ onMounted(() => {
 onUnmounted(() => {
   if (intervalId) clearInterval(intervalId)
 })
-
 // Opacity for info bars
 const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
 
