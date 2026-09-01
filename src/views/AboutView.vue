@@ -51,8 +51,8 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           <div
             class="rounded-sm px-10 py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
           >
-            <h3 class="text-4xl font-bold pb-2">IN PROGRESS</h3>
-            <p class="text-xl font-medium">Self-taught, full-stack developer</p>
+            <h3 class="text-4xl font-bold pb-2">ACTIVE STACK</h3>
+            <p class="text-xl font-medium">Vue, TypeScript & C#</p>
           </div>
         </div>
       </div>

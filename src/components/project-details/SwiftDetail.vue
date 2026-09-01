@@ -2,12 +2,19 @@
 <template>
   <div>
     <div class="py-10 space-y-3">
-      <h2 class="text-4xl font-bold">Swift Venture Delivery</h2>
-      <p class="text-lg text-text-700">Tools: Illustrator , Photoshop</p>
+      <h2 class="text-4xl font-bold">Swift Venture - Scalable Design System</h2>
+      <p class="text-lg text-text-700">Tools: Illustrator, Photoshop, Vector Architecture</p>
     </div>
 
     <!--Images-->
     <div class="space-y-3">
+      <h3 class="text-2xl pb-3">
+        A robust visual identity system developed for a logistics brand, engineered to scale
+        seamlessly across physical and digital touchpoints. By establishing a strict vector
+        construction grid and standardizing typography scales, the brand architecture was optimized
+        for both large-format environmental design and mobile UI components, ensuring visual
+        consistency from shipping collateral to mobile application interfaces.
+      </h3>
       <div class="grid-cols-1">
         <img
           loading="lazy"

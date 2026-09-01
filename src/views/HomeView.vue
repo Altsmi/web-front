@@ -95,24 +95,6 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-        <!--Brand-->
-        <div
-          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
-        >
-          <img src="/icons/print_icon.svg" alt="icon" class="h-14 pb-6" />
-          <h3 class="text-2xl font-bold pb-2">PRINT & BRANDING</h3>
-          <p class="text-lg font-medium">Identity systems, Logos, Brand guidelines</p>
-        </div>
-
-        <!--Editorial-->
-        <div
-          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
-        >
-          <img src="/icons/edit_icon.svg" alt="icon" class="h-14 pb-6" />
-          <h3 class="text-2xl font-bold pb-2">EDITORIAL</h3>
-          <p class="text-lg font-medium">Layouts, Publications, Print production</p>
-        </div>
-
         <!--UX/UI-->
         <div
           class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
@@ -129,6 +111,23 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
           <img src="/icons/dev_icon.svg" alt="icon" class="h-14 pb-6" />
           <h3 class="text-2xl font-bold pb-2">WEB DEVELOPMENT</h3>
           <p class="text-lg font-medium">Vue, TypeScript, Asp.net core</p>
+        </div>
+        <!--Brand-->
+        <div
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+        >
+          <img src="/icons/print_icon.svg" alt="icon" class="h-14 pb-6" />
+          <h3 class="text-2xl font-bold pb-2">PRINT & BRANDING</h3>
+          <p class="text-lg font-medium">Identity systems, Logos, Brand guidelines</p>
+        </div>
+
+        <!--Editorial-->
+        <div
+          class="px-10 py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300"
+        >
+          <img src="/icons/edit_icon.svg" alt="icon" class="h-14 pb-6" />
+          <h3 class="text-2xl font-bold pb-2">EDITORIAL</h3>
+          <p class="text-lg font-medium">Layouts, Publications, Print production</p>
         </div>
       </div>
     </div>

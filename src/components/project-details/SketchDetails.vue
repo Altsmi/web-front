@@ -2,17 +2,16 @@
 <template>
   <div>
     <div class="py-10 space-y-3">
-      <h2 class="text-4xl font-bold">Wild Whispers - Magazin Cover Design</h2>
+      <h2 class="text-4xl font-bold">Sketch & Drip - Information Architecture</h2>
       <p class="text-lg text-text-700">Tools: Photoshop</p>
     </div>
 
     <!--Images-->
     <div class="space-y-3">
       <h3 class="text-2xl pb-3">
-        Introducing Sketch & Drip Menu Design project. This unique menu blends artistic sketch
-        elements with a clean, modern layout, creating a visually stunning and easy-to-read design.
-        Ideal for cafés and restaurants seeking to elevate their branding, this menu design makes a
-        lasting impression on customers.
+        An information design exercise centered on maximizing readability. By utilizing rigid
+        alignment, strategic negative space, and clear typographic hierarchy, complex menu data was
+        organized into a highly scannable and accessible format.
       </h3>
       <img
         loading="lazy"
