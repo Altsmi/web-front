@@ -42,6 +42,25 @@ const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
   </section>
 
   <section class="bg-neutral-300">
+    <div class="max-w-7xl mx-auto py-20 px-6 md:pt-25 md:pb-10 transition-all flex flex-row gap-6">
+      <button
+        class="text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-900 hover:text-text-900 transition-all duration-300"
+        type="button"
+        @click=""
+      >
+        design
+      </button>
+      <button
+        class="text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-900 hover:text-text-900 transition-all duration-300"
+        type="button"
+        @click=""
+      >
+        developer
+      </button>
+    </div>
+  </section>
+
+  <section class="bg-neutral-300">
     <div class="max-w-7xl mx-auto py-10 px-6 md:py-10 transition-all duration-1000">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <ProjectCard
