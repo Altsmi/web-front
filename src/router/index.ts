@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'projects',
       component: () => import('../views/ProjectsView.vue'), // Lazy-loaded for performance
     },
+    {
+      path: '/projects/ux/:slug',
+      name: 'ux-project-detail',
+      component: () => import('../views/UxProjectDetailView.vue'),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

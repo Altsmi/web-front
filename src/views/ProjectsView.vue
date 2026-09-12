@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import ProjectCard from '@/components/ProjectCard.vue'
 import ProjectModal from '@/components/ProjectModal.vue'
 import { projectCardData } from '@/data/ProjectCardData'
+import { uxResearchData } from '@/data/UxResearchData'
 
+const router = useRouter()
 const selectedSlug = ref<string | null>(null)
 
 function openProject(slug: string) {
@@ -12,6 +15,10 @@ function openProject(slug: string) {
 
 function closeProject() {
   selectedSlug.value = null
+}
+
+function goToUxProject(slug: string) {
+  router.push(`/projects/ux/${slug}`)
 }
 
 import { useScrollReveal } from '@/composables/useScrollReveal'
@@ -42,33 +49,30 @@ const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
   </section>
 
   <section class="bg-neutral-300">
-    <div class="max-w-7xl mx-auto py-20 px-6 md:pt-25 md:pb-10 transition-all flex flex-row gap-6">
-      <button
-        class="text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-900 hover:text-text-900 transition-all duration-300"
-        type="button"
-        @click=""
-      >
-        design
-      </button>
-      <button
-        class="text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-900 hover:text-text-900 transition-all duration-300"
-        type="button"
-        @click=""
-      >
-        developer
-      </button>
-    </div>
-  </section>
-
-  <section class="bg-neutral-300">
     <div class="max-w-7xl mx-auto py-10 px-6 md:py-10 transition-all duration-1000">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <ProjectCard
-          v-for="card in projectCardData"
-          :key="card.slug"
-          :card="card"
-          @click="openProject(card.slug)"
-        />
+      <div class="space-y-6">
+        <!--UX Research: separate entity, navigates to its own page
+        <div>
+          <p class="text-brand-primary text-lg font-bold pb-6">ux/ui research</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <ProjectCard
+              v-for="card in uxResearchData"
+              :key="card.slug"
+              :card="card"
+              @click="goToUxProject(card.slug)"
+            />
+          </div>
+        </div>
+        -->
+        <p class="text-brand-primary text-lg font-bold">visual design</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <ProjectCard
+            v-for="card in projectCardData"
+            :key="card.slug"
+            :card="card"
+            @click="openProject(card.slug)"
+          />
+        </div>
       </div>
     </div>
   </section>

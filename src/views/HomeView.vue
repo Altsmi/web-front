@@ -1,44 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { projectPreviewData } from '@/data/ProjectPreviewData'
+import { projectCardData } from '@/data/ProjectCardData'
 
-const activeIndex = ref(0)
-const activeProject = computed(() => projectPreviewData[activeIndex.value]!)
-const isPaused = ref(false)
-
-let intervalId: number | undefined
-
-function advance() {
-  activeIndex.value = (activeIndex.value + 1) % projectPreviewData.length
-}
-
-function goToIndex(index: number) {
-  activeIndex.value = index
-}
-
-function startAutoAdvance() {
-  intervalId = window.setInterval(() => {
-    if (!isPaused.value) advance()
-  }, 2000)
-}
-
-onMounted(() => {
-  startAutoAdvance()
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
-// opacity for info bars
-const barOpacities = ['opacity-25', 'opacity-50', 'opacity-75', 'opacity-100']
-
-// reveal on scroll
 import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const { isVisible: heroVisible, sectionRef: heroRef } = useScrollReveal(0.3)
 const { isVisible: expertiseVisible, sectionRef: expertiseRef } = useScrollReveal(0.2)
+const { isVisible: previewVisible, sectionRef: previewRef } = useScrollReveal(0.2)
 const { isVisible: aboutVisible, sectionRef: aboutRef } = useScrollReveal(0.3)
-const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.3)
 </script>
 
 <template>
@@ -83,6 +51,7 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
       </div>
     </div>
   </section>
+
   <!-- Skills Section -->
   <section class="bg-neutral-300">
     <div
@@ -134,88 +103,34 @@ const { isVisible: contactVisible, sectionRef: contactRef } = useScrollReveal(0.
     </div>
   </section>
 
-  <!-- Project preview -->
-  <section class="max-w-7xl mx-auto px-6 pb-20 md:pb-25">
-    <!--Project header -->
-    <div class="bg-neutral-900 pt-20 md:pt-25">
-      <div class="flex flex-col gap-2 pb-4 items-center md:items-start text-center md:text-left">
+  <!-- Project preview: simple static grid -->
+  <section class="bg-neutral-900">
+    <div
+      ref="previewRef"
+      class="max-w-7xl mx-auto px-6 py-20 md:py-25 transition-all duration-1000"
+      :class="previewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+    >
+      <div class="flex flex-col gap-2 pb-10 items-center md:items-start text-center md:text-left">
         <p class="text-brand-primary text-lg">design.build.deliver</p>
         <div
           class="flex flex-col md:flex-row md:flex-wrap justify-between items-center md:items-start gap-4 md:gap-6 w-full"
         >
           <h2 class="text-text-000 text-3xl sm:text-4xl font-header font-bold">PROJECT PREVIEW</h2>
           <RouterLink
-            to="projects"
-            class="hidden md:inline-block rounded-sm bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
+            to="/projects"
+            class="inline-block rounded-sm bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
             >more projects →</RouterLink
           >
         </div>
       </div>
-    </div>
 
-    <div
-      class="flex flex-col md:flex-row gap-6 items-start"
-      @mouseenter="isPaused = true"
-      @mouseleave="isPaused = false"
-    >
-      <!--left side -->
-      <div id="info-section" class="w-full md:w-1/2 order-2 md:order-1">
-        <div class="flex flex-col gap-2.5">
-          <!--Bars: desktop only-->
-          <div
-            v-for="(project, index) in projectPreviewData"
-            :key="project.id"
-            class="hidden md:block h-10 w-auto transition-colors duration-300 cursor-pointer rounded-sm"
-            :class="[
-              index === activeIndex ? 'bg-brand-primary' : 'bg-neutral-000',
-              barOpacities[index],
-            ]"
-            @click="goToIndex(index)"
-          ></div>
-          <RouterLink
-            to="projects"
-            class="inline-block text-center md:hidden rounded-sm bg-neutral-900 px-4 py-2 border-3 border-brand-primary text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
-            >more projects →</RouterLink
-          >
-          <!--Info Section-->
-          <div
-            class="bg-neutral-000 px-6 py-8 sm:px-10 md:block hidden sm:py-10 flex flex-col gap-6 rounded-sm text-center md:text-left items-center md:items-start"
-          >
-            <Transition name="fade" mode="out-in">
-              <div :key="activeIndex" class="space-y-4 flex flex-col items-center md:items-start">
-                <h3 class="text-3xl sm:text-4xl font-bold">{{ activeProject.name }}</h3>
-                <p class="text-lg font-medium md:h-45">
-                  {{ activeProject.description }}
-                </p>
-              </div>
-            </Transition>
-            <!--Tools-->
-            <TransitionGroup
-              name="fade-tools"
-              tag="div"
-              class="h-15 bg-neutral-900 flex flex-row gap-2 p-2 justify-center md:justify-end items-center rounded-sm w-full"
-            >
-              <img
-                v-for="tool in activeProject.tools"
-                :key="`${activeIndex}-${tool}`"
-                :src="tool"
-                class="h-10 w-10"
-              />
-            </TransitionGroup>
-          </div>
-        </div>
-      </div>
-
-      <!--Rigt side -->
-      <div id="project-img" class="w-full md:w-1/2 order-1 md:order-2">
-        <Transition name="fade" mode="out-in">
-          <img
-            :key="activeIndex"
-            :src="activeProject.img"
-            alt="project"
-            class="h-64 sm:h-96 md:h-145 w-full object-cover rounded-sm"
-          />
-        </Transition>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <ProjectCard
+          v-for="card in projectCardData.slice(0, 3)"
+          :key="card.slug"
+          :card="card"
+          @click="$router.push('/projects')"
+        />
       </div>
     </div>
   </section>
