@@ -9,7 +9,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
 </script>
 
 <template>
-  <section class="bg-neutral-300">
+  <section class="bg-neutral-000">
     <div
       class="max-w-7xl mx-auto py-20 px-6 md:py-25 transition-all duration-1000"
       ref="heroRef"
@@ -24,31 +24,47 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           ABOUT ME
         </h1>
         <p class="text-lg sm:text-xl md:text-xl text-text-900 font-semibold">
-          Hi, I'm <span class="text-brand-primary">Illya</span> — a Toronto-based graphic designer
-          with a growing focus on UX/UI and front-end development. My background is in editorial
-          layout and brand design, and I'm expanding that into building the systems that bring those
-          designs to life on the web.
+          Hi, I'm <span class="text-brand-primary">Illya</span> — a Toronto-based visual designer
+          working at the intersection of brand systems, UX/UI, and front-end development. My
+          background is in interactive media and graphic design, and I bring that discipline to
+          building responsive digital experiences across the web.
         </p>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-5 sm:pt-5 md:pt-10 w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 w-full">
+          <!--UX/UI-->
           <div
-            class="rounded-sm px-6 py-8 sm:px-10 sm:py-10 bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center lg:text-left"
+            class="px-6 py-6 sm:px-10 sm:py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center md:text-left flex flex-col items-center md:items-start"
           >
-            <h3 class="text-3xl sm:text-4xl font-bold pb-2">5+ YEARS</h3>
-            <p class="text-lg sm:text-xl font-medium">Graphic design experience</p>
+            <img src="/icons/ux_icon.svg" alt="icon" class="h-10 sm:h-14 pb-4 sm:pb-6" />
+            <h3 class="text-xl sm:text-2xl font-bold pb-2">UX/UI</h3>
+            <p class="text-base sm:text-lg font-medium">Wireframes, Prototypes, Design systems</p>
           </div>
 
+          <!--Web development-->
           <div
-            class="rounded-sm px-6 py-8 sm:px-10 sm:py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center lg:text-left"
+            class="px-6 py-6 sm:px-10 sm:py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center md:text-left flex flex-col items-center md:items-start"
           >
-            <h3 class="text-3xl sm:text-4xl font-bold pb-2">100%</h3>
-            <p class="text-lg sm:text-xl font-medium">Hands-on, from concept to delivery</p>
+            <img src="/icons/dev_icon.svg" alt="icon" class="h-10 sm:h-14 pb-4 sm:pb-6" />
+            <h3 class="text-xl sm:text-2xl font-bold pb-2">WEB DEVELOPMENT</h3>
+            <p class="text-base sm:text-lg font-medium">Vue, TypeScript, Asp.net core</p>
+          </div>
+          <!--Brand-->
+          <div
+            class="px-6 py-6 sm:px-10 sm:py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center md:text-left flex flex-col items-center md:items-start"
+          >
+            <img src="/icons/print_icon.svg" alt="icon" class="h-10 sm:h-14 pb-4 sm:pb-6" />
+            <h3 class="text-xl sm:text-2xl font-bold pb-2">PRINT & BRANDING</h3>
+            <p class="text-base sm:text-lg font-medium">
+              Identity systems, Logos, Brand guidelines
+            </p>
           </div>
 
+          <!--Editorial-->
           <div
-            class="rounded-sm px-6 py-8 sm:px-10 sm:py-10 bg-neutral-900 text-neutral-300 border-3 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center lg:text-left"
+            class="px-6 py-6 sm:px-10 sm:py-10 rounded-sm bg-neutral-900 text-neutral-300 border-4 border-neutral-900 hover:border-brand-primary transition-colors duration-300 text-center md:text-left flex flex-col items-center md:items-start"
           >
-            <h3 class="text-3xl sm:text-4xl font-bold pb-2">ACTIVE STACK</h3>
-            <p class="text-lg sm:text-xl font-medium">Vue, TypeScript & C#</p>
+            <img src="/icons/edit_icon.svg" alt="icon" class="h-10 sm:h-14 pb-4 sm:pb-6" />
+            <h3 class="text-xl sm:text-2xl font-bold pb-2">EDITORIAL</h3>
+            <p class="text-base sm:text-lg font-medium">Layouts, Publications, Print production</p>
           </div>
         </div>
       </div>
@@ -56,7 +72,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
   </section>
 
   <section class="bg-neutral-000">
-    <div class="max-w-7xl mx-auto px-6 py-20">
+    <div class="max-w-7xl mx-auto px-6 py-10">
       <div
         class="transition-all duration-1000"
         ref="ladderHeaderRef"
@@ -77,21 +93,17 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           <template #year>Sept 2024 – Present</template>
           <template #description>
             <li>
-              Built and maintained comprehensive layout templates using Adobe InDesign, improving
-              workflow consistency and speeding up production for recurring magazine projects.
+              Engineered and maintained 20+ reusable layout templates in Adobe InDesign, cutting
+              digital and print production turnaround by an estimated 30% across weekly
+              deliverables.
             </li>
             <li>
-              Executed high-volume asset integration, accurately placing complex text, images, and
-              data into established templates under tight publishing deadlines.
+              Optimized dense single-page assets into highly readable multi-page layouts, strictly
+              managing typography spacing and visual hierarchy.
             </li>
             <li>
-              Handled digital asset preparation, using Adobe Photoshop for photo retouching, color
-              correction, and formatting to ensure all visual content met professional print and
-              digital standards.
-            </li>
-            <li>
-              Collaborated daily with editors and project managers to turn creative briefs into
-              polished, production-ready editorial designs.
+              Collaborated directly with 3 project managers to translate creative briefs into
+              polished, production-ready design deliverables under tight deadlines.
             </li>
           </template>
         </Experience>
@@ -100,21 +112,16 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           <template #year>2021 – 2024</template>
           <template #description>
             <li>
-              Created visual identities and digital assets for diverse clients, developing logos,
-              typography guidelines, and style guides based on client requirements.
+              Built scalable Figma layouts and vector grid systems, bridging the gap between visual
+              identity design and digital execution
             </li>
             <li>
-              Built scalable Figma layouts and interactive prototypes, bridging the gap between
-              visual design and frontend execution.
+              Designed complex information architectures focused on maximizing readability, content
+              alignment, and structural grid logic.
             </li>
             <li>
-              Prepared and presented design concepts and project update decks directly to clients,
-              explaining visual choices and gathering feedback.
-            </li>
-            <li>
-              Managed full-lifecycle production for print and digital media, balancing artistic
-              direction with commercial viability to deliver marketing collateral, large-format
-              assets, and custom digital cover art for independent creators.
+              Managed full-lifecycle production for digital and print media, delivering standardized
+              UI component style guides to diverse clients.
             </li>
           </template>
         </Experience>
@@ -123,8 +130,8 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           <template #year>Aug 2020 – Aug 2021</template>
           <template #description>
             <li>
-              Assisted in preparing presentation decks and supporting files for internal and
-              client-facing use.
+              Assisted in preparing and structuring presentation decks and visual asset files for
+              internal and client-facing use.
             </li>
             <li>Conducted research to inform presentation content and design direction.</li>
           </template>
@@ -136,15 +143,16 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
         </h2>
         <Experience>
           <template #position> Algonquin College</template>
-          <template #year>2019 - 2022</template>
+          <template #year>2019 - 2021</template>
           <template #description>
             <li class="list-none">Interactive media design Diploma | Ottawa, Canada</li>
+            <li class="list-none">Google UX Design Professional Certificate | In Progress</li>
           </template>
         </Experience>
 
-        <div class="flex flex-col gap-2 pt-10 pb-5 text-center">
+        <div class="flex flex-col gap-2 pt-10 pb-5">
           <p class="text-brand-primary text-lg">what i use</p>
-          <h2 class="text-text-900 text-3xl sm:text-4xl font-header font-bold">TOOLS & SKILLS</h2>
+          <h2 class="text-text-900 text-3xl sm:text-4xl font-header font-bold">TOOLS</h2>
         </div>
         <div class="">
           <p class="text-text-700 text-lg font-bold pb-6 text-center md:text-left">design</p>

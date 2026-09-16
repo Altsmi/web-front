@@ -50,7 +50,6 @@ onUnmounted(() => {
         <div class="hidden md:flex space-x-20 items-center">
           <RouterLink to="/" class="hover:text-brand-primary hidden lg:block">home</RouterLink>
           <RouterLink to="/about" class="hover:text-brand-primary">about</RouterLink>
-          <RouterLink to="/projects" class="hover:text-brand-primary">projects</RouterLink>
           <button
             type="button"
             @click="scrollToContact"
@@ -82,9 +81,7 @@ onUnmounted(() => {
           <RouterLink to="/about" class="hover:text-brand-primary" @click="closeMobileMenu"
             >about</RouterLink
           >
-          <RouterLink to="/projects" class="hover:text-brand-primary" @click="closeMobileMenu"
-            >projects</RouterLink
-          >
+
           <button
             type="button"
             @click="scrollToContact"

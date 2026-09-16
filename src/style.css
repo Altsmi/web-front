@@ -45,3 +45,6 @@ html {
 .fade-tools-move {
   transition: transform 0.5s ease-in-out;
 }
+:root {
+  --nav-height: 91px;
+}

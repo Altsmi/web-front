@@ -73,19 +73,33 @@ async function handleSubmit(event: Event) {
       <div class="w-full sm:w-1/2 flex flex-col gap-6">
         <!--Socials-->
         <div
-          class="bg-neutral-000 rounded-sm text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
+          class="bg-neutral-000 rounded-sm flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-xl font-bold text-text-900">socials</p>
-          <div class="flex gap-3">
+          <p class="text-xl font-semibold text-text-900">socials</p>
+          <div class="flex flex-wrap gap-3">
             <a
               href="https://www.linkedin.com/in/illya-shpylka-a60315198/"
               target="_blank"
               rel="noopener noreferrer"
-              ><img src="/icons/link_icon.svg" class="h-6 w-6" alt="linkedin"
-            /></a>
-            <a href="https://github.com/Altsmi" target="_blank" rel="noopener noreferrer"
-              ><img src="/icons/github_icon.svg" class="h-6 w-6" alt="github"
-            /></a>
+              class="text-neutral-900 font-medium underline underline-offset-6 hover:text-brand-primary"
+              >linkedin</a
+            >
+            <p>/</p>
+            <a
+              href="https://github.com/Altsmi"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-neutral-900 font-medium underline underline-offset-6 hover:text-brand-primary"
+              >github</a
+            >
+            <p>/</p>
+            <a
+              href="/Illya_Shpylka_Visual_Designer.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-neutral-900 font-medium underline underline-offset-6 hover:text-brand-primary"
+              >resume</a
+            >
           </div>
         </div>
 
@@ -93,8 +107,8 @@ async function handleSubmit(event: Event) {
         <div
           class="bg-neutral-000 rounded-sm text-neutral-300 flex flex-col items-center justify-center gap-3 flex-1 px-4 py-6"
         >
-          <p class="text-xl font-bold text-center text-text-900">
-            Open for work: <br />
+          <p class="text-xl font-medium text-center text-text-900">
+            <span class="font-semibold">Open for work: </span><br />
             Remote / Hybrid / Onsite
           </p>
         </div>

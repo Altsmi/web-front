@@ -2,13 +2,13 @@
 <template>
   <div>
     <div class="py-10 space-y-3">
-      <h2 class="text-4xl font-bold">Arcane Bookstore - Visual Design System</h2>
-      <p class="text-lg text-text-700">Illustrator, Photoshop, UI Color Tokens</p>
+      <h2 class="text-2xl sm:text-4xl font-bold">Arcane Bookstore - Visual Design System</h2>
+      <p class="text-sm sm:text-lg text-text-700">Illustrator, Photoshop, UI Color Tokens</p>
     </div>
 
     <!--Images-->
     <div class="space-y-3">
-      <h3 class="text-2xl pb-3">
+      <h3 class="text-xl sm:text-2xl pb-3">
         A comprehensive visual architecture built for a hybrid online/offline bookstore. This
         project established strict typography scales, modular vector components, and precise color
         tokens (#F9F6EE, #D62828, #0c0c0c), ensuring the brand's assets could scale seamlessly from

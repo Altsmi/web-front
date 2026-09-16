@@ -8,11 +8,4 @@ export const uxResearchData: Card[] = [
     title: 'Service Invoicing & Tracking',
     category: 'UX/UI Research',
   },
-  {
-    id: 2,
-    slug: 'ux-research-project-2',
-    previewImg: '/project_img/PlaceholderUX.jpg',
-    title: 'Project 2 Title',
-    category: 'UX/UI Research',
-  },
 ]
