@@ -18,7 +18,7 @@ const { isVisible: projectVisible, sectionRef: projectRef } = useScrollReveal(0.
   <div
     class="rounded-sm relative overflow-hidden group cursor-pointer transition-all duration-1000"
     :class="[
-      featured ? 'aspect-[21/9]' : 'aspect-square',
+      featured ? 'aspect-21/9' : 'aspect-square',
       projectVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
     ]"
     @click="$emit('click')"

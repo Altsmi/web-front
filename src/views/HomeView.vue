@@ -48,7 +48,7 @@ const activeFilter = ref<'all' | 'ux' | 'visual'>('all')
         class="flex flex-col lg:flex-row justify-between items-center lg:items-stretch gap-8 lg:gap-10"
       >
         <div
-          class="flex flex-col justify-center items-center lg:items-start text-center lg:text-left gap-6 md:gap-8 w-full lg:w-3/5"
+          class="flex flex-col justify-center items-center lg:items-start lg:text-left gap-6 md:gap-10 w-full lg:w-3/5"
         >
           <h1 class="font-semibold text-text-900 tracking-tight font-header text-5xl md:text-6xl">
             BRINGING VISUAL CRAFT TO DIGITAL REALITY
@@ -110,7 +110,7 @@ const activeFilter = ref<'all' | 'ux' | 'visual'>('all')
         >
           all
         </button>
-        <!--
+
         <button
           type="button"
           class="rounded-sm px-4 py-2 border-3 text-sm sm:text-base transition-all duration-300"
@@ -123,7 +123,7 @@ const activeFilter = ref<'all' | 'ux' | 'visual'>('all')
         >
           ux/ui
         </button>
-        -->
+
         <button
           type="button"
           class="rounded-sm px-4 py-2 border-3 text-sm sm:text-base transition-all duration-300"
@@ -139,7 +139,6 @@ const activeFilter = ref<'all' | 'ux' | 'visual'>('all')
       </div>
 
       <div class="space-y-6">
-        <!--UX Research
         <div v-if="activeFilter === 'all' || activeFilter === 'ux'">
           <div class="grid grid-cols-1 gap-6">
             <ProjectCard
@@ -151,7 +150,7 @@ const activeFilter = ref<'all' | 'ux' | 'visual'>('all')
             />
           </div>
         </div>
--->
+
         <!--Visual design-->
         <div v-if="activeFilter === 'all' || activeFilter === 'visual'">
           <div class="grid grid-cols-2 gap-6">

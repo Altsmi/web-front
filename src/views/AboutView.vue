@@ -15,9 +15,7 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
       ref="heroRef"
       :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
     >
-      <div
-        class="flex flex-col justify-center items-center md:items-start text-center md:text-left gap-6 md:gap-8 w-full"
-      >
+      <div class="flex flex-col justify-center md:items-start md:text-left gap-6 md:gap-8 w-full">
         <h1
           class="font-bold text-text-900 tracking-tight font-header text-4xl sm:text-5xl md:text-6xl"
         >

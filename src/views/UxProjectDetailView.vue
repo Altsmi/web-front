@@ -6,6 +6,7 @@ import { uxResearchData } from '@/data/UxResearchData'
 const route = useRoute()
 const project = computed(() => uxResearchData.find((p) => p.slug === route.params.slug))
 import { useRouter } from 'vue-router'
+import InvoiceDetails from '@/components/project-details/InvoiceDetails.vue'
 
 const router = useRouter()
 
@@ -19,20 +20,21 @@ function goToProjects() {
 </script>
 
 <template>
-  <section v-if="project" class="bg-neutral-300">
+  <section v-if="project" class="bg-neutral-000">
     <div class="max-w-7xl mx-auto px-6 py-20">
       <button
         type="button"
-        class="inline-block w-full md:w-fit text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-1000"
+        class="inline-block w-full md:w-fit text-center rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-500"
         @click="goToProjects"
       >
-        < back
+        ← back
       </button>
       <div class="space-y-3 pt-10">
-        <h1 class="text-2xl sm:text-4xl font-bold">{{ project.title }}</h1>
+        <h1 class="text-2xl sm:text-4xl font-bold font-header">{{ project.title }}</h1>
         <p class="text-sm sm:text-lg text-text-700">{{ project.category }}</p>
         <img :src="project.previewImg" :alt="project.title" class="w-full rounded-sm" />
         <!--Project -->
+        <InvoiceDetails />
       </div>
     </div>
   </section>

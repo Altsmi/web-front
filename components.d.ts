@@ -16,6 +16,7 @@ declare module 'vue' {
     Experience: typeof import('./src/components/Experience.vue')['default']
     Experince: typeof import('./src/components/Experince.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
+    InvoiceDetails: typeof import('./src/components/project-details/InvoiceDetails.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     Project1Detail: typeof import('./src/components/project-details/Project1Detail.vue')['default']
     Project2Detail: typeof import('./src/components/project-details/Project2Detail.vue')['default']
