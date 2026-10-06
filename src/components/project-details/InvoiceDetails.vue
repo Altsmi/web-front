@@ -62,7 +62,7 @@
             <h3 class="text-3xl sm:text-5xl font-bold text-text-900">47%</h3>
             <p class="text-sm sm:text-lg font-medium text-text-900">
               <span class="font-bold">Post-Task Account Creation Rate.</span> In moderated prototype
-              testing, 45% of test participants opted to create an account when prompted with the
+              testing, 47% of test participants opted to create an account when prompted with the
               "Save to Hub" screen immediately after dispatching their invoice, validating the
               value-first onboarding strategy.
             </p>
