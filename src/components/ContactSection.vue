@@ -94,7 +94,7 @@ async function handleSubmit(event: Event) {
             >
             <p>/</p>
             <a
-              href="/Illya_Shpylka_Visual_Designer.pdf"
+              href="/Illya_Shpylka_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               class="text-neutral-900 font-medium underline underline-offset-6 hover:text-brand-primary"

@@ -91,35 +91,54 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
           <template #year>Sept 2024 – Present</template>
           <template #description>
             <li>
-              Engineered and maintained 20+ reusable layout templates in Adobe InDesign, cutting
-              digital and print production turnaround by an estimated 30% across weekly
-              deliverables.
+              Engineered and maintained a centralized library of 50+ modular layout templates and
+              responsive components, cutting cross-platform delivery turnaround by an estimated 30%
+              across weekly production cycles.
             </li>
             <li>
-              Optimized dense single-page assets into highly readable multi-page layouts, strictly
-              managing typography spacing and visual hierarchy.
+              Architected high-impact B2B digital sell sheets, applying progressive disclosure and
+              structured visual hierarchies to translate dense technical offerings into scannable,
+              conversion-focused interfaces.
             </li>
             <li>
-              Collaborated directly with 3 project managers to translate creative briefs into
-              polished, production-ready design deliverables under tight deadlines.
+              Restructured dense, data-heavy content into intuitive multi-page information
+              architectures, leveraging strict typographic scales, vertical rhythm, and baseline
+              layout grids to minimize cognitive fatigue and maximize scannability.
+            </li>
+            <li>
+              Drove end-to-end design execution from initial brief synthesis to final developer and
+              stakeholder handoff, aligning cross-functional partners around technical feasibility
+              and shipping high-impact deliverables on accelerated release timelines.
             </li>
           </template>
         </Experience>
         <Experience>
-          <template #position>Graphic Designer — Remote</template>
+          <template #position>Product & Visual Designer (Freelance)</template>
           <template #year>2021 – 2024</template>
           <template #description>
             <li>
-              Built scalable Figma layouts and vector grid systems, bridging the gap between visual
-              identity design and digital execution
+              Led end-to-end UX/UI redesigns and responsive web overhauls, translating client
+              requirements into structured information architectures, wireframes, and
+              production-ready digital interfaces.
             </li>
             <li>
-              Designed complex information architectures focused on maximizing readability, content
-              alignment, and structural grid logic.
+              Conducted generative user interviews and usability testing sessions across multiple
+              digital projects, synthesizing qualitative research into actionable wireframe
+              iterations that resolved user friction.
             </li>
             <li>
-              Managed full-lifecycle production for digital and print media, delivering standardized
-              UI component style guides to diverse clients.
+              Built high-fidelity interactive prototypes to simulate complex task flows, streamline
+              client stakeholder approvals, and validate usability before development handoff.
+            </li>
+            <li>
+              Implemented and maintained front-end stylesheets (CSS/HTML) across custom web
+              platforms (WordPress, CMS), aligning live production code with strict typographic
+              scales, color tokens, and responsive breakpoints.
+            </li>
+            <li>
+              Directed cross-channel visual identity systems, scaling brand standards across both
+              digital web platforms and large-format print collateral (billboards, editorial, and
+              promotional assets) with rigorous typographic governance.
             </li>
           </template>
         </Experience>
@@ -139,12 +158,22 @@ const { isVisible: ladderHeaderVisible, sectionRef: ladderHeaderRef } = useScrol
         >
           EDUCATION
         </h2>
+
         <Experience>
           <template #position> Algonquin College</template>
           <template #year>2019 - 2021</template>
           <template #description>
             <li class="list-none">Interactive media design Diploma | Ottawa, Canada</li>
-            <li class="list-none">Google UX Design Professional Certificate | In Progress</li>
+          </template>
+        </Experience>
+        <Experience>
+          <template #position> Google UX Design Professional Certificate</template>
+          <template #year>2026</template>
+          <template #description>
+            <li class="list-none">
+              Focused on user discovery, generative interviews, usability studies, and data-backed
+              product iteration.
+            </li>
           </template>
         </Experience>
 
