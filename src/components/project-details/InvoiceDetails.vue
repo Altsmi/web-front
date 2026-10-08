@@ -59,12 +59,12 @@
 
           <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
             <p class="text-brand-primary font-semibold text-sm">Impact</p>
-            <h3 class="text-3xl sm:text-5xl font-bold text-text-900">47%</h3>
+            <h3 class="text-3xl sm:text-5xl font-bold text-text-900">60%</h3>
             <p class="text-sm sm:text-lg font-medium text-text-900">
-              <span class="font-bold">Post-Task Account Creation Rate.</span> In moderated prototype
-              testing, 47% of test participants opted to create an account when prompted with the
-              "Save to Hub" screen immediately after dispatching their invoice, validating the
-              value-first onboarding strategy.
+              <span class="font-bold">Post-Task Account Creation Rate.</span> In unmoderated
+              prototype testing, 60% of test participants (3 of 5) opted to create an account when
+              prompted with the "Save to Hub" screen immediately after dispatching their invoice,
+              validating the value-first onboarding strategy.
             </p>
           </div>
 
@@ -113,7 +113,7 @@
       <!--Persona-->
       <div class="space-y-4 sm:space-y-6">
         <h2 class="text-xl sm:text-3xl font-bold text-text-900">Persona</h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           This section introduces user personas developed from qualitative discovery sessions,
           highlighting the operational divide in trade services. These personas anchor the design
           decisions by capturing the distinct workflows of users. From independent field technicians
@@ -134,8 +134,8 @@
           />
         </div>
         <!--Competitive analysis-->
-        <h2 class="text-xl sm:text-3xl font-bold text-text-900">Competitive analysis</h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <h2 class="text-xl sm:text-3xl pt-10 font-bold text-text-900">Competitive analysis</h2>
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           Conducted a targeted competitive analysis to benchmark against leading invoicing tools,
           focusing on onboarding friction, mobile ergonomics, and financial tracking clarity. Using
           this research, we identified three critical goals required for the solution to succeed:
@@ -179,7 +179,7 @@
       <!--Persona-->
       <div class="space-y-4 sm:space-y-6">
         <h2 class="text-xl sm:text-3xl font-bold text-text-900">User Flow Architecture</h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           To eliminate friction between on-site urgency and administrative tracking, I mapped a
           dual-funnel architecture decoupling instant task completion from account management. Field
           users get an unauthenticated quick-dispatch flow, while office operators access a complete
@@ -193,7 +193,7 @@
             class="w-full h-auto rounded-sm"
           />
         </div>
-        <div class="rounded-sm bg-neutral-300 overflow-x-auto">
+        <div class="rounded-sm bg-neutral-300 border overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-neutral-900 text-neutral-300">
@@ -206,7 +206,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-neutral-000">
+            <tbody class="divide-y divide-neutral-900">
               <tr>
                 <td class="p-4 sm:p-6 text-sm sm:text-base font-semibold text-text-900">
                   User Intent
@@ -269,7 +269,7 @@
       <div class="space-y-4 sm:space-y-6">
         <!--Landing Page-->
         <h2 class="text-xl sm:text-3xl font-bold text-text-900">01. The Dual-Funnel Gateway</h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           The layout was architected around a dual-funnel strategy: desktop business owners receive
           clear visual proof, feature deep-dives, and account access, while time-crunched mobile
           contractors get an instant, above-the-fold entry point to start billing without mandatory
@@ -317,7 +317,7 @@
         <h2 class="text-xl sm:text-3xl font-bold text-text-900 pt-10">
           02. Instant Invoicing (Marcus Vance Persona Flow)
         </h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           Because Marcus Vance operates almost exclusively from his service van or job site, this
           user flow prioritizes the mobile viewport. The focus is entirely on removing field
           friction: bypassing registration gates and providing large, thumb-accessible touch targets
@@ -351,19 +351,12 @@
             </p>
           </div>
         </div>
-        <div>
-          <img
-            src="/project_img/invoice/digital_02.jpg"
-            alt="digital landing"
-            class="w-full h-auto rounded-sm"
-          />
-        </div>
 
         <!--David-->
         <h2 class="text-xl sm:text-3xl font-bold text-text-900 pt-10">
           03. Financial Hub & Receivables (David Chen Persona Flow)
         </h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
+        <p class="text-base py-6 sm:text-xl font-medium text-text-900">
           Unlike Marcus’s on-site mobile flow, David Chen manages operations and payroll from a
           desktop office. This flow prioritizes desktop data density. Replacing linear mobile
           steppers with high-level KPI cards and a filterable receivables ledger to eliminate
@@ -394,12 +387,127 @@
             </p>
           </div>
         </div>
+      </div>
+    </section>
+    <!--Low-Fidelity Prototyping & Usability Testing-->
+    <section class="space-y-6 sm:space-y-8">
+      <!--Name of the section-->
+      <div class="text-center md:text-start py-5">
+        <h2 class="text-2xl sm:text-4xl font-bold font-header text-text-900 p-5 bg-orange-100">
+          <span class="bg-brand-primary text-neutral-000 px-4 rounded-sm">4</span> Low-Fidelity
+          Prototyping & Usability Testing
+        </h2>
+      </div>
+      <div class="space-y-4 sm:space-y-6">
+        <h2 class="text-xl sm:text-3xl font-bold text-text-900">
+          Study Methodology & Participant Setup
+        </h2>
+        <p class="text-base sm:text-xl font-medium py-6 text-text-900">
+          Following exploratory paper sketching, low-fidelity digital wireframes were built in Figma
+          to connect end-to-end task flows into clickable, interactive prototypes. Before committing
+          to high-fidelity visual styling, color tokens, and component libraries, an unmoderated
+          usability study was conducted to evaluate navigation logic, ergonomic friction, and
+          information architecture.
+        </p>
+
+        <!--Table-->
+        <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-4">
+          <p class="text-brand-primary text-sm font-semibold">Approach</p>
+          <div class="space-y-4">
+            <p class="text-base sm:text-xl font-medium pb-6 text-text-900">
+              The study evaluated two distinct user flows across two unmoderated cohorts (10
+              participants total) to validate both sides of the dual-funnel architecture:
+            </p>
+          </div>
+          <div class="rounded-sm bg-neutral-000 overflow-x-auto border">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-neutral-900 text-neutral-300">
+                  <th class="p-4 sm:p-6 text-sm sm:text-base font-semibold">Group</th>
+                  <th class="p-4 sm:p-6 text-sm sm:text-base font-semibold">
+                    Profile & Persona Alignment
+                  </th>
+                  <th class="p-4 sm:p-6 text-sm sm:text-base font-semibold">
+                    Device & Environment
+                  </th>
+                  <th class="p-4 sm:p-6 text-sm sm:text-base font-semibold">
+                    Primary Usability Task
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-900">
+                <tr>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base font-semibold text-text-900">A</td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    Independent field contractors, electricians, and tradespeople (Marcus Vance)
+                  </td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    Mobile Web (Simulated outdoor glare / one-handed grip)
+                  </td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    "Draft and dispatch a $391.50 emergency service invoice via SMS without creating
+                    an account."
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base font-semibold text-text-900">B</td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    Small service business owners managing crews and payroll (David Chen)
+                  </td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    Desktop SaaS (1440px viewport)
+                  </td>
+                  <td class="p-4 sm:p-6 text-sm sm:text-base text-text-900">
+                    "Identify overdue accounts on your receivables ledger and prompt late clients
+                    for payment before weekly payroll."
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <h2 class="text-xl pt-6 sm:text-3xl font-bold text-text-900">
+          Flow A: Rapid Guest Invoicing
+        </h2>
         <div>
           <img
-            src="/project_img/invoice/digital_03.jpg"
-            alt="paper"
+            src="/project_img/invoice/Prototype_1.jpg"
+            alt="Prototype 1"
             class="w-full h-auto rounded-sm"
           />
+        </div>
+        <h2 class="text-xl pt-6 sm:text-3xl font-bold text-text-900">
+          Flow B: Receivables Triage & Payment Recovery
+        </h2>
+        <div>
+          <img
+            src="/project_img/invoice/Prototype_2.jpg"
+            alt="Prototype 2"
+            class="w-full h-auto rounded-sm"
+          />
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-6">
+          <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Mobile Task Completion</p>
+            <h2 class="text-3xl py-6 sm:text-5xl font-bold text-text-900">1m 42s</h2>
+            <h3 class="text-base sm:text-xl font-medium text-text-900">
+              <span class="font-bold">Average Mobile Dispatch</span>
+            </h3>
+          </div>
+          <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Baseline Scanning Time</p>
+            <h2 class="text-3xl py-6 sm:text-5xl font-bold text-text-900">14s</h2>
+            <h3 class="text-base sm:text-xl font-medium text-text-900">
+              <span class="font-bold">Initial Table Navigation</span>
+            </h3>
+          </div>
+          <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Product-Led Growth Onboarding</p>
+            <h2 class="text-3xl py-6 sm:text-5xl font-bold text-text-900">60%</h2>
+            <h3 class="text-base sm:text-xl font-medium text-text-900">
+              <span class="font-bold">Post-Dispatch Conversion</span>
+            </h3>
+          </div>
         </div>
       </div>
     </section>
