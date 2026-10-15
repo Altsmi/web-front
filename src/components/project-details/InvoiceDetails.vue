@@ -118,18 +118,165 @@ const davidApproach = [
   },
 ]
 
-const metrics = [
-  { label: 'Mobile Task Completion', value: '1m 42s', caption: 'Average Mobile Dispatch' },
-  { label: 'Baseline Scanning Time', value: '14s', caption: 'Initial Table Navigation' },
-  { label: 'Product-Led Growth Onboarding', value: '60%', caption: 'Post-Dispatch Conversion' },
+const show = {
+  discovery: true,
+  competitors: true,
+  insights: true,
+  decisions: true,
+  findings: true,
+}
+
+const projectContext = '[Self-initiated concept project · solo]'
+
+const prototypeUrl = ''
+
+const discoveryStats = [
+  { value: '8', caption: 'participants' },
+  { value: 'Business Owners', caption: 'who I spoke to' },
+  { value: 'Week 1', caption: 'when' },
 ]
+const discoveryThemes = 'Field Invoicing Friction · Payroll Cash-Flow Anxiety'
+
+const competitorColumns = ['Steps before first invoice', 'Mobile-first?', 'Cash-flow view', 'Gap']
+const competitors = [
+  {
+    tool: 'FreshBooks',
+    values: [
+      '5+ steps (Sign-up, email verify, business setup)',
+      'No (Desktop-first)',
+      'Yes',
+      'High onboarding friction; no unauthenticated field bypass for fast on-site billing',
+    ],
+    highlight: false,
+  },
+  {
+    tool: 'Wave',
+    values: [
+      '4+ steps (Account registration, tax classification)',
+      'No (Desktop-centric)',
+      'Yes',
+      'Heavy accounting setup; cumbersome navigation and poor ergonomics on mobile web',
+    ],
+    highlight: false,
+  },
+  {
+    tool: 'Invoice Simple',
+    values: [
+      '2 steps (Fast quick-start)',
+      'Yes',
+      'No (Flat invoice list)',
+      'Lacks cash-flow visibility, overdue aging alerts, and batch payment recovery tools',
+    ],
+    highlight: false,
+  },
+  {
+    tool: 'Ninox',
+    values: [
+      '0 steps (Zero-friction guest bypass)',
+      'Yes',
+      'Yes',
+      'Fills the gap (Dual-funnel: instant mobile send + desktop receivables hub)',
+    ],
+    highlight: true,
+  },
+]
+const competitorTakeaway =
+  'None of the tools I reviewed combined instant, unauthenticated guest invoicing with an at-a-glance receivables triage hub.'
+
+const insights = [
+  {
+    insight: 'Users prefer rapid document creation over deep accounting setup',
+    hmw: 'How might we let a contractor send an invoice from the job site in under two minutes, with no account?',
+    principle: 'Value before sign-up',
+  },
+  {
+    insight: 'Field entry errors happen under glare with small targets',
+    hmw: 'How might we make number entry accurate one-handed in direct sunlight?',
+    principle: 'Thumb-first, high contrast',
+  },
+  {
+    insight: `Owners can't see outstanding vs. collected revenue without digging`,
+    hmw: 'How might we show cash-flow health at a glance and let owners act on late invoices in one click?',
+    principle: 'Summary first, details second',
+  },
+]
+
+const landingDecision =
+  'I moved forward with Concept 3 because it keeps the primary CTA, the product preview, and the proof metrics in the first screen. Concept 1 left dead space and Concept 2 pushed proof below the fold.'
+const marcusDecision =
+  'Instead of selecting a single layout, I synthesized a hybrid design: borrowing the currency selector and one-tap preset buttons (Fixed vs. Hourly) from Variant 1, the clean stacked line-item structure from Variants 2 and 3, and anchoring the live summary bar and action button to the bottom thumb zone. This hybrid eliminated manual typing friction under outdoor glare while keeping running job totals immediately visible.'
+
+const metrics = [
+  {
+    label: 'Mobile Task Completion',
+    value: '1m 42s',
+    caption: 'Average Mobile Dispatch',
+    context: 'Target: under 2 min · n=5',
+  },
+  {
+    label: 'Task Success',
+    value: '5 of 5',
+    caption: 'Finished without help',
+    context: 'Both Groups A & B (100%)',
+  },
+  {
+    label: 'Baseline Scanning Time',
+    value: '14s',
+    caption: 'Initial Table Navigation',
+    context: 'Target: under 5s · n=5',
+  },
+  {
+    label: 'Account Creation',
+    value: '60%',
+    caption: '3 of 5 Saved to Hub',
+    context: 'Small sample: directional',
+  },
+]
+const metricsNote =
+  'Small sample (5 per group). Results are directional, not statistically significant.'
+
+const findingsIntro =
+  'Testing surfaced 6 usability issues. These 2 had the biggest effect on task completion.'
+const findings = [
+  {
+    id: 1,
+    severity: 'High',
+    flow: 'A',
+    title: 'Rate Input Friction & Mobile Touch-Target Ergonomics',
+    evidence:
+      '4 of 5 testers experienced friction when attempting to adjust line-item rates; the generic preset buttons required manual text editing, and the small [ Edit ] text links led to repeated mis-taps on mobile viewports, seen in unmoderated session recordings.',
+    before: '/project_img/invoice/mobile_before.jpg',
+    after: '/project_img/invoice/mobile_after.jpg',
+    change:
+      'Introduced an inline quantity stepper ([-] 2.5 [+]) on labor items to enable one-tap hour adjustments without triggering the mobile numeric keyboard, upgraded small text links into tactile button pills (Edit), and anchored the running invoice total to the viewport base for continuous visibility.',
+  },
+  {
+    id: 2,
+    severity: 'Medium',
+    flow: 'B',
+    title: 'Overdue Account Scanning Latency on Desktop Ledger',
+    evidence:
+      '5 of 5 testers spent an average of 14 seconds scanning line-by-line across uniform grayscale rows to locate which clients were past due, seen in task time-to-target logs and click tracking.',
+    before: '/project_img/invoice/desktop_before.jpg',
+    after: '/project_img/invoice/desktop_after.jpg',
+    change:
+      'Elevated past-due balances into a dedicated top-level KPI alert card ($3,420.00 Overdue), applied a soft red row tint to late invoices, and added an exposed inline [ ⚡ Remind ] trigger so business owners can dispatch payment nudges directly from the table before weekly payroll.',
+  },
+]
+
+function shots(issue: { before: string; after: string }) {
+  return [
+    { label: 'Before', src: issue.before },
+    { label: 'After', src: issue.after },
+  ]
+}
 </script>
 
 <template>
   <section class="space-y-12 sm:space-y-20 pt-6 [&_img]:cursor-zoom-in" @click="handleImageClick">
     <!--Project Specs-->
     <section>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="space-y-1">
           <p class="font-semibold">Timeline:</p>
           <p class="text-sm sm:text-lg text-text-700">4 Weeks</p>
@@ -141,6 +288,10 @@ const metrics = [
         <div class="space-y-1">
           <p class="font-semibold">Role:</p>
           <p class="text-sm sm:text-lg text-text-700">Lead Product & UX/UI Designer</p>
+        </div>
+        <div class="space-y-1">
+          <p class="font-semibold">Context:</p>
+          <p class="text-sm sm:text-lg text-text-700">{{ projectContext }}</p>
         </div>
       </div>
     </section>
@@ -243,6 +394,21 @@ const metrics = [
             technicians needing rapid, on-site mobile dispatch to business owners managing cash flow
             and overdue receivables from a desktop office.
           </p>
+
+          <!--Discovery method-->
+          <div v-if="show.discovery" class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-4">
+            <p class="text-brand-primary text-sm font-semibold">Discovery method</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <div v-for="stat in discoveryStats" :key="stat.caption" class="space-y-1">
+                <p class="text-xl sm:text-3xl font-bold text-text-900">{{ stat.value }}</p>
+                <p class="text-sm sm:text-base text-text-700">{{ stat.caption }}</p>
+              </div>
+            </div>
+            <p class="text-base sm:text-xl md:pt-10 font-medium text-text-900">
+              <span class="font-bold">Recurring themes:</span> {{ discoveryThemes }}
+            </p>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <img
               src="/project_img/invoice/Persona_1.jpg"
@@ -265,6 +431,76 @@ const metrics = [
           <p class="text-base sm:text-xl font-medium text-text-900">
             Conducted a targeted competitive analysis to benchmark against leading invoicing tools,
             focusing on onboarding friction, mobile ergonomics, and financial tracking clarity.
+          </p>
+
+          <template v-if="show.competitors">
+            <!--Desktop table-->
+            <div class="hidden md:block rounded-sm bg-neutral-300 overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-neutral-900 text-neutral-300">
+                    <th class="p-6 text-base font-semibold">Tool</th>
+                    <th
+                      v-for="column in competitorColumns"
+                      :key="column"
+                      class="p-6 text-base font-semibold"
+                    >
+                      {{ column }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-neutral-900">
+                  <tr
+                    v-for="row in competitors"
+                    :key="row.tool"
+                    :class="row.highlight ? 'text-brand-primary' : 'text-text-900'"
+                  >
+                    <td class="p-6 text-base font-semibold">{{ row.tool }}</td>
+                    <td
+                      v-for="(value, index) in row.values"
+                      :key="index"
+                      class="p-6 text-base"
+                      :class="row.highlight ? 'font-semibold' : ''"
+                    >
+                      {{ value }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!--Mobile cards-->
+            <div class="md:hidden space-y-4">
+              <div
+                v-for="row in competitors"
+                :key="row.tool"
+                class="rounded-sm bg-neutral-300 p-5 space-y-3"
+              >
+                <p
+                  class="font-semibold"
+                  :class="row.highlight ? 'text-brand-primary' : 'text-text-900'"
+                >
+                  {{ row.tool }}
+                </p>
+                <div v-for="(value, index) in row.values" :key="index" class="space-y-1">
+                  <p class="text-brand-primary text-sm font-semibold">
+                    {{ competitorColumns[index] }}
+                  </p>
+                  <p class="text-base text-text-900">{{ value }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!--Takeaway-->
+            <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+              <p class="text-brand-primary text-sm font-semibold">Takeaway</p>
+              <p class="text-base sm:text-xl font-medium text-text-900">
+                {{ competitorTakeaway }}
+              </p>
+            </div>
+          </template>
+
+          <p class="text-base sm:text-xl font-medium text-text-900">
             Using this research, we identified three critical goals required for the solution to
             succeed:
           </p>
@@ -290,58 +526,121 @@ const metrics = [
         <span class="bg-brand-primary text-neutral-000 px-4 rounded-sm">2</span> Define
       </h2>
 
-      <div class="space-y-4 sm:space-y-6">
-        <h2 class="text-xl sm:text-3xl font-bold text-text-900">User Flow Architecture</h2>
-        <p class="text-base sm:text-xl font-medium text-text-900">
-          To eliminate friction between on-site urgency and administrative tracking, I mapped a
-          dual-funnel architecture decoupling instant task completion from account management. Field
-          users get an unauthenticated quick-dispatch flow, while office operators access a complete
-          cash-flow management hub.
-        </p>
-        <img
-          src="/project_img/invoice/flow.jpg"
-          alt="User flow diagram"
-          loading="lazy"
-          class="w-full h-auto rounded-sm"
-        />
+      <div class="space-y-10 sm:space-y-14">
+        <!--Insights → HMW → principles-->
+        <div v-if="show.insights" class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">
+            From Research to Design Principles
+          </h2>
+          <p class="text-base sm:text-xl font-medium text-text-900">
+            Three insights from research shaped how I framed the problem.
+          </p>
 
-        <!--Desktop table-->
-        <div class="hidden md:block rounded-sm bg-neutral-300 overflow-hidden">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-neutral-900 text-neutral-300">
-                <th class="p-6 text-base font-semibold">Stage</th>
-                <th class="p-6 text-base font-semibold">Guest Flow: Mobile Web (Marcus)</th>
-                <th class="p-6 text-base font-semibold">SaaS Hub: Desktop Web (David)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-900">
-              <tr v-for="row in flowRows" :key="row.stage">
-                <td class="p-6 text-base font-semibold text-text-900">{{ row.stage }}</td>
-                <td class="p-6 text-base text-text-900">{{ row.guest }}</td>
-                <td class="p-6 text-base text-text-900">{{ row.saas }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <!--Desktop table-->
+          <div class="hidden md:block rounded-sm bg-neutral-300 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-neutral-900 text-neutral-300">
+                  <th class="p-6 text-base font-semibold w-1/3">Insight</th>
+                  <th class="p-6 text-base font-semibold w-5/12">How might we</th>
+                  <th class="p-6 text-base font-semibold">Principle</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-900">
+                <tr v-for="row in insights" :key="row.principle">
+                  <td class="p-6 text-base text-text-900">{{ row.insight }}</td>
+                  <td class="p-6 text-base text-text-900">{{ row.hmw }}</td>
+                  <td class="p-6 text-base font-semibold text-brand-primary">
+                    {{ row.principle }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--Mobile cards-->
+          <div class="md:hidden space-y-4">
+            <div
+              v-for="row in insights"
+              :key="row.principle"
+              class="rounded-sm bg-neutral-300 p-5 space-y-3"
+            >
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">Insight</p>
+                <p class="text-base text-text-900">{{ row.insight }}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">How might we</p>
+                <p class="text-base text-text-900">{{ row.hmw }}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">Principle</p>
+                <p class="text-base font-semibold text-text-900">{{ row.principle }}</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-base sm:text-xl font-medium text-text-900">
+            These principles shaped the dual-funnel flow below.
+          </p>
         </div>
 
-        <!--Mobile cards-->
-        <div class="md:hidden space-y-4">
-          <div
-            v-for="row in flowRows"
-            :key="row.stage"
-            class="rounded-sm bg-neutral-300 p-5 space-y-3"
-          >
-            <p class="font-semibold text-text-900">{{ row.stage }}</p>
-            <div class="space-y-1">
-              <p class="text-brand-primary text-sm font-semibold">
-                Guest Flow: Mobile Web (Marcus)
-              </p>
-              <p class="text-base text-text-900">{{ row.guest }}</p>
-            </div>
-            <div class="space-y-1">
-              <p class="text-brand-primary text-sm font-semibold">SaaS Hub: Desktop Web (David)</p>
-              <p class="text-base text-text-900">{{ row.saas }}</p>
+        <!--User flow-->
+        <div class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">User Flow Architecture</h2>
+          <p class="text-base sm:text-xl font-medium text-text-900">
+            To eliminate friction between on-site urgency and administrative tracking, I mapped a
+            dual-funnel architecture decoupling instant task completion from account management.
+            Field users get an unauthenticated quick-dispatch flow, while office operators access a
+            complete cash-flow management hub.
+          </p>
+          <img
+            src="/project_img/invoice/flow.jpg"
+            alt="User flow diagram"
+            loading="lazy"
+            class="w-full h-auto rounded-sm"
+          />
+
+          <!--Desktop table-->
+          <div class="hidden md:block rounded-sm bg-neutral-300 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-neutral-900 text-neutral-300">
+                  <th class="p-6 text-base font-semibold">Stage</th>
+                  <th class="p-6 text-base font-semibold">Guest Flow: Mobile Web (Marcus)</th>
+                  <th class="p-6 text-base font-semibold">SaaS Hub: Desktop Web (David)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-900">
+                <tr v-for="row in flowRows" :key="row.stage">
+                  <td class="p-6 text-base font-semibold text-text-900">{{ row.stage }}</td>
+                  <td class="p-6 text-base text-text-900">{{ row.guest }}</td>
+                  <td class="p-6 text-base text-text-900">{{ row.saas }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--Mobile cards-->
+          <div class="md:hidden space-y-4">
+            <div
+              v-for="row in flowRows"
+              :key="row.stage"
+              class="rounded-sm bg-neutral-300 p-5 space-y-3"
+            >
+              <p class="font-semibold text-text-900">{{ row.stage }}</p>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">
+                  Guest Flow: Mobile Web (Marcus)
+                </p>
+                <p class="text-base text-text-900">{{ row.guest }}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">
+                  SaaS Hub: Desktop Web (David)
+                </p>
+                <p class="text-base text-text-900">{{ row.saas }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -382,6 +681,10 @@ const metrics = [
               <h3 class="text-base sm:text-xl font-medium text-text-900">{{ concept.text }}</h3>
             </div>
           </div>
+          <div v-if="show.decisions" class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Decision · Landing concept</p>
+            <p class="text-base sm:text-xl font-medium text-text-900">{{ landingDecision }}</p>
+          </div>
           <img
             src="/project_img/invoice/digital_01.jpg"
             alt="Digital wireframe: landing page"
@@ -407,6 +710,10 @@ const metrics = [
             loading="lazy"
             class="w-full h-auto rounded-sm"
           />
+          <div v-if="show.decisions" class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Decision · Mobile Step 2</p>
+            <p class="text-base sm:text-xl font-medium text-text-900">{{ marcusDecision }}</p>
+          </div>
           <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-4">
             <p class="text-brand-primary text-sm font-semibold">Approach</p>
             <div class="space-y-4">
@@ -557,16 +864,75 @@ const metrics = [
           />
         </div>
 
-        <!--Metrics-->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-          <div
-            v-for="metric in metrics"
-            :key="metric.label"
-            class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3"
+        <!--Interactive prototype link-->
+        <div v-if="prototypeUrl">
+          <a
+            :href="prototypeUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block rounded-sm bg-neutral-900 px-4 py-2 border-3 border-neutral-900 text-text-000 hover:bg-neutral-300 hover:border-neutral-300 hover:text-text-900 transition-all duration-300"
           >
-            <p class="text-brand-primary text-sm font-semibold">{{ metric.label }}</p>
-            <p class="text-3xl sm:text-5xl font-bold text-text-900">{{ metric.value }}</p>
-            <p class="text-base sm:text-xl font-bold text-text-900">{{ metric.caption }}</p>
+            view interactive prototype →
+          </a>
+        </div>
+
+        <!--Metrics-->
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+            <div
+              v-for="metric in metrics"
+              :key="metric.label"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3"
+            >
+              <p class="text-brand-primary text-sm font-semibold">{{ metric.label }}</p>
+              <p class="text-3xl sm:text-5xl font-bold text-text-900">{{ metric.value }}</p>
+              <p class="text-base sm:text-xl font-bold text-text-900">{{ metric.caption }}</p>
+              <p class="text-sm text-text-700">{{ metric.context }}</p>
+            </div>
+          </div>
+          <p class="text-sm sm:text-base text-text-700">{{ metricsNote }}</p>
+        </div>
+
+        <!--Findings & iterations-->
+        <div v-if="show.findings" class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">Findings & iterations</h2>
+          <p class="text-base sm:text-xl font-medium text-text-900">{{ findingsIntro }}</p>
+
+          <div
+            v-for="issue in findings"
+            :key="issue.id"
+            class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-4"
+          >
+            <p class="text-brand-primary text-sm font-semibold">
+              Issue {{ issue.id }} · {{ issue.severity }} severity · Flow {{ issue.flow }}
+            </p>
+            <h3 class="text-lg sm:text-2xl font-bold text-text-900">{{ issue.title }}</h3>
+            <p class="text-base sm:text-xl font-medium text-text-900">
+              <span class="font-bold">Evidence:</span> {{ issue.evidence }}
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div v-for="shot in shots(issue)" :key="shot.label" class="space-y-2">
+                <p class="text-sm font-semibold text-text-700">{{ shot.label }}</p>
+                <img
+                  v-if="shot.src"
+                  :src="shot.src"
+                  :alt="`${shot.label}: ${issue.title}`"
+                  loading="lazy"
+                  class="w-full h-auto rounded-sm"
+                />
+                <div
+                  v-else
+                  class="aspect-video rounded-sm border-2 border-dashed border-neutral-900/40 flex items-center justify-center text-sm text-text-700"
+                >
+                  screenshot
+                </div>
+              </div>
+            </div>
+
+            <p class="text-base sm:text-xl font-medium text-text-900">
+              <span class="font-bold">Change:</span> {{ issue.change }}
+            </p>
           </div>
         </div>
       </div>
