@@ -323,7 +323,7 @@ function shots(issue: { before: string; after: string }) {
 
         <div class="rounded-sm overflow-hidden bg-brand-primary" style="grid-area: image">
           <img
-            src="/project_img/invoice/Presentation_02.jpg"
+            src="/project_img/invoice/Presentation_01.jpg"
             alt="Project mockup"
             class="w-full h-full object-cover"
           />
