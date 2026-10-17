@@ -126,7 +126,7 @@ const show = {
   findings: true,
 }
 
-const projectContext = '[Self-initiated concept project · solo]'
+const projectContext = 'Self-initiated concept project'
 
 const prototypeUrl = ''
 
@@ -270,6 +270,134 @@ function shots(issue: { before: string; after: string }) {
     { label: 'After', src: issue.after },
   ]
 }
+
+// ---------------------------------------------------------------------------
+// SECTION 5 & 6 DATA
+// ---------------------------------------------------------------------------
+const foundationsBoard = '' // optional Figma export of the design system overview
+
+const typeRoles = [
+  {
+    role: 'Headers',
+    font: 'Google Sans Flex',
+    note: 'Structural headings and brand moments.',
+  },
+  {
+    role: 'Interface & data',
+    font: 'Inter',
+    note: 'Forms, labels and financial tables, with tabular figures on currency columns.',
+  },
+]
+
+const colorGroups = [
+  {
+    title: 'Brand & action',
+    note: 'Primary actions and their interactive states.',
+    colors: [
+      { name: 'Marine Teal', hex: '#0F3040', token: 'brand-primary' },
+      { name: 'Teal hover', hex: '#1A465C', token: 'brand-hover' },
+      { name: 'Teal subtle', hex: '#F0F6F8', token: 'brand-subtle' },
+    ],
+  },
+  {
+    title: 'Neutrals',
+    note: 'Text, borders and panel surfaces.',
+    colors: [
+      { name: 'Text primary', hex: '#0F172A', token: 'text-primary' },
+      { name: 'Text secondary', hex: '#475569', token: 'text-secondary' },
+      { name: 'Border', hex: '#E2E8F0', token: 'border-default' },
+      { name: 'Surface subtle', hex: '#F1F5F9', token: 'surface-subtle' },
+    ],
+  },
+  {
+    title: 'Status',
+    note: 'Each status pairs a text color with a background tint.',
+    colors: [
+      { name: 'Paid text', hex: '#065F46', token: 'status-paid-text' },
+      { name: 'Paid bg', hex: '#ECFDF5', token: 'status-paid-bg' },
+      { name: 'Pending text', hex: '#92400E', token: 'status-pending-text' },
+      { name: 'Pending bg', hex: '#FFFBEB', token: 'status-pending-bg' },
+      { name: 'Overdue text', hex: '#991B1B', token: 'status-overdue-text' },
+      { name: 'Overdue bg', hex: '#FEF2F2', token: 'status-overdue-bg' },
+    ],
+  },
+]
+
+const layoutGrids = [
+  { device: 'Desktop', columns: 16, margin: 80, gutter: 16 },
+  { device: 'Tablet', columns: 6, margin: 16, gutter: 16 },
+  { device: 'Mobile', columns: 4, margin: 16, gutter: 16 },
+]
+
+const marcusScreens = [
+  {
+    step: 1,
+    title: 'Rapid Client Entry',
+    text: 'Clean single-column layout prioritizing essential client contact details with pre-saved client search.',
+    img: '/project_img/invoice/Step_1.jpg',
+  },
+  {
+    step: 2,
+    title: 'Ergonomic Rate Builder',
+    text: 'Quick-add service chips paired with an inline quantity stepper ([-] 2.5 [+]) to eliminate numeric keypad friction, anchored above a persistent running total bar.',
+    img: '/project_img/invoice/Step_2.jpg',
+  },
+  {
+    step: 3,
+    title: 'Instant Link Dispatch',
+    text: 'One-tap dispatch generating SMS payment links and downloadable receipts without requiring account registration.',
+    img: '/project_img/invoice/Step_3.jpg',
+  },
+  {
+    step: 4,
+    title: 'Save to Hub Prompt',
+    text: 'Post-dispatch confirmation featuring a soft "Save to Hub" value card, allowing contractors to track payment status in real time.',
+    img: '/project_img/invoice/Step_4.jpg',
+  },
+]
+
+const davidScreen = '/project_img/invoice/david_points.jpg' // full-width desktop screen
+const ledgerBefore = '' // optional lo-fi ledger; both paths needed to show the pair
+const ledgerAfter = ''
+const davidFeatures = [
+  {
+    label: '1 · Cash-Flow Overview',
+    text: 'Three high-contrast KPI cards displaying total outstanding balances, monthly collections, and an Overdue Alert highlighting aging recency (3 Late · Oldest: 14 days past due).',
+  },
+  {
+    label: '2 · Scannable Receivables Ledger',
+    text: 'A dense, filterable data grid featuring soft red row tints on late accounts to cut line-by-line scanning fatigue before payroll.',
+  },
+  {
+    label: '3 · Payment Recovery Action',
+    text: 'Inline, high-contrast [ ⚡ Remind ] buttons trigger a modal with pre-filled message previews, allowing owners to prompt clients across email or SMS in under 20 seconds.',
+  },
+]
+
+const outcomeRows = [
+  {
+    finding: '14s to locate overdue accounts on the flat wireframe',
+    evidence: 'Group B · n=5',
+    response: 'Overdue KPI card + red row tints',
+  },
+  {
+    finding: '1m 42s average dispatch; 5 of 5 completed the task',
+    evidence: 'Group A · n=5',
+    response: 'Quick-add chips, quantity stepper and one-tap SMS dispatch kept in hi-fi',
+  },
+  {
+    finding: '3 of 5 saved an account after dispatch',
+    evidence: 'Post-dispatch prompt',
+    response: 'Soft "Save to Hub" value card',
+  },
+]
+const limitations =
+  'Five testers per group surfaced the key navigation bottlenecks, but the sample is too small for statistical confidence, and the study tested low-fidelity wireframes only. Unmoderated sessions also couldn’t reproduce real field conditions: outdoor glare and one-handed use were simulated, not experienced. With more time, I’d run moderated, on-site sessions in a work van to test one-handed reach directly.'
+const nextSteps = [
+  'Re-test the hi-fi ledger and benchmark triage time against the 14-second baseline.',
+  'Design batch payment recovery workflows for desktop.',
+  'Map the payment experience for the client receiving the SMS link.',
+]
 </script>
 
 <template>
@@ -933,6 +1061,265 @@ function shots(issue: { before: string; after: string }) {
             <p class="text-base sm:text-xl font-medium text-text-900">
               <span class="font-bold">Change:</span> {{ issue.change }}
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--5 High-Fidelity UI & Visual System-->
+    <section class="space-y-8 sm:space-y-12">
+      <h2
+        class="text-2xl sm:text-4xl font-bold font-header text-text-900 p-5 bg-orange-100 rounded-sm text-center md:text-start"
+      >
+        <span class="bg-brand-primary text-neutral-000 px-4 rounded-sm">5</span> High-Fidelity UI &
+        Visual System
+      </h2>
+
+      <div class="space-y-10 sm:space-y-14">
+        <!--Design system foundations-->
+        <div class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">Design System Foundations</h2>
+
+          <img
+            v-if="foundationsBoard"
+            :src="foundationsBoard"
+            alt="Design system overview"
+            loading="lazy"
+            class="w-full h-auto rounded-sm"
+          />
+
+          <!--Typography-->
+          <h3 class="text-lg sm:text-2xl font-bold text-text-900">Typography</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div
+              v-for="item in typeRoles"
+              :key="item.font"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3"
+            >
+              <p class="text-brand-primary text-sm font-semibold">{{ item.role }}</p>
+              <p class="text-2xl sm:text-4xl font-bold text-text-900">{{ item.font }}</p>
+              <p class="text-sm sm:text-base font-medium text-text-900">{{ item.note }}</p>
+            </div>
+          </div>
+
+          <!--Color-->
+          <h3 class="text-lg sm:text-2xl font-bold text-text-900">Color</h3>
+          <div class="grid grid-cols-1 gap-4 sm:gap-6">
+            <div
+              v-for="group in colorGroups"
+              :key="group.title"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-4"
+            >
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p class="text-brand-primary text-sm font-semibold">{{ group.title }}</p>
+                <p class="text-sm text-text-700">{{ group.note }}</p>
+              </div>
+              <div class="flex flex-wrap items-start gap-4">
+                <div
+                  v-for="color in group.colors"
+                  :key="color.token"
+                  class="w-24 sm:w-28 space-y-2"
+                >
+                  <div
+                    class="h-14 w-full rounded-sm border border-neutral-900/20"
+                    :style="{ backgroundColor: color.hex }"
+                  ></div>
+                  <div class="space-y-0.5">
+                    <p class="text-sm font-semibold text-text-900 leading-tight">
+                      {{ color.name }}
+                    </p>
+                    <p class="text-xs text-text-700">{{ color.hex }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm sm:text-base text-text-700">
+            Every color is a named design token, for example
+            <span class="font-semibold">brand-primary</span> and
+            <span class="font-semibold">status-paid-text</span>.
+          </p>
+
+          <!--Layout grid-->
+          <h3 class="text-lg sm:text-2xl font-bold text-text-900">Layout Grid</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div
+              v-for="grid in layoutGrids"
+              :key="grid.device"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3"
+            >
+              <p class="text-brand-primary text-sm font-semibold">{{ grid.device }}</p>
+              <p class="text-3xl sm:text-5xl font-bold text-text-900">{{ grid.columns }}</p>
+              <p class="text-base sm:text-xl font-bold text-text-900">columns</p>
+              <p class="text-sm sm:text-base text-text-700">
+                Margin {{ grid.margin }} · Gutter {{ grid.gutter }}
+              </p>
+            </div>
+          </div>
+          <p class="text-base sm:text-xl font-medium text-text-900">
+            Every layout sits on an 8px grid, with 48px touch targets in the primary thumb zones.
+          </p>
+        </div>
+
+        <!--Marcus-->
+        <div class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">
+            Marcus Vance: Mobile Field Invoicing (390px)
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div
+              v-for="screen in marcusScreens"
+              :key="screen.step"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-6 space-y-3"
+            >
+              <img
+                v-if="screen.img"
+                :src="screen.img"
+                :alt="`Step ${screen.step}: ${screen.title}`"
+                loading="lazy"
+                class="w-full h-auto rounded-sm"
+              />
+              <div
+                v-else
+                class="aspect-[9/16] rounded-sm border-2 border-dashed border-neutral-900/40 flex items-center justify-center text-sm text-text-700"
+              >
+                screen
+              </div>
+              <p class="text-brand-primary text-sm font-semibold">Step {{ screen.step }}</p>
+              <h3 class="text-base sm:text-xl font-bold text-text-900">{{ screen.title }}</h3>
+              <p class="text-sm sm:text-base font-medium text-text-900">{{ screen.text }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--David-->
+        <div class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">
+            David Chen: Desktop Receivables Hub (1440px)
+          </h2>
+          <img
+            v-if="davidScreen"
+            :src="davidScreen"
+            alt="Desktop receivables hub"
+            loading="lazy"
+            class="w-full h-auto rounded-sm"
+          />
+          <div
+            v-else
+            class="aspect-video rounded-sm border-2 border-dashed border-neutral-900/40 flex items-center justify-center text-sm text-text-700"
+          >
+            desktop screen
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div
+              v-for="feature in davidFeatures"
+              :key="feature.label"
+              class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3"
+            >
+              <p class="text-brand-primary text-sm font-semibold">{{ feature.label }}</p>
+              <h3 class="text-base sm:text-xl font-medium text-text-900">{{ feature.text }}</h3>
+            </div>
+          </div>
+
+          <div
+            v-if="ledgerBefore && ledgerAfter"
+            class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
+          >
+            <div class="space-y-2">
+              <p class="text-sm font-semibold text-text-700">Lo-fi: flat table</p>
+              <img
+                :src="ledgerBefore"
+                alt="Lo-fi ledger"
+                loading="lazy"
+                class="w-full h-auto rounded-sm"
+              />
+            </div>
+            <div class="space-y-2">
+              <p class="text-sm font-semibold text-text-700">Hi-fi: KPI cards + row tints</p>
+              <img
+                :src="ledgerAfter"
+                alt="Hi-fi ledger"
+                loading="lazy"
+                class="w-full h-auto rounded-sm"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--6 Outcomes & Strategic Learnings-->
+    <section class="space-y-8 sm:space-y-12">
+      <h2
+        class="text-2xl sm:text-4xl font-bold font-header text-text-900 p-5 bg-orange-100 rounded-sm text-center md:text-start"
+      >
+        <span class="bg-brand-primary text-neutral-000 px-4 rounded-sm">6</span> Outcomes &
+        Strategic Learnings
+      </h2>
+
+      <div class="space-y-10 sm:space-y-14">
+        <div class="space-y-4 sm:space-y-6">
+          <h2 class="text-xl sm:text-3xl font-bold text-text-900">Results → Design Decisions</h2>
+          <p class="text-base sm:text-xl font-medium text-text-900">
+            Each finding from testing maps to a decision in the high-fidelity design.
+          </p>
+
+          <!--Desktop table-->
+          <div class="hidden md:block rounded-sm bg-neutral-300 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-neutral-900 text-neutral-300">
+                  <th class="p-6 text-base font-semibold w-5/12">Finding</th>
+                  <th class="p-6 text-base font-semibold w-2/12">Evidence</th>
+                  <th class="p-6 text-base font-semibold">Design response</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-900">
+                <tr v-for="row in outcomeRows" :key="row.finding">
+                  <td class="p-6 text-base text-text-900">{{ row.finding }}</td>
+                  <td class="p-6 text-base text-text-900">{{ row.evidence }}</td>
+                  <td class="p-6 text-base font-semibold text-brand-primary">{{ row.response }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--Mobile cards-->
+          <div class="md:hidden space-y-4">
+            <div
+              v-for="row in outcomeRows"
+              :key="row.finding"
+              class="rounded-sm bg-neutral-300 p-5 space-y-3"
+            >
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">Finding</p>
+                <p class="text-base text-text-900">{{ row.finding }}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">Evidence</p>
+                <p class="text-base text-text-900">{{ row.evidence }}</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-brand-primary text-sm font-semibold">Design response</p>
+                <p class="text-base font-semibold text-text-900">{{ row.response }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">
+              Limitations & what I'd do differently
+            </p>
+            <p class="text-base sm:text-xl font-medium text-text-900">{{ limitations }}</p>
+          </div>
+          <div class="rounded-sm bg-neutral-300 p-5 sm:p-8 space-y-3">
+            <p class="text-brand-primary text-sm font-semibold">Next steps</p>
+            <ul class="list-disc pl-5 space-y-2 text-base sm:text-xl font-medium text-text-900">
+              <li v-for="step in nextSteps" :key="step">{{ step }}</li>
+            </ul>
           </div>
         </div>
       </div>
