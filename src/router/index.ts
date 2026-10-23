@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomePage from '../views/HomePage.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,17 +8,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomePage,
+      meta: { footer: 'default' },
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue'), // Lazy-loaded for performance
-    },
-    {
-      path: '/projects/ux/:slug',
-      name: 'ux-project-detail',
-      component: () => import('../views/UxProjectDetailView.vue'),
+      component: AboutView,
+      meta: { footer: 'aboutFooter' },
     },
   ],
   scrollBehavior(to, from, savedPosition) {
