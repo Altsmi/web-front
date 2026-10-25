@@ -143,3 +143,33 @@ html {
 .fade-tools-move {
   transition: transform 0.5s ease-in-out;
 }
+
+/*Cursor*/
+@layer base {
+  html,
+  body {
+    cursor:
+      url('/cursors/square.svg') 16 16,
+      auto;
+  }
+
+  a,
+  button,
+  summary,
+  [role='button'],
+  label[for],
+  select {
+    cursor:
+      url('/cursors/square-link.svg') 16 16,
+      pointer;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='search'],
+  textarea {
+    cursor: text;
+  }
+}
+
+@custom-variant short (@media (height < 800px));

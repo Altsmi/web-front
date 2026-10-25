@@ -11,15 +11,18 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AboutFooter: typeof import('./src/components/AboutFooter.vue')['default']
     ArcaneDetail: typeof import('./src/components/project-details/ArcaneDetail.vue')['default']
     ContactSection: typeof import('./src/components/ContactSection.vue')['default']
     DisciplineCard: typeof import('./src/components/DisciplineCard.vue')['default']
     Experience: typeof import('./src/components/Experience.vue')['default']
     Experince: typeof import('./src/components/Experince.vue')['default']
     FactCard: typeof import('./src/components/FactCard.vue')['default']
+    FooterAbout: typeof import('./src/components/FooterAbout.vue')['default']
     FooterDefault: typeof import('./src/components/FooterDefault.vue')['default']
     FormComponent: typeof import('./src/components/formComponent.vue')['default']
     HomeCard: typeof import('./src/components/HomeCard.vue')['default']
+    IndexList: typeof import('./src/components/IndexList.vue')['default']
     InvoiceDetails: typeof import('./src/components/project-details/InvoiceDetails.vue')['default']
     NavMenu: typeof import('./src/components/NavMenu.vue')['default']
     Pill: typeof import('./src/components/Pill.vue')['default']
@@ -36,5 +39,6 @@ declare module 'vue' {
     TimelineRow: typeof import('./src/components/TimelineRow.vue')['default']
     WildWhispers: typeof import('./src/components/project-details/WildWhispers.vue')['default']
     WildWhispersDetails: typeof import('./src/components/project-details/WildWhispersDetails.vue')['default']
+    WorkNav: typeof import('./src/components/WorkNav.vue')['default']
   }
 }

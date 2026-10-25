@@ -55,7 +55,7 @@ const education = [
         <p class="text-lead">( Canada, Toronto )</p>
         <div class="space-x-6">
           <RouterLink to="/" class="text-ui"> Home </RouterLink>
-          <RouterLink to="/project" class="text-ui"> Work </RouterLink>
+          <RouterLink to="/work" class="text-ui"> Work </RouterLink>
           <a
             href="/Illya_Shpylka_Resume.pdf"
             target="_blank"
@@ -79,7 +79,7 @@ const education = [
       />
       <!-- Text -->
       <div class="flex flex-col gap-8">
-        <p class="text-lg text-project-labels">01 / START</p>
+        <p class="text-lead text-project-labels">01 / START</p>
 
         <h2 class="text-5xl md:text-6xl">About me</h2>
 
@@ -108,7 +108,7 @@ const education = [
       </div>
     </div>
 
-    <!--FactCard-->
+    <!--FactCard
     <div class="px-4 sm:px-20 pb-16">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
         <FactCard>
@@ -125,7 +125,7 @@ const education = [
         </FactCard>
       </div>
     </div>
-
+-->
     <!--DisciplineCard-->
     <div class="px-4 sm:px-20 pb-16">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
