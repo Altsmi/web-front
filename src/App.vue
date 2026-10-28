@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import FooterDefault from '@/components/FooterDefault.vue'
+import { RouterView } from 'vue-router'
 import AboutFooter from '@/components/AboutFooter.vue'
-
-const route = useRoute()
+import FooterDefault from '@/components/FooterDefault.vue'
+import PageTransition from '@/components/PageTransition.vue'
 </script>
 
 <template>
   <div class="flex min-h-dvh flex-col">
-    <main class="flex w-full flex-1 flex-col">
-      <RouterView />
-    </main>
+    <RouterView v-slot="{ Component, route: viewRoute }">
+      <PageTransition>
+        <div :key="viewRoute.matched[0]?.path" class="flex flex-1 flex-col">
+          <main class="flex flex-1 flex-col">
+            <component :is="Component" />
+          </main>
 
-    <FooterDefault v-if="route.meta.footer === 'default'" />
-    <AboutFooter v-else-if="route.meta.footer === 'aboutFooter'" />
+          <AboutFooter v-if="viewRoute.meta.footer === 'aboutFooter'" />
+          <FooterDefault v-else-if="viewRoute.meta.footer === 'default'" />
+        </div>
+      </PageTransition>
+    </RouterView>
   </div>
 </template>

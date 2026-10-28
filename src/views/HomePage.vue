@@ -36,10 +36,11 @@ import IndexList from '@/components/IndexList.vue'
             <template #text>
               Data-dense responsive interfaces, user flows and accessible design systems.
             </template>
+            <div class=""></div>
             <img
               src="/project_img/invoice/Presentation_02.jpg"
               alt="Preview of the invoicing app landing page"
-              class="absolute inset-0 h-full w-full object-cover"
+              class="absolute inset-0 h-full w-full object-cover rounded"
             />
             <template #link>Explore UX / UI →</template>
           </IndexList>
@@ -55,24 +56,24 @@ import IndexList from '@/components/IndexList.vue'
               work.
             </template>
             <img
-              src="/project_img/invoice/Presentation_02.jpg"
+              src="/design_img/farmboy/Farmboy_Main.jpg"
               alt="Preview of a graphic and editorial project"
-              class="absolute inset-0 h-full w-full object-cover"
+              class="absolute inset-0 h-full w-full object-cover rounded"
             />
             <template #link>Browse archive →</template>
           </IndexList>
         </li>
 
         <li class="flex flex-1">
-          <IndexList to="/code">
+          <IndexList to="/work/dev">
             <template #number>03</template>
             <template #caption>LAB</template>
             <template #name>Front-end and code</template>
             <template #text>Vue and TypeScript builds, including this site.</template>
             <img
-              src="/project_img/invoice/Presentation_02.jpg"
+              src="/dev.jpg"
               alt="Preview of a front-end project"
-              class="absolute inset-0 h-full w-full object-cover"
+              class="absolute inset-0 h-full w-full object-cover rounded"
             />
             <template #link>Inspect code →</template>
           </IndexList>

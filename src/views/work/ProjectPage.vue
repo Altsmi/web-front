@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import ImageLightbox from '@/components/ImageLightbox.vue'
+import PhaseSection from '@/components/PhaseSection.vue'
+import SectionIndex from '@/components/SectionIndex.vue'
+import StudyOverview from '@/components/StudyOverview.vue'
+import ZoomImage from '@/components/ZoomImage.vue'
+import { useActiveSection } from '@/composables/useActiveSection'
 import { uxProjects } from '@/data/uxProjects'
 
 const props = defineProps<{ slug: string }>()
@@ -22,6 +28,18 @@ const meta = computed(() => {
     { label: 'Type', value: p.type },
   ].filter((item) => item.value)
 })
+
+const indexItems = computed(() => {
+  const p = project.value
+  if (!p) return []
+  const phases = p.phases.map((phase) => ({
+    id: phase.id,
+    label: phase.number ? `${String(phase.number).padStart(2, '0')} ${phase.title}` : phase.title,
+  }))
+  return p.overview ? [{ id: 'summary', label: 'Summary' }, ...phases] : phases
+})
+
+const { active } = useActiveSection(() => indexItems.value.map((item) => item.id))
 </script>
 
 <template>
@@ -33,49 +51,39 @@ const meta = computed(() => {
       ← Back to UX / UI
     </RouterLink>
 
-    <header class="mt-10 space-y-6">
-      <p class="text-lead text-project-labels">01 / UX / UI & PRODUCT</p>
-      <h1>{{ project.title }}</h1>
-      <p class="text-lead max-w-2xl">{{ project.summary }}</p>
+    <header class="mt-10 grid gap-8 md:grid-cols-[3fr_2fr] md:items-center md:gap-8 lg:gap-12">
+      <div class="order-2 md:order-1">
+        <ZoomImage :src="project.image" :alt="project.alt" />
+      </div>
+
+      <div class="order-1 space-y-8 md:order-2">
+        <div class="space-y-4">
+          <p class="text-lead text-project-labels">01 / UX / UI & PRODUCT</p>
+          <h1>{{ project.title }}</h1>
+          <p class="text-lead max-w-md">{{ project.summary }}</p>
+        </div>
+
+        <dl class="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-project-dividers pt-6">
+          <div v-for="item in meta" :key="item.label" class="space-y-1">
+            <dt class="text-caption text-project-labels">{{ item.label.toUpperCase() }}</dt>
+            <dd class="font-sans text-[0.9375rem]">{{ item.value }}</dd>
+          </div>
+        </dl>
+      </div>
     </header>
 
-    <dl class="mt-10 grid grid-cols-2 gap-6 border-y border-project-dividers py-6 md:grid-cols-4">
-      <div v-for="item in meta" :key="item.label" class="space-y-1">
-        <dt class="text-caption text-project-labels">{{ item.label.toUpperCase() }}</dt>
-        <dd class="font-sans text-[0.9375rem]">{{ item.value }}</dd>
+    <!-- Body: side navigation + sections -->
+    <div class="mt-16 grid gap-8 md:mt-24 lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-12">
+      <SectionIndex :items="indexItems" :active="active" />
+
+      <div class="min-w-0 space-y-12 md:space-y-16">
+        <StudyOverview
+          v-if="project.overview"
+          :overview="project.overview"
+          :glance="project.glance"
+        />
+        <PhaseSection v-for="phase in project.phases" :key="phase.id" :phase="phase" />
       </div>
-    </dl>
-
-    <img
-      :src="project.image"
-      :alt="project.alt"
-      class="mt-10 aspect-16/10 w-full border border-project-dividers object-cover md:aspect-16/7"
-    />
-
-    <div class="mt-16 space-y-12 md:space-y-16">
-      <section
-        v-for="section in project.sections"
-        :key="section.heading"
-        class="grid gap-4 border-t border-project-dividers pt-8 md:grid-cols-[12rem_1fr] md:gap-10 lg:grid-cols-[16rem_1fr]"
-      >
-        <h2 class="text-lead">{{ section.heading }}</h2>
-        <div class="space-y-8">
-          <p class="max-w-prose">{{ section.text }}</p>
-          <div
-            v-if="section.images?.length"
-            class="grid gap-6"
-            :class="{ 'sm:grid-cols-2': section.images.length > 1 }"
-          >
-            <img
-              v-for="img in section.images"
-              :key="img.src"
-              :src="img.src"
-              :alt="img.alt"
-              class="w-full border border-project-dividers"
-            />
-          </div>
-        </div>
-      </section>
     </div>
 
     <nav
@@ -96,5 +104,7 @@ const meta = computed(() => {
         Next project: {{ next.title }} →
       </RouterLink>
     </nav>
+
+    <ImageLightbox />
   </article>
 </template>

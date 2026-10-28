@@ -27,9 +27,9 @@ defineProps<{
     </div>
 
     <!-- Image + link -->
-    <div class="flex min-h-0 flex-col gap-3">
+    <div class="flex min-h-0 flex-col gap-3 lg:self-center">
       <div
-        class="relative aspect-16/10 w-full overflow-hidden border border-project-dividers lg:aspect-auto lg:min-h-24 lg:flex-1 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100"
+        class="relative aspect-16/10 w-full overflow-hidden border border-project-dividers lg:ml-auto lg:w-[clamp(8rem,calc(50dvh_-_16rem),20rem)] lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100"
       >
         <slot />
       </div>

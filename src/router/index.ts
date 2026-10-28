@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import AboutView from '@/views/AboutView.vue'
 import WorkView from '@/views/WorkView.vue'
 import { uxProjects } from '@/data/uxProjects'
+import { waitForPageLeave } from './scrollSignal'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -70,11 +71,9 @@ const router = createRouter({
       redirect: '/',
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    }
-    return { top: 0 }
+  async scrollBehavior(to, from, savedPosition) {
+    if (from !== START_LOCATION) await waitForPageLeave()
+    return savedPosition ?? { top: 0 }
   },
 })
 

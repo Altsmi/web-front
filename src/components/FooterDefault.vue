@@ -27,10 +27,11 @@
         >
         <span class="text-project-dividers" aria-hidden="true">|</span>
         <a
-          href="mailto:illya.shpylka@gmail.com"
+          href="mailto:illya.shpylka@gmail.com?subject=Hello%20Illya"
           class="text-ui hover:underline hover:underline-offset-4"
-          >Email</a
         >
+          Email
+        </a>
       </nav>
 
       <!-- Centre: link to About page -->
@@ -46,7 +47,7 @@
           href="/Illya_Shpylka_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-ui rounded border-3 border-project-text px-5 py-3 hover:bg-project-cards hover:border-project-cards hover:text-project-accents transition-all duration-150"
+          class="text-ui rounded border-3 border-project-text px-4 py-2 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
         >
           Resume ↗
         </a>
