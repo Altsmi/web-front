@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import IndexList from '@/components/IndexList.vue'
+import SectionIndex from '@/components/SectionIndex.vue'
+import { useActiveSection } from '@/composables/useActiveSection'
+import DesignSection from '@/views/work/DesignSection.vue'
+import DevSection from '@/views/work/DevSection.vue'
+import UxUiSection from '@/views/work/UxUiSection.vue'
+
+const items = [
+  { id: 'ux-ui', label: '01 UX / UI' },
+  { id: 'design', label: '02 Graphic' },
+  { id: 'dev', label: '03 Code' },
+]
+
+const { active } = useActiveSection(() => items.map((item) => item.id))
 </script>
 
 <template>
   <div class="flex w-full flex-1 flex-col">
-    <!--Top Section-->
     <header class="border-b border-project-dividers">
       <div
         class="flex flex-col items-center gap-10 px-4 py-8 md:px-10 lg:flex-row lg:justify-between lg:gap-10 lg:px-20 lg:py-6"
@@ -25,60 +36,16 @@ import IndexList from '@/components/IndexList.vue'
       </div>
     </header>
 
-    <!--Index Section-->
-    <section class="flex flex-1 flex-col">
-      <ul class="flex flex-1 flex-col">
-        <li class="flex flex-1 border-b border-project-dividers">
-          <IndexList to="/work/ux-ui">
-            <template #number>01</template>
-            <template #caption>INDEX</template>
-            <template #name>UX / UI and product</template>
-            <template #text>
-              Data-dense responsive interfaces, user flows and accessible design systems.
-            </template>
-            <div class=""></div>
-            <img
-              src="/project_img/invoice/Presentation_02.jpg"
-              alt="Preview of the invoicing app landing page"
-              class="absolute inset-0 h-full w-full object-cover rounded"
-            />
-            <template #link>Explore UX / UI →</template>
-          </IndexList>
-        </li>
+    <div class="flex-1 px-4 md:px-10 lg:px-20">
+      <div class="grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-12 lg:pt-16">
+        <SectionIndex :items="items" :active="active" label="Portfolio sections" />
 
-        <li class="flex flex-1 border-b border-project-dividers">
-          <IndexList to="/work/design">
-            <template #number>02</template>
-            <template #caption>ARCHIVE</template>
-            <template #name>Graphic and editorial</template>
-            <template #text>
-              Brand identities, covers and editorial layouts from five years of print and digital
-              work.
-            </template>
-            <img
-              src="/design_img/farmboy/Farmboy_Main.jpg"
-              alt="Preview of a graphic and editorial project"
-              class="absolute inset-0 h-full w-full object-cover rounded"
-            />
-            <template #link>Browse archive →</template>
-          </IndexList>
-        </li>
-
-        <li class="flex flex-1">
-          <IndexList to="/work/dev">
-            <template #number>03</template>
-            <template #caption>LAB</template>
-            <template #name>Front-end and code</template>
-            <template #text>Vue and TypeScript builds, including this site.</template>
-            <img
-              src="/dev.jpg"
-              alt="Preview of a front-end project"
-              class="absolute inset-0 h-full w-full object-cover rounded"
-            />
-            <template #link>Inspect code →</template>
-          </IndexList>
-        </li>
-      </ul>
-    </section>
+        <div class="min-w-0">
+          <UxUiSection />
+          <DesignSection />
+          <DevSection />
+        </div>
+      </div>
+    </div>
   </div>
 </template>

@@ -58,7 +58,7 @@ const education = [
             <RouterLink to="/" class="text-ui hover:underline underline-offset-4">
               Home
             </RouterLink>
-            <RouterLink to="/work" class="text-ui hover:underline underline-offset-4">
+            <RouterLink to="/#ux-ui" class="text-ui hover:underline underline-offset-4">
               Work
             </RouterLink>
             <a
@@ -96,7 +96,7 @@ const education = [
 
           <div class="flex flex-wrap items-center gap-6">
             <RouterLink
-              to="/work"
+              to="/#ux-ui"
               class="text-ui rounded bg-project-text px-4 py-2 border-3 border-project-text text-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
             >
               View projects
