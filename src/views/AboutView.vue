@@ -62,7 +62,7 @@ const education = [
               Work
             </RouterLink>
             <a
-              href="/Illya_Shpylka_Resume.pdf"
+              href="/Illya_Shpylka_Resume_UX-UI.pdf"
               target="_blank"
               rel="noopener noreferrer"
               class="text-ui underline underline-offset-4"
@@ -103,7 +103,7 @@ const education = [
             </RouterLink>
 
             <a
-              href="/Illya_Shpylka_Resume.pdf"
+              href="/Illya_Shpylka_Resume_UX-UI.pdf"
               download
               class="text-ui underline underline-offset-4 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
             >
@@ -209,7 +209,7 @@ const education = [
             />
           </ul>
           <a
-            href="/Illya_Shpylka_Resume.pdf"
+            href="/Illya_Shpylka_Resume_UX-UI.pdf"
             target="_blank"
             rel="noopener noreferrer"
             class="text-ui underline underline-offset-4"

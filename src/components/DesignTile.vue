@@ -12,7 +12,7 @@ const count = computed(() => props.project.images.length)
 
 <template>
   <article v-if="cover" class="group relative">
-    <div class="relative aspect-4/3 overflow-hidden border border-project-dividers">
+    <div class="relative aspect-4/3 overflow-hidden border border-project-dividers rounded">
       <img
         :src="cover.src"
         :alt="cover.alt"
@@ -22,7 +22,7 @@ const count = computed(() => props.project.images.length)
       />
       <span
         v-if="count > 1"
-        class="text-caption absolute right-3 bottom-3 bg-project-bg px-2 py-1"
+        class="text-caption absolute right-3 bottom-3 bg-project-bg px-2 py-1 rounded"
         aria-hidden="true"
       >
         {{ count }} IMAGES
