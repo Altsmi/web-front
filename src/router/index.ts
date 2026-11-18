@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import AboutView from '@/views/AboutView.vue'
-import WorkView from '@/views/WorkView.vue'
 import { uxProjects } from '@/data/uxProjects'
 import { waitForPageLeave } from './scrollSignal'
 
 declare module 'vue-router' {
   interface RouteMeta {
     footer?: 'default' | 'aboutFooter'
+  }
+}
+
+async function waitForElement(selector: string) {
+  for (let i = 0; i < 60 && !document.querySelector(selector); i++) {
+    await new Promise((resolve) => requestAnimationFrame(resolve))
   }
 }
 
@@ -27,53 +32,31 @@ const router = createRouter({
       meta: { footer: 'aboutFooter' },
     },
     {
-      path: '/work',
-      component: WorkView,
-      redirect: '/work/ux-ui',
+      path: '/work/ux-ui/:slug',
+      name: 'work-ux-ui-project',
+      component: () => import('@/views/work/ProjectPage.vue'),
+      props: true,
       meta: { footer: 'default' },
-      children: [
-        {
-          path: 'ux-ui',
-          children: [
-            {
-              path: '',
-              name: 'work-ux-ui',
-              component: () => import('@/views/work/UxUiSection.vue'),
-            },
-            {
-              path: ':slug',
-              name: 'work-ux-ui-project',
-              component: () => import('@/views/work/ProjectPage.vue'),
-              props: true,
-              beforeEnter: (to) =>
-                uxProjects.some((p) => p.slug === to.params.slug) || '/work/ux-ui',
-            },
-          ],
-        },
-        {
-          path: 'design',
-          name: 'work-design',
-          component: () => import('@/views/work/DesignSection.vue'),
-        },
-        {
-          path: 'dev',
-          name: 'work-dev',
-          component: () => import('@/views/work/DevSection.vue'),
-        },
-        {
-          path: ':pathMatch(.*)*',
-          redirect: '/work/ux-ui',
-        },
-      ],
+      beforeEnter: (to) =>
+        uxProjects.some((p) => p.slug === to.params.slug) || { path: '/', hash: '#ux-ui' },
     },
+    { path: '/work/design', redirect: { path: '/', hash: '#design' } },
+    { path: '/work/dev', redirect: { path: '/', hash: '#dev' } },
+    { path: '/work/:pathMatch(.*)*', redirect: { path: '/', hash: '#ux-ui' } },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',
     },
   ],
   async scrollBehavior(to, from, savedPosition) {
-    if (from !== START_LOCATION) await waitForPageLeave()
-    return savedPosition ?? { top: 0 }
+    if (from !== START_LOCATION && from.path !== to.path) await waitForPageLeave()
+    if (savedPosition) return savedPosition
+    if (to.hash) {
+      await waitForElement(to.hash)
+      const desktop = window.matchMedia('(min-width: 1024px)').matches
+      return { el: to.hash, top: desktop ? 32 : 80 }
+    }
+    return { top: 0 }
   },
 })
 

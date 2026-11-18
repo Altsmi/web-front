@@ -4,11 +4,14 @@ import { devProjects } from '@/data/devProjects'
 </script>
 
 <template>
-  <section class="space-y-8 px-4 py-10 md:space-y-10 md:px-10 md:py-16 lg:px-20">
-    <h1 class="sr-only">Front-end & Code</h1>
+  <section
+    id="dev"
+    class="scroll-mt-20 space-y-8 border-t border-project-dividers py-10 md:space-y-10 md:py-16 lg:scroll-mt-8"
+  >
+    <h2 class="sr-only">Front-end & Code</h2>
     <p class="text-lead text-project-labels">03 / FRONT-END & CODE</p>
 
-    <ul class="border-t border-project-dividers">
+    <ul>
       <li
         v-for="project in devProjects"
         :key="project.slug"

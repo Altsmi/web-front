@@ -1,8 +1,12 @@
 <script setup lang="ts">
-defineProps<{
-  items: { id: string; label: string }[]
-  active: string
-}>()
+withDefaults(
+  defineProps<{
+    items: { id: string; label: string }[]
+    active: string
+    label?: string
+  }>(),
+  { label: 'Case study sections' },
+)
 
 function go(id: string) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -16,7 +20,7 @@ function go(id: string) {
 <template>
   <!-- Mobile and tablet: chips -->
   <nav
-    aria-label="Case study sections"
+    :aria-label="label"
     class="sticky top-0 z-10 -mx-4 overflow-x-auto border-b border-project-dividers bg-project-bg px-4 py-3 md:-mx-10 md:px-10 lg:hidden"
   >
     <ul class="flex gap-2">
@@ -35,7 +39,7 @@ function go(id: string) {
   </nav>
 
   <!-- Desktop: sticky list -->
-  <nav aria-label="Case study sections" class="sticky top-8 hidden self-start lg:block">
+  <nav :aria-label="label" class="sticky top-8 hidden self-start lg:block">
     <p class="text-caption mb-3 text-project-muted">CONTENTS</p>
     <ul class="border-l border-project-dividers">
       <li v-for="item in items" :key="item.id">

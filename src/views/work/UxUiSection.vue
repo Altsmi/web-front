@@ -9,9 +9,12 @@ const others = computed(() => uxProjects.filter((p) => p !== lead.value))
 </script>
 
 <template>
-  <section class="space-y-8 px-4 py-10 md:space-y-10 md:px-10 md:py-16 lg:px-20">
-    <h1 class="sr-only">UX / UI & Product</h1>
-    <p class="text-lead text-project-labels">UX / UI & PRODUCT</p>
+  <section
+    id="ux-ui"
+    class="scroll-mt-20 space-y-8 py-10 md:space-y-10 md:py-16 lg:pt-0 lg:scroll-mt-8"
+  >
+    <h2 class="sr-only">UX / UI & Product</h2>
+    <p class="text-lead text-project-labels">01 / UX / UI & PRODUCT</p>
 
     <LeadProject v-if="lead" :project="lead" />
 
