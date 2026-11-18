@@ -3,6 +3,13 @@ import type { DesignProject } from '@/data/designProjects'
 
 const project = ref<DesignProject | null>(null)
 const index = ref(0)
+let pushed = false
+
+function reset() {
+  window.removeEventListener('popstate', reset)
+  pushed = false
+  project.value = null
+}
 
 export function useGalleryViewer() {
   const count = computed(() => project.value?.images.length ?? 0)
@@ -11,10 +18,15 @@ export function useGalleryViewer() {
   function open(target: DesignProject, start = 0) {
     project.value = target
     index.value = start
+    if (pushed) return
+    history.pushState({ ...history.state, gallery: true }, '')
+    window.addEventListener('popstate', reset)
+    pushed = true
   }
 
   function close() {
-    project.value = null
+    if (pushed) history.back()
+    else project.value = null
   }
 
   function go(position: number) {
@@ -30,5 +42,5 @@ export function useGalleryViewer() {
     go(index.value - 1)
   }
 
-  return { project, index, count, current, open, close, go, next, prev }
+  return { project, index, count, current, open, close, reset, go, next, prev }
 }

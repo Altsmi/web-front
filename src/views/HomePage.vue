@@ -30,8 +30,8 @@ const { active } = useActiveSection(() => items.map((item) => item.id))
 
         <p class="text-lead w-full max-w-lg text-left">
           Hello! I’m a
-          <span class="font-bold text-project-accents">Visual & Product Designer</span> with a
-          5-year background in graphic design, typography, and interactive media.
+          <span class="font-bold text-project-accents">UX/UI designer</span> with a background in
+          graphic design, typography, and interactive media.
         </p>
       </div>
     </header>

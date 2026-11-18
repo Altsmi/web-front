@@ -2,28 +2,37 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 export function useActiveSection(getIds: () => string[]) {
   const active = ref('')
-  let observer: IntersectionObserver | null = null
+  let frame = 0
 
-  onMounted(() => {
+  function update() {
+    frame = 0
     const ids = getIds()
-    active.value = ids[0] ?? ''
-
-    observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) active.value = entry.target.id
-        }
-      },
-      { rootMargin: '-20% 0px -70% 0px' },
-    )
+    const line = window.innerHeight * 0.4
+    let current = ''
 
     for (const id of ids) {
       const element = document.getElementById(id)
-      if (element) observer.observe(element)
+      if (element && element.getBoundingClientRect().top <= line) current = id
     }
+
+    active.value = current || ids[0] || ''
+  }
+
+  function schedule() {
+    if (!frame) frame = requestAnimationFrame(update)
+  }
+
+  onMounted(() => {
+    update()
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
   })
 
-  onBeforeUnmount(() => observer?.disconnect())
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', schedule)
+    window.removeEventListener('resize', schedule)
+    cancelAnimationFrame(frame)
+  })
 
   return { active }
 }
