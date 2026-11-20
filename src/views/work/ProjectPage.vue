@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import ImageLightbox from '@/components/ImageLightbox.vue'
 import PhaseSection from '@/components/PhaseSection.vue'
+import Pill from '@/components/Pill.vue'
 import SectionIndex from '@/components/SectionIndex.vue'
 import StudyOverview from '@/components/StudyOverview.vue'
 import ZoomImage from '@/components/ZoomImage.vue'
@@ -18,15 +19,10 @@ const next = computed(() => {
   return uxProjects[(i + 1) % uxProjects.length]
 })
 
-const meta = computed(() => {
+const pills = computed(() => {
   const p = project.value
   if (!p) return []
-  return [
-    { label: 'Role', value: p.role },
-    { label: 'Timeline', value: p.timeline },
-    { label: 'Tools', value: p.tools.join(', ') },
-    { label: 'Type', value: p.type },
-  ].filter((item) => item.value)
+  return [p.role, p.timeline, ...p.tools, p.type].filter((item): item is string => Boolean(item))
 })
 
 const indexItems = computed(() => {
@@ -63,24 +59,19 @@ const { active } = useActiveSection(() => indexItems.value.map((item) => item.id
     </header>
 
     <article class="px-4 py-10 md:px-10 md:py-16 lg:px-20">
-      <header class="grid gap-8 md:grid-cols-[3fr_2fr] md:items-center md:gap-8 lg:gap-12">
-        <div class="order-2 md:order-1">
-          <ZoomImage :src="project.image" :alt="project.alt" />
-        </div>
+      <header class="space-y-8">
+        <ZoomImage :src="project.image" :alt="project.alt" cover />
 
-        <div class="order-1 space-y-8 md:order-2">
+        <div class="grid gap-6 md:grid-cols-[3fr_2fr] md:items-end md:gap-12">
           <div class="space-y-4">
             <p class="text-lead text-project-labels">01 / UX / UI & PRODUCT</p>
             <h1>{{ project.title }}</h1>
-            <p class="text-lead max-w-md">{{ project.summary }}</p>
+            <p class="text-lead max-w-prose">{{ project.summary }}</p>
           </div>
 
-          <dl class="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-project-dividers pt-6">
-            <div v-for="item in meta" :key="item.label" class="space-y-1">
-              <dt class="text-caption text-project-labels">{{ item.label.toUpperCase() }}</dt>
-              <dd class="font-sans text-[0.9375rem]">{{ item.value }}</dd>
-            </div>
-          </dl>
+          <ul class="flex flex-wrap gap-2 md:justify-end" aria-label="Project facts">
+            <Pill v-for="item in pills" :key="item">{{ item }}</Pill>
+          </ul>
         </div>
       </header>
 
@@ -92,6 +83,7 @@ const { active } = useActiveSection(() => indexItems.value.map((item) => item.id
             v-if="project.overview"
             :overview="project.overview"
             :glance="project.glance"
+            :decisions="project.decisions"
           />
           <PhaseSection v-for="phase in project.phases" :key="phase.id" :phase="phase" />
         </div>

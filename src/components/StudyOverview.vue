@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Glance, Overview } from '@/data/study'
+import ZoomImage from '@/components/ZoomImage.vue'
+import type { Decision, Glance, Overview } from '@/data/study'
 
 defineProps<{
   overview?: Overview
   glance?: Glance[]
+  decisions?: Decision[]
 }>()
 </script>
 
@@ -41,5 +43,33 @@ defineProps<{
         <p class="text-ui">{{ item.label }}</p>
       </li>
     </ul>
+
+    <div v-if="decisions?.length" class="space-y-4">
+      <h3 class="text-caption text-project-labels">KEY DECISIONS</h3>
+      <ul class="grid gap-6 md:grid-cols-2">
+        <li
+          v-for="decision in decisions"
+          :key="decision.title"
+          class="space-y-4 border border-project-dividers bg-project-cards p-5"
+        >
+          <div class="space-y-1">
+            <p class="text-lead">{{ decision.title }}</p>
+            <p>{{ decision.change }}</p>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <ZoomImage
+              :src="decision.before.src"
+              :alt="decision.before.alt"
+              :caption="decision.before.caption"
+            />
+            <ZoomImage
+              :src="decision.after.src"
+              :alt="decision.after.alt"
+              :caption="decision.after.caption"
+            />
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
