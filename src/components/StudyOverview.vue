@@ -50,7 +50,7 @@ defineProps<{
         <li
           v-for="decision in decisions"
           :key="decision.title"
-          class="space-y-4 border border-project-dividers bg-project-cards p-5"
+          class="space-y-4 border border-project-dividers bg-project-cards p-5 rounded"
         >
           <div class="space-y-1">
             <p class="text-lead">{{ decision.title }}</p>

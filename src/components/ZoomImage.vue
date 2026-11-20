@@ -16,7 +16,7 @@ const { open } = useLightbox()
     <button
       type="button"
       :aria-label="`Enlarge image: ${props.alt}`"
-      class="block w-full border border-project-dividers focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+      class="block w-full border border-project-dividers focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents rounded"
       :class="cover ? 'aspect-16/10 md:aspect-21/9' : ''"
       @click="open({ src: props.src, alt: props.alt })"
     >

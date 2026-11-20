@@ -11,14 +11,14 @@
       <div class="flex flex-col gap-4 sm:flex-row">
         <RouterLink
           to="/"
-          class="text-ui rounded border border-project-bg bg-project-bg px-5 py-3 text-center text-project-text focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+          class="text-ui rounded border-2 border-project-bg bg-project-bg px-5 py-3 text-center text-project-text focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
         >
           View my work
         </RouterLink>
 
         <a
           href="mailto:your@email.com"
-          class="text-ui rounded border border-project-bg px-5 py-3 text-center focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+          class="text-ui rounded border-2 border-project-bg px-5 py-3 text-center focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
         >
           Reach out
         </a>

@@ -47,7 +47,7 @@
           href="/Illya_Shpylka_Resume_UX-UI.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-ui rounded border-3 border-project-text px-4 py-2 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
+          class="text-ui rounded border-2 border-project-text px-4 py-2 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
         >
           Resume ↗
         </a>

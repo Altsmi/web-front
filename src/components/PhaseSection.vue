@@ -47,7 +47,7 @@ function toggle(index: number) {
     </header>
 
     <div
-      class="grid gap-6 border border-project-dividers bg-project-cards p-5 md:p-8 xl:gap-10"
+      class="grid gap-6 border border-project-dividers bg-project-cards p-5 md:p-8 xl:gap-10 rounded"
       :class="phase.visual?.length ? 'xl:grid-cols-[3fr_2fr]' : ''"
     >
       <div class="min-w-0 space-y-6">
@@ -77,7 +77,7 @@ function toggle(index: number) {
             type="button"
             :aria-expanded="openIndex === index"
             :aria-controls="`${phase.id}-panel`"
-            class="text-ui min-h-11 rounded border px-4 transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+            class="text-ui min-h-11 rounded border-2 px-4 transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
             :class="
               openIndex === index
                 ? 'border-project-text bg-project-text text-project-bg'
