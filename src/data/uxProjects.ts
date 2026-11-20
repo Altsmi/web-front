@@ -1,4 +1,4 @@
-import type { Glance, Overview, Phase } from '@/data/study'
+import type { Decision, Glance, Overview, Phase } from '@/data/study'
 
 export interface Project {
   slug: string
@@ -16,6 +16,7 @@ export interface Project {
   type?: string
   overview?: Overview
   glance?: Glance[]
+  decisions?: Decision[]
   phases: Phase[]
 }
 
@@ -26,30 +27,61 @@ export const uxProjects: Project[] = [
     slug: 'ninox',
     title: 'Ninox',
     summary:
-      'A responsive invoicing platform: instant mobile invoicing for field contractors and a cash-flow hub for business owners.',
+      'An invoicing app. Contractors send an invoice from the job site in under 2 minutes. Business owners see who has paid and who hasn’t.',
     tags: ['Research', 'Wireframing', 'Prototyping', 'Usability testing'],
     year: '2026',
     image: '/project_img/invoice/Presentation_02.jpg',
     alt: 'Ninox landing page on desktop and phone',
     featured: true,
-    role: 'Lead Product & UX/UI Designer',
+    role: 'Product and UX/UI Designer',
     timeline: '4 weeks',
     tools: ['Figma', 'FigJam', 'Maze'],
     type: 'Self-initiated concept project',
 
     overview: {
       challenge:
-        'Let contractors invoice in under 2 minutes, and give business owners a clear view of cash flow.',
+        'Let contractors send an invoice in under 2 minutes, and let business owners see their cash flow at a glance.',
       solution:
-        'Two flows: an instant guest invoice on mobile, and a full receivables hub on desktop.',
-      result: '60% saved an account after sending their first invoice (3 of 5).',
+        'Two flows: send an invoice from your phone with no account, and a desktop dashboard to track who has paid.',
+      result: 'Testers sent an invoice in 1m 42s on average. 3 of 5 saved an account afterwards.',
     },
 
     glance: [
-      { value: '60%', label: 'Saved an account' },
-      { value: '1m 42s', label: 'Mobile dispatch' },
-      { value: '14s', label: 'To find overdue' },
+      { value: '1m 42s', label: 'To send an invoice' },
+      { value: '14s', label: 'To find overdue (before the fix)' },
+      { value: '3 of 5', label: 'Saved an account' },
       { value: '10', label: 'Testers' },
+    ],
+
+    decisions: [
+      {
+        title: '4 of 5 testers struggled to change a rate',
+        change: 'I added a quantity stepper and turned the small “Edit” links into buttons.',
+        before: {
+          src: '/project_img/invoice/mobile_before.jpg',
+          alt: 'Before: mobile rate input with small edit links',
+          caption: 'Before',
+        },
+        after: {
+          src: '/project_img/invoice/mobile_after.jpg',
+          alt: 'After: mobile rate input with quantity stepper and button pills',
+          caption: 'After',
+        },
+      },
+      {
+        title: 'Finding overdue invoices took 14 seconds',
+        change: 'I added an overdue card and tinted late invoices light red.',
+        before: {
+          src: '/project_img/invoice/desktop_before.jpg',
+          alt: 'Before: desktop invoice table with identical gray rows',
+          caption: 'Before',
+        },
+        after: {
+          src: '/project_img/invoice/desktop_after.jpg',
+          alt: 'After: desktop invoice table with overdue card and red row tints',
+          caption: 'After',
+        },
+      },
     ],
 
     phases: [
@@ -58,11 +90,11 @@ export const uxProjects: Project[] = [
         id: 'research',
         number: 1,
         title: 'Research',
-        takeaway: 'No competitor combined guest invoicing with a cash-flow hub.',
+        takeaway: 'No competitor offered both: invoicing with no account, and a cash-flow view.',
         points: [
           '8 people interviewed',
           '2 personas: field contractor and business owner',
-          '3 goals: task speed, field ergonomics, cash-flow clarity',
+          '3 goals: speed, easy use outdoors, cash flow at a glance',
         ],
         visual: [
           {
@@ -73,6 +105,7 @@ export const uxProjects: Project[] = [
         details: [
           {
             type: 'facts',
+            topic: 'Design brief',
             heading: 'Design brief',
             image: {
               src: '/project_img/invoice/Presentation_01.jpg',
@@ -81,23 +114,24 @@ export const uxProjects: Project[] = [
             items: [
               {
                 label: 'Design challenge',
-                text: 'How might we design a responsive invoicing platform that allows on-the-go trade contractors to create and dispatch invoices in under two minutes, while providing desktop-first small business owners with deep visibility into cash flow and outstanding balances?',
+                text: 'How might we help contractors send an invoice from the job site in under two minutes, while giving business owners on desktop a clear view of their cash flow and unpaid invoices?',
               },
               {
                 label: 'Solution',
-                text: 'Dual-funnel information architecture: built a zero-friction, unauthenticated “Instant Invoice” flow for quick mobile dispatches, paired with a complete, authenticated SaaS hub for managing recurring billing and client ledgers.',
+                text: 'Two paths. A guest “Instant Invoice” flow on mobile: no sign-up, just send. And a full desktop hub, behind a login, for repeat billing and client records.',
               },
               {
-                label: 'Action taken',
-                text: 'Conducted qualitative discovery sessions and persona synthesis to pinpoint workflow friction across field and desk environments, restructured information architecture through iterative wireframing to validate a dual-funnel guest versus SaaS flow, and executed usability testing to optimize data density, legibility, and task completion speed.',
+                label: 'What I did',
+                text: 'I interviewed people to find where invoicing slows them down, on the job site and at the desk. I sketched and tested two paths, guest and account. Then I ran a usability test and fixed what slowed people down.',
               },
             ],
           },
           {
             type: 'text',
+            topic: 'Personas',
             heading: 'Persona',
             body: [
-              'This section introduces user personas developed from qualitative discovery sessions, highlighting the operational divide in trade services. These personas anchor the design decisions by capturing the distinct workflows of users: independent field technicians who need rapid, on-site mobile dispatch, and business owners who manage cash flow and overdue receivables from a desktop office.',
+              'The interviews showed two kinds of users. Contractors who bill from a van or job site, on their phone. And business owners who manage cash flow and late payments from a desktop at the office.',
             ],
           },
           {
@@ -108,7 +142,7 @@ export const uxProjects: Project[] = [
               { value: 'Business owners', label: 'who I spoke to' },
               { value: 'Week 1', label: 'when' },
             ],
-            note: 'Recurring themes: field invoicing friction · payroll cash-flow anxiety',
+            note: 'What I heard most: invoicing is slow on site · owners worry about cash before payroll',
           },
           {
             type: 'images',
@@ -126,9 +160,10 @@ export const uxProjects: Project[] = [
           },
           {
             type: 'text',
+            topic: 'Competitors',
             heading: 'Competitive analysis',
             body: [
-              'Conducted a targeted competitive analysis to benchmark against leading invoicing tools, focusing on onboarding friction, mobile ergonomics, and financial tracking clarity.',
+              'I compared popular invoicing tools on sign-up steps, how well they work on a phone, and how clearly they show cash flow.',
             ],
           },
           {
@@ -143,53 +178,53 @@ export const uxProjects: Project[] = [
             rows: [
               [
                 'FreshBooks',
-                '5+ steps (sign-up, email verify, business setup)',
-                'No (desktop-first)',
+                '5+ steps (sign-up, email check, business setup)',
+                'No',
                 'Yes',
-                'High onboarding friction; no unauthenticated field bypass for fast on-site billing',
+                'Long setup. No way to send a quick invoice without an account.',
               ],
               [
                 'Wave',
-                '4+ steps (account registration, tax classification)',
-                'No (desktop-centric)',
+                '4+ steps (sign-up, tax setup)',
+                'No',
                 'Yes',
-                'Heavy accounting setup; cumbersome navigation and poor ergonomics on mobile web',
+                'Heavy accounting setup. Hard to use on a phone.',
               ],
               [
                 'Invoice Simple',
                 '2 steps (fast quick-start)',
                 'Yes',
-                'No (flat invoice list)',
-                'Lacks cash-flow visibility, overdue aging alerts, and batch payment recovery tools',
+                'No (flat list)',
+                'No cash-flow view, no overdue alerts, no tools to chase payments.',
               ],
               [
                 'Ninox',
-                '0 steps (zero-friction guest bypass)',
+                '0 steps (guest mode)',
                 'Yes',
                 'Yes',
-                'Fills the gap (dual-funnel: instant mobile send + desktop receivables hub)',
+                'Does both: send in seconds on a phone, track payments on desktop.',
               ],
             ],
             highlightRow: 3,
-            note: 'Takeaway: none of the tools I reviewed combined instant, unauthenticated guest invoicing with an at-a-glance receivables triage hub.',
+            note: 'Takeaway: none of these tools let you send an invoice with no account and also see who owes you what at a glance.',
           },
           {
             type: 'facts',
+            topic: 'Goals',
             heading: 'Design goals',
-            intro:
-              'Using this research, we identified three critical goals required for the solution to succeed:',
+            intro: 'The research pointed to three goals:',
             items: [
               {
-                label: '1. Frictionless task speed',
-                text: 'Users prioritize rapid, low-friction document creation over deep accounting configurations, indicating an urgent need for an unauthenticated, instant-dispatch workflow on mobile web.',
+                label: '1. Speed',
+                text: 'People want to send an invoice fast, not set up accounting. So the mobile flow needs no account.',
               },
               {
-                label: '2. Accessible field ergonomics',
-                text: 'Adhering to WCAG AAA contrast ratios and 48px touch targets prevents data-entry errors when trade contractors input numbers under direct outdoor sunlight.',
+                label: '2. Easy to use outdoors',
+                text: 'Contractors type numbers in bright sunlight. High-contrast colors (WCAG AAA) and 48px touch targets help them make fewer mistakes.',
               },
               {
-                label: '3. High-level cash flow clarity',
-                text: 'Business owners demand immediate visibility into outstanding versus collected revenue, emphasizing the need for at-a-glance receivables snapshot cards and automated payment status tracking.',
+                label: '3. Cash flow at a glance',
+                text: 'Owners want to see what is paid and what is still owed without digging. So the hub opens with summary cards and payment status.',
               },
             ],
           },
@@ -216,33 +251,35 @@ export const uxProjects: Project[] = [
         details: [
           {
             type: 'table',
+            topic: 'Principles',
             heading: 'From research to design principles',
             intro: 'Three insights from research shaped how I framed the problem.',
             columns: ['Insight', 'How might we', 'Principle'],
             rows: [
               [
-                'Users prefer rapid document creation over deep accounting setup',
+                'People want to create an invoice quickly, not set up accounting',
                 'How might we let a contractor send an invoice from the job site in under two minutes, with no account?',
                 'Value before sign-up',
               ],
               [
-                'Field entry errors happen under glare with small targets',
-                'How might we make number entry accurate one-handed in direct sunlight?',
+                'Mistakes happen in glare, with small buttons',
+                'How might we make typing numbers accurate with one hand in direct sunlight?',
                 'Thumb-first, high contrast',
               ],
               [
-                'Owners can’t see outstanding vs. collected revenue without digging',
-                'How might we show cash-flow health at a glance and let owners act on late invoices in one click?',
+                'Owners can’t see what is paid and what is owed without digging',
+                'How might we show cash-flow health at a glance and let owners chase late invoices in one click?',
                 'Summary first, details second',
               ],
             ],
-            note: 'These principles shaped the dual-funnel flow below.',
+            note: 'These principles shaped the two flows below.',
           },
           {
             type: 'text',
-            heading: 'User flow architecture',
+            topic: 'Two flows',
+            heading: 'The two flows',
             body: [
-              'To eliminate friction between on-site urgency and administrative tracking, I mapped a dual-funnel architecture decoupling instant task completion from account management. Field users get an unauthenticated quick-dispatch flow, while office operators access a complete cash-flow management hub.',
+              'I split the product into two flows. Contractors get a quick guest flow on mobile. Business owners get a full dashboard on desktop.',
             ],
           },
           {
@@ -256,27 +293,23 @@ export const uxProjects: Project[] = [
           },
           {
             type: 'table',
-            columns: ['Stage', 'Guest flow: mobile web (Marcus)', 'SaaS hub: desktop web (David)'],
+            columns: ['Stage', 'Guest flow: mobile (Marcus)', 'Hub: desktop (David)'],
             rows: [
               [
-                'User intent',
-                'Send a quick job bill in under 2 minutes.',
-                'Review weekly cash flow and payroll readiness.',
+                'Goal',
+                'Send a job invoice in under 2 minutes.',
+                'Check weekly cash flow and payroll.',
+              ],
+              ['Login', 'None. No password or sign-up.', 'Business login.'],
+              [
+                'Main screen',
+                'One-column form with saved line items.',
+                'Table with status filters and totals.',
               ],
               [
-                'Authentication',
-                'Zero-friction bypass (no password or signup).',
-                'Secure business login.',
-              ],
-              [
-                'Primary action',
-                'Single-column form with pre-saved line items.',
-                'Multi-column table with status filters and metrics.',
-              ],
-              [
-                'Completion',
-                'Direct SMS or email dispatch.',
-                'Automated batch reminders and ledger updates.',
+                'Finish',
+                'Send by SMS or email.',
+                'Send reminders to late clients and update records.',
               ],
             ],
           },
@@ -288,11 +321,11 @@ export const uxProjects: Project[] = [
         id: 'ideate',
         number: 3,
         title: 'Ideate & wireframes',
-        takeaway: 'Concept 3 won: call to action, preview and proof in the first screen.',
+        takeaway: 'Concept 3 won: button, product preview and proof all fit in the first screen.',
         points: [
           '3 landing concepts compared',
           'Mobile step 2 combined from 3 variants',
-          'Desktop hub built around KPI cards and a ledger',
+          'Desktop hub built around summary cards and an invoice table',
         ],
         visual: [
           {
@@ -303,9 +336,10 @@ export const uxProjects: Project[] = [
         details: [
           {
             type: 'text',
-            heading: '01. The dual-funnel gateway',
+            topic: 'Landing page',
+            heading: '01. The landing page',
             body: [
-              'The layout was architected around a dual-funnel strategy: desktop business owners receive clear visual proof, feature deep-dives, and account access, while time-crunched mobile contractors get an instant, above-the-fold entry point to start billing without mandatory sign-up walls.',
+              'The landing page speaks to both users. Business owners on desktop see proof and features. Contractors on mobile get a button at the top to start an invoice, with no sign-up.',
             ],
           },
           {
@@ -323,15 +357,15 @@ export const uxProjects: Project[] = [
             items: [
               {
                 label: 'Concept 1',
-                text: 'Single-column centered layout. Clean, but left excessive dead space on desktop and pushed social proof below the fold.',
+                text: 'One centered column. Clean, but lots of empty space on desktop, and proof pushed below the fold.',
               },
               {
                 label: 'Concept 2',
-                text: '50/50 split pairing copy on the left with a product preview frame on the right. Balanced messaging with visual demonstration.',
+                text: 'A 50/50 split: text on the left, product preview on the right. Balanced, but proof was still below the fold.',
               },
               {
                 label: 'Concept 3',
-                text: 'Refined hero layout pairing high-contrast CTAs with an expanded preview container, anchored by a 3-pillar metric bar.',
+                text: 'A bigger preview, high-contrast buttons, and a bar with three key numbers.',
               },
             ],
           },
@@ -339,7 +373,7 @@ export const uxProjects: Project[] = [
             type: 'text',
             heading: 'Decision: landing concept',
             body: [
-              'I moved forward with Concept 3 because it keeps the primary CTA, the product preview, and the proof metrics in the first screen. Concept 1 left dead space and Concept 2 pushed proof below the fold.',
+              'I went with Concept 3. The button, the preview and the proof all fit in the first screen. Concept 1 left empty space. Concept 2 pushed proof below the fold.',
             ],
           },
           {
@@ -353,9 +387,10 @@ export const uxProjects: Project[] = [
           },
           {
             type: 'text',
-            heading: '02. Instant invoicing (Marcus Vance persona flow)',
+            topic: 'Phone flow',
+            heading: '02. Instant invoicing (Marcus)',
             body: [
-              'Because Marcus Vance operates almost exclusively from his service van or job site, this user flow prioritizes the mobile viewport. The focus is entirely on removing field friction: bypassing registration gates and providing large, thumb-accessible touch targets so contractors can bill and get paid before leaving the client.',
+              'Marcus works from his van or the job site, so I designed this flow for his phone first. No sign-up, and big buttons he can tap with a thumb, so he can bill before he leaves.',
             ],
           },
           {
@@ -371,7 +406,7 @@ export const uxProjects: Project[] = [
             type: 'text',
             heading: 'Decision: mobile step 2',
             body: [
-              'Instead of selecting a single layout, I synthesized a hybrid design: borrowing the currency selector and one-tap preset buttons (Fixed vs. Hourly) from Variant 1, the clean stacked line-item structure from Variants 2 and 3, and anchoring the live summary bar and action button to the bottom thumb zone. This hybrid eliminated manual typing friction under outdoor glare while keeping running job totals immediately visible.',
+              'I didn’t pick one layout. I combined the best parts of three: the currency selector and Fixed/Hourly buttons from Variant 1, the stacked line items from Variants 2 and 3, and a total bar and button fixed at the bottom, where the thumb reaches. That means less typing in glare, and the running total is always visible.',
             ],
           },
           {
@@ -379,20 +414,21 @@ export const uxProjects: Project[] = [
             heading: 'Approach',
             items: [
               {
-                label: 'Physical invoice anatomy informs the digital stepper',
-                text: 'Traditional paper bills follow a universally understood layout: header information at the top, itemized rates in the center, and totals with payment terms at the base. Translating this physical structure into a linear three-step mobile form leverages familiar mental models, allowing contractors to complete bills rapidly without needing to learn a new interface.',
+                label: 'Paper invoices as a model',
+                text: 'Paper bills follow a layout everyone knows: details at the top, items in the middle, total at the bottom. I copied that into a three-step mobile form, so there is nothing new to learn.',
               },
               {
-                label: 'Responsive adaptation beyond screen scaling',
-                text: 'Responsive design for field operations is ergonomic, not just visual. Instead of shrinking desktop data tables into dense, hard-to-read mobile spreadsheets, the mobile layout adapts complex calculations into thumb-friendly 48px touch targets, quick-add modal triggers, and an anchored thumb-zone action bar engineered for one-handed use outdoors.',
+                label: 'Responsive is more than a smaller screen',
+                text: 'I didn’t shrink the desktop table. On mobile, the same job becomes big 48px buttons, quick-add buttons, and a bottom bar for one-handed use outdoors.',
               },
             ],
           },
           {
             type: 'text',
-            heading: '03. Financial hub & receivables (David Chen persona flow)',
+            topic: 'Desktop hub',
+            heading: '03. Cash-flow hub (David)',
             body: [
-              'Unlike Marcus’s on-site mobile flow, David Chen manages operations and payroll from a desktop office. This flow prioritizes desktop data density, replacing linear mobile steppers with high-level KPI cards and a filterable receivables ledger to eliminate cash-flow surprises before Friday payroll.',
+              'David runs the business and payroll from a desktop at the office. His flow uses summary cards and a filterable invoice table, so there are no surprises before Friday payroll.',
             ],
           },
           {
@@ -410,11 +446,11 @@ export const uxProjects: Project[] = [
             items: [
               {
                 label: 'Summary first, details second',
-                text: 'Small business owners shouldn’t have to scroll through dozens of invoice rows just to check their financial health. We anchored three clear metric cards at the top so David can see his total outstanding balance and payroll readiness the moment he opens the hub.',
+                text: 'Owners shouldn’t have to scroll through dozens of invoices to check how the business is doing. Three cards at the top show what is owed and whether payroll is covered, as soon as David opens the hub.',
               },
               {
-                label: 'Turning records into action',
-                text: 'A dashboard shouldn’t just be a digital filing cabinet of past PDFs. We gave overdue invoices high-contrast warning badges and built a one-click reminder button so David can nudge late clients directly from the table without awkward phone calls.',
+                label: 'Records that lead to action',
+                text: 'A dashboard shouldn’t be a pile of old PDFs. Overdue invoices get a clear red warning, and a one-click reminder button lets David nudge late clients from the table, with no awkward phone calls.',
               },
             ],
           },
@@ -429,8 +465,8 @@ export const uxProjects: Project[] = [
         takeaway: 'Testing found 6 issues. The two biggest changed the final design.',
         points: [
           '10 testers in 2 unmoderated groups',
-          'Rate input: 4 of 5 struggled, so a quantity stepper',
-          'Overdue search took 14s, so a KPI card and red row tints',
+          'Rate input: 4 of 5 struggled, so I added a quantity stepper',
+          'Finding overdue invoices took 14s, so I added an overdue card and red row tints',
         ],
         visual: [
           {
@@ -447,40 +483,35 @@ export const uxProjects: Project[] = [
         details: [
           {
             type: 'text',
-            heading: 'Study methodology & participant setup',
+            topic: 'Test setup',
+            heading: 'How I tested',
             body: [
-              'Following exploratory paper sketching, low-fidelity digital wireframes were built in Figma to connect end-to-end task flows into clickable, interactive prototypes. Before committing to high-fidelity visual styling, color tokens, and component libraries, an unmoderated usability study was conducted to evaluate navigation logic, ergonomic friction, and information architecture.',
+              'After paper sketches, I built low-fidelity wireframes in Figma and linked them into a clickable prototype. Before adding colors and components, I ran an unmoderated usability test to check navigation, ease of use on a phone, and how the information was organized.',
             ],
           },
           {
             type: 'table',
-            heading: 'Approach',
-            intro:
-              'The study evaluated two distinct user flows across two unmoderated cohorts (10 participants total) to validate both sides of the dual-funnel architecture:',
-            columns: [
-              'Group',
-              'Profile & persona alignment',
-              'Device & environment',
-              'Primary usability task',
-            ],
+            heading: 'Test setup',
+            intro: 'Two groups of 5 people tested the two flows (10 testers in total).',
+            columns: ['Group', 'Who', 'Device', 'Task'],
             rows: [
               [
                 'A',
-                'Independent field contractors, electricians, and tradespeople (Marcus Vance)',
-                'Mobile web (simulated outdoor glare / one-handed grip)',
-                '“Draft and dispatch a $391.50 emergency service invoice via SMS without creating an account.”',
+                'Contractors and tradespeople (Marcus)',
+                'Phone (sunlight and one-handed use simulated)',
+                '“Create and send a $391.50 emergency invoice by SMS without making an account.”',
               ],
               [
                 'B',
-                'Small service business owners managing crews and payroll (David Chen)',
-                'Desktop SaaS (1440px viewport)',
-                '“Identify overdue accounts on your receivables ledger and prompt late clients for payment before weekly payroll.”',
+                'Small business owners managing crews and payroll (David)',
+                'Desktop (1440px)',
+                '“Find the overdue accounts and send a reminder before weekly payroll.”',
               ],
             ],
           },
           {
             type: 'images',
-            heading: 'Flow A: rapid guest invoicing',
+            heading: 'Flow A: guest invoice',
             items: [
               {
                 src: '/project_img/invoice/Prototype_1.jpg',
@@ -490,56 +521,56 @@ export const uxProjects: Project[] = [
           },
           {
             type: 'images',
-            heading: 'Flow B: receivables triage & payment recovery',
+            heading: 'Flow B: finding and chasing late invoices',
             items: [
               {
                 src: '/project_img/invoice/Prototype_2.jpg',
-                alt: 'Low-fidelity prototype of the receivables triage and payment recovery flow',
+                alt: 'Low-fidelity prototype of the finding and chasing late invoices flow',
               },
             ],
           },
           {
             type: 'stats',
+            topic: 'Results',
             heading: 'Test results',
             items: [
               {
                 value: '1m 42s',
-                label: 'Mobile task completion',
-                note: 'Average mobile dispatch · Target: under 2 min · n=5',
+                label: 'Time to send an invoice (phone)',
+                note: 'Average · Target: under 2 min · n=5',
               },
               {
                 value: '10 of 10', // check: old text said "5 of 5 · both groups (100%)"
-                label: 'Task success',
-                note: 'Finished without help · 5 of 5 in both Group A and Group B',
+                label: 'Finished without help',
+                note: '5 of 5 in Group A and 5 of 5 in Group B',
               },
               {
                 value: '14s',
-                label: 'Baseline scanning time',
-                note: 'Initial table navigation · Target: under 5s · n=5',
+                label: 'Time to find overdue invoices',
+                note: 'Before the fix · Target: under 5s · n=5',
               },
               {
                 value: '60%',
-                label: 'Account creation',
-                note: '3 of 5 saved to hub · Small sample: directional',
+                label: 'Saved an account',
+                note: '3 of 5 saved to the hub · Small sample',
               },
             ],
-            note: 'Small sample (5 per group). Results are directional, not statistically significant.',
+            note: 'Only 5 people per group, so treat these results as a guide, not proof.',
           },
           {
             type: 'text',
-            heading: 'Findings & iterations',
-            body: [
-              'Testing surfaced 6 usability issues. These 2 had the biggest effect on task completion.',
-            ],
+            heading: 'What the tests showed',
+            body: ['Testing found 6 usability issues. These 2 had the biggest effect.'],
           },
           {
             type: 'facts',
-            heading: 'Issue 1: Rate input friction & mobile touch-target ergonomics',
+            topic: 'Issue 1: rate input',
+            heading: 'Issue 1: Changing a rate was hard on mobile',
             items: [
               { label: 'Severity', text: 'High · Flow A' },
               {
                 label: 'Evidence',
-                text: '4 of 5 testers experienced friction when attempting to adjust line-item rates; the generic preset buttons required manual text editing, and the small [ Edit ] text links led to repeated mis-taps on mobile viewports, seen in unmoderated session recordings.',
+                text: '4 of 5 testers struggled to change a rate. The preset buttons meant typing by hand, and the small “Edit” links caused mis-taps. I saw this in the session recordings.',
               },
             ],
           },
@@ -563,17 +594,18 @@ export const uxProjects: Project[] = [
             type: 'text',
             heading: 'Change',
             body: [
-              'Introduced an inline quantity stepper ([-] 2.5 [+]) on labor items to enable one-tap hour adjustments without triggering the mobile numeric keyboard, upgraded small text links into tactile button pills (Edit), and anchored the running invoice total to the viewport base for continuous visibility.',
+              'I added a quantity stepper ([-] 2.5 [+]) so hours change with one tap and no keyboard. I turned the small “Edit” links into buttons, and fixed the running total to the bottom of the screen so it is always visible.',
             ],
           },
           {
             type: 'facts',
-            heading: 'Issue 2: Overdue account scanning latency on desktop ledger',
+            topic: 'Issue 2: overdue',
+            heading: 'Issue 2: Finding overdue invoices took too long',
             items: [
               { label: 'Severity', text: 'Medium · Flow B' },
               {
                 label: 'Evidence',
-                text: '5 of 5 testers spent an average of 14 seconds scanning line-by-line across uniform grayscale rows to locate which clients were past due, seen in task time-to-target logs and click tracking.',
+                text: 'All 5 testers took about 14 seconds on average, scanning row by row through identical gray rows to find who was late. I saw this in task times and click tracking.',
               },
             ],
           },
@@ -583,12 +615,12 @@ export const uxProjects: Project[] = [
             items: [
               {
                 src: '/project_img/invoice/desktop_before.jpg',
-                alt: 'Before: desktop ledger with uniform grayscale rows',
+                alt: 'Before: desktop invoice table with identical gray rows',
                 caption: 'Before',
               },
               {
                 src: '/project_img/invoice/desktop_after.jpg',
-                alt: 'After: desktop ledger with overdue KPI card and red row tints',
+                alt: 'After: desktop invoice table with overdue card and red row tints',
                 caption: 'After',
               },
             ],
@@ -597,7 +629,7 @@ export const uxProjects: Project[] = [
             type: 'text',
             heading: 'Change',
             body: [
-              'Elevated past-due balances into a dedicated top-level KPI alert card ($3,420.00 Overdue), applied a soft red row tint to late invoices, and added an exposed inline [ ⚡ Remind ] trigger so business owners can dispatch payment nudges directly from the table before weekly payroll.',
+              'I added a card at the top for overdue balances ($3,420.00 overdue), tinted late invoices light red, and added a ⚡ Remind button on each row, so owners can nudge clients before payroll.',
             ],
           },
         ],
@@ -608,45 +640,45 @@ export const uxProjects: Project[] = [
         id: 'visual-ui',
         number: 5,
         title: 'Visual UI',
-        takeaway: 'One token-based system for the field and the desk.',
+        takeaway: 'One set of styles for both the phone and the desktop.',
         points: [
           'Google Sans Flex and Inter',
           '16, 6 and 4 column grids on an 8px base',
-          '48px touch targets in the thumb zones',
+          '48px buttons where the thumb reaches',
         ],
 
         details: [
           {
             type: 'facts',
+            topic: 'Style guide',
             heading: 'Typography',
             items: [
               {
                 label: 'Headers · Google Sans Flex',
-                text: 'Structural headings and brand moments.',
+                text: 'Headings and brand moments.',
               },
               {
-                label: 'Interface & data · Inter',
-                text: 'Forms, labels and financial tables, with tabular figures on currency columns.',
+                label: 'Interface and data · Inter',
+                text: 'Forms, labels and tables. Numbers line up in the money columns.',
               },
             ],
           },
           {
             type: 'facts',
             heading: 'Color',
-            intro:
-              'Every color is a named design token, for example brand-primary and status-paid-text.',
+            intro: 'Every color has a name, like brand-primary or status-paid-text.',
             items: [
               {
                 label: 'Brand & action',
-                text: 'Primary actions and their interactive states. Marine Teal #0F3040 (brand-primary) · Teal hover #1A465C (brand-hover) · Teal subtle #F0F6F8 (brand-subtle).',
+                text: 'Buttons and their states. Marine Teal #0F3040 (brand-primary) · Teal hover #1A465C (brand-hover) · Teal subtle #F0F6F8 (brand-subtle).',
               },
               {
                 label: 'Neutrals',
-                text: 'Text, borders and panel surfaces. Text primary #0F172A (text-primary) · Text secondary #475569 (text-secondary) · Border #E2E8F0 (border-default) · Surface subtle #F1F5F9 (surface-subtle).',
+                text: 'Text, borders and backgrounds. Text primary #0F172A (text-primary) · Text secondary #475569 (text-secondary) · Border #E2E8F0 (border-default) · Surface subtle #F1F5F9 (surface-subtle).',
               },
               {
                 label: 'Status',
-                text: 'Each status pairs a text color with a background tint. Paid #065F46 on #ECFDF5 · Pending #92400E on #FFFBEB · Overdue #991B1B on #FEF2F2.',
+                text: 'Each status has a text color and a light background. Paid #065F46 on #ECFDF5 · Pending #92400E on #FFFBEB · Overdue #991B1B on #FEF2F2.',
               },
             ],
           },
@@ -658,31 +690,32 @@ export const uxProjects: Project[] = [
               { value: '6', label: 'Tablet columns', note: 'Margin 16 · Gutter 16' },
               { value: '4', label: 'Mobile columns', note: 'Margin 16 · Gutter 16' },
             ],
-            note: 'Every layout sits on an 8px grid, with 48px touch targets in the primary thumb zones.',
+            note: 'Everything sits on an 8px grid, with 48px touch targets where the thumb reaches.',
           },
           {
             type: 'images',
-            heading: 'Marcus Vance: mobile field invoicing (390px)',
+            topic: 'Mobile screens',
+            heading: 'Marcus: mobile invoicing (390px)',
             columns: 4,
             items: [
               {
                 src: '/project_img/invoice/Step_1.jpg',
-                alt: 'Mobile step 1: rapid client entry',
+                alt: 'Mobile step 1: client details',
                 caption: 'Step 1',
               },
               {
                 src: '/project_img/invoice/Step_2.jpg',
-                alt: 'Mobile step 2: ergonomic rate builder',
+                alt: 'Mobile step 2: rate builder',
                 caption: 'Step 2',
               },
               {
                 src: '/project_img/invoice/Step_3.jpg',
-                alt: 'Mobile step 3: instant link dispatch',
+                alt: 'Mobile step 3: send the invoice',
                 caption: 'Step 3',
               },
               {
                 src: '/project_img/invoice/Step_4.jpg',
-                alt: 'Mobile step 4: save to hub prompt',
+                alt: 'Mobile step 4: save to hub',
                 caption: 'Step 4',
               },
             ],
@@ -692,30 +725,31 @@ export const uxProjects: Project[] = [
             heading: 'The four steps',
             items: [
               {
-                label: 'Step 1 · Rapid client entry',
-                text: 'Clean single-column layout prioritizing essential client contact details with pre-saved client search.',
+                label: 'Step 1 · Client details',
+                text: 'One column with only the essentials. Saved clients can be searched.',
               },
               {
-                label: 'Step 2 · Ergonomic rate builder',
-                text: 'Quick-add service chips paired with an inline quantity stepper ([-] 2.5 [+]) to eliminate numeric keypad friction, anchored above a persistent running total bar.',
+                label: 'Step 2 · Rate builder',
+                text: 'Quick-add service buttons and a quantity stepper ([-] 2.5 [+]), so no number keyboard. A total bar stays at the bottom.',
               },
               {
-                label: 'Step 3 · Instant link dispatch',
-                text: 'One-tap dispatch generating SMS payment links and downloadable receipts without requiring account registration.',
+                label: 'Step 3 · Send',
+                text: 'One tap sends an SMS payment link and a receipt. No account needed.',
               },
               {
-                label: 'Step 4 · Save to Hub prompt',
-                text: 'Post-dispatch confirmation featuring a soft “Save to Hub” value card, allowing contractors to track payment status in real time.',
+                label: 'Step 4 · Save to hub',
+                text: 'After sending, a soft card offers to save the invoice to the hub, so the contractor can see when it is paid.',
               },
             ],
           },
           {
             type: 'images',
-            heading: 'David Chen: desktop receivables hub (1440px)',
+            topic: 'Desktop screens',
+            heading: 'David: desktop hub (1440px)',
             items: [
               {
                 src: '/project_img/invoice/david_points.jpg',
-                alt: 'Desktop receivables hub with KPI cards, ledger and remind buttons',
+                alt: 'Desktop hub with summary cards, invoice table and remind buttons',
               },
             ],
           },
@@ -725,15 +759,15 @@ export const uxProjects: Project[] = [
             items: [
               {
                 label: '1 · Cash-flow overview',
-                text: 'Three high-contrast KPI cards displaying total outstanding balances, monthly collections, and an Overdue Alert highlighting aging recency (3 late · oldest: 14 days past due).',
+                text: 'Three high-contrast cards: total owed, collected this month, and an overdue alert (3 late · oldest 14 days).',
               },
               {
-                label: '2 · Scannable receivables ledger',
-                text: 'A dense, filterable data grid featuring soft red row tints on late accounts to cut line-by-line scanning fatigue before payroll.',
+                label: '2 · Invoice table',
+                text: 'A filterable table with light red tints on late invoices, so owners spot them fast before payroll.',
               },
               {
-                label: '3 · Payment recovery action',
-                text: 'Inline, high-contrast [ ⚡ Remind ] buttons trigger a modal with pre-filled message previews, allowing owners to prompt clients across email or SMS in under 20 seconds.',
+                label: '3 · Send a reminder',
+                text: 'A ⚡ Remind button opens a pre-filled message. Owners can nudge a client by email or SMS in under 20 seconds.',
               },
             ],
           },
@@ -745,56 +779,59 @@ export const uxProjects: Project[] = [
         id: 'outcomes',
         number: 6,
         title: 'Outcomes',
-        takeaway: 'Every test result maps to a design decision.',
+        takeaway: 'Each test result led to a design change.',
         points: [
-          '1m 42s average mobile dispatch',
+          '1m 42s average to send an invoice on mobile',
           'Limits: 5 testers per group, low-fidelity only',
-          'Next: re-test the hi-fi ledger',
+          'Next: re-test the final design',
         ],
         visual: [
           {
             src: '/project_img/invoice/david_points.jpg',
-            alt: 'Desktop receivables hub with KPI cards and ledger',
+            alt: 'Desktop hub with summary cards and invoice table',
           },
         ],
         details: [
           {
             type: 'table',
-            heading: 'Results → design decisions',
-            intro: 'Each finding from testing maps to a decision in the high-fidelity design.',
-            columns: ['Finding', 'Evidence', 'Design response'],
+            topic: 'Results to changes',
+            heading: 'Results → design changes',
+            intro: 'Each finding from testing led to a change in the final design.',
+            columns: ['Finding', 'Evidence', 'What I changed'],
             rows: [
               [
-                '14s to locate overdue accounts on the flat wireframe',
+                '14s to find overdue invoices on the flat wireframe',
                 'Group B · n=5',
-                'Overdue KPI card + red row tints',
+                'Overdue card + red row tints',
               ],
               [
-                '1m 42s average dispatch; 5 of 5 completed the task',
+                '1m 42s average to send; 5 of 5 completed the task',
                 'Group A · n=5',
-                'Quick-add chips, quantity stepper and one-tap SMS dispatch kept in hi-fi',
+                'Kept quick-add buttons, quantity stepper and one-tap SMS',
               ],
               [
-                '3 of 5 saved an account after dispatch',
-                'Post-dispatch prompt',
-                'Soft “Save to Hub” value card',
+                '3 of 5 saved an account after sending',
+                'After the invoice is sent',
+                'Soft “Save to Hub” card',
               ],
             ],
           },
           {
             type: 'text',
-            heading: 'Limitations & what I’d do differently',
+            topic: 'Limits',
+            heading: 'Limits, and what I’d do next time',
             body: [
-              'Five testers per group surfaced the key navigation bottlenecks, but the sample is too small for statistical confidence, and the study tested low-fidelity wireframes only. Unmoderated sessions also couldn’t reproduce real field conditions: outdoor glare and one-handed use were simulated, not experienced. With more time, I’d run moderated, on-site sessions in a work van to test one-handed reach directly.',
+              'Five testers per group was enough to find the main problems, but too few to prove anything. I only tested low-fidelity wireframes. And remote tests couldn’t recreate real job-site conditions: glare and one-handed use were simulated. With more time, I’d test in person, in a work van, to check one-handed reach.',
             ],
           },
           {
             type: 'text',
+            topic: 'Next steps',
             heading: 'Next steps',
             body: [
-              'Re-test the hi-fi ledger and benchmark triage time against the 14-second baseline.',
-              'Design batch payment recovery workflows for desktop.',
-              'Map the payment experience for the client receiving the SMS link.',
+              'Re-test the final invoice table and compare against the 14-second baseline.',
+              'Design batch reminders for late invoices on desktop.',
+              'Design what the client sees when they get the SMS link.',
             ],
           },
         ],

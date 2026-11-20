@@ -4,20 +4,24 @@ export interface ImageItem {
   caption?: string
 }
 
-export interface PhaseData {
+export interface BlockTopic {
+  topic?: string
+}
+
+export interface PhaseData extends BlockTopic {
   type: 'phase'
   number?: number
   title: string
 }
 
-export interface TextData {
+export interface TextData extends BlockTopic {
   type: 'text'
   heading?: string
   body: string[]
   image?: ImageItem
 }
 
-export interface FactsData {
+export interface FactsData extends BlockTopic {
   type: 'facts'
   heading?: string
   intro?: string
@@ -25,7 +29,7 @@ export interface FactsData {
   image?: ImageItem
 }
 
-export interface StatsData {
+export interface StatsData extends BlockTopic {
   type: 'stats'
   heading?: string
   items: { value: string; label: string; note?: string }[]
@@ -33,14 +37,14 @@ export interface StatsData {
   image?: ImageItem
 }
 
-export interface ImagesData {
+export interface ImagesData extends BlockTopic {
   type: 'images'
   heading?: string
   columns?: 1 | 2 | 3 | 4
   items: ImageItem[]
 }
 
-export interface TableData {
+export interface TableData extends BlockTopic {
   type: 'table'
   heading?: string
   intro?: string

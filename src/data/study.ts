@@ -11,6 +11,13 @@ export interface Glance {
   label: string
 }
 
+export interface Decision {
+  title: string
+  change: string
+  before: ImageItem
+  after: ImageItem
+}
+
 export interface Phase {
   id: string
   number?: number
