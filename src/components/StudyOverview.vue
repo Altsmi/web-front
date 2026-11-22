@@ -56,8 +56,9 @@ defineProps<{
             <p class="text-lead">{{ decision.title }}</p>
             <p>{{ decision.change }}</p>
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid gap-3" :class="decision.before ? 'grid-cols-2' : ''">
             <ZoomImage
+              v-if="decision.before"
               :src="decision.before.src"
               :alt="decision.before.alt"
               :caption="decision.before.caption"
@@ -66,6 +67,7 @@ defineProps<{
               :src="decision.after.src"
               :alt="decision.after.alt"
               :caption="decision.after.caption"
+              :tall="decision.after.tall"
             />
           </div>
         </li>

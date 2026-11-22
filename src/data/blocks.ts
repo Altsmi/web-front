@@ -2,6 +2,7 @@ export interface ImageItem {
   src: string
   alt: string
   caption?: string
+  tall?: boolean
 }
 
 export interface BlockTopic {

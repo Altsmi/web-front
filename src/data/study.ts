@@ -14,7 +14,7 @@ export interface Glance {
 export interface Decision {
   title: string
   change: string
-  before: ImageItem
+  before?: ImageItem
   after: ImageItem
 }
 

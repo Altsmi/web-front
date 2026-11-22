@@ -1,3 +1,4 @@
+import { kinfolk } from '@/data/kinfolk'
 import type { Decision, Glance, Overview, Phase } from '@/data/study'
 
 export interface Project {
@@ -23,6 +24,7 @@ export interface Project {
 export const projectPath = (p: Project) => p.link ?? `/work/ux-ui/${p.slug}`
 
 export const uxProjects: Project[] = [
+  kinfolk,
   {
     slug: 'ninox',
     title: 'Ninox',
@@ -32,7 +34,6 @@ export const uxProjects: Project[] = [
     year: '2026',
     image: '/project_img/invoice/Presentation_02.jpg',
     alt: 'Ninox landing page on desktop and phone',
-    featured: true,
     role: 'Product and UX/UI Designer',
     timeline: '4 weeks',
     tools: ['Figma', 'FigJam', 'Maze'],
