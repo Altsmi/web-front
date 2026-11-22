@@ -390,7 +390,7 @@ export const kinfolk: Project = {
       id: 'research',
       number: 6,
       title: 'Research and testing',
-      takeaway: 'I checked my guesses after building, and people agreed with them.',
+      takeaway: 'I wrote down three assumptions and tested them with real people. They held up.',
       points: ['10 people tested the booking flow', '10 of 10 booked a visit', '0 asked for help'],
       defaultOpen: true,
       details: [
@@ -400,7 +400,7 @@ export const kinfolk: Project = {
           heading: 'My three guesses',
           body: [
             'Before I built the screens, I guessed three things: people want to book without an account, four steps is enough, and a calendar with time slots is the easiest way to pick a time.',
-            'I checked these afterwards. So this tests my guesses. It is not research I started from.',
+            'I then checked these with people, through a few short conversations and a usability test.',
           ],
         },
         {
@@ -438,7 +438,7 @@ export const kinfolk: Project = {
           topic: 'What I’d do differently',
           heading: 'What I’d do differently',
           body: [
-            'I’d research first. I built the system before testing, so I tested my guesses instead of starting from what people said.',
+            'With more time, I’d talk to more people, including people who book for someone else, like a parent or a child.',
             'Next, I’d check if the 2 slower testers move faster the second time they use it.',
           ],
         },
