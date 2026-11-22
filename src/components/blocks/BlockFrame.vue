@@ -26,7 +26,7 @@ defineProps<{
       <slot />
     </div>
     <div class="lg:sticky lg:top-8 lg:self-start">
-      <ZoomImage :src="image.src" :alt="image.alt" :caption="image.caption" />
+      <ZoomImage :src="image.src" :alt="image.alt" :caption="image.caption" :tall="image.tall" />
     </div>
   </section>
 

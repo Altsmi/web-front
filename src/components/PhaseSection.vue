@@ -64,6 +64,7 @@ function toggle(index: number) {
           :src="image.src"
           :alt="image.alt"
           :caption="image.caption"
+          :tall="image.tall"
         />
       </div>
     </div>

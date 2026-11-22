@@ -3,6 +3,7 @@ import { ref } from 'vue'
 export interface LightboxImage {
   src: string
   alt: string
+  tall?: boolean
 }
 
 const current = ref<LightboxImage | null>(null)

@@ -17,7 +17,7 @@ const grid = {
   <BlockFrame :heading="block.heading" wide>
     <ul class="grid gap-6" :class="grid[block.columns ?? 1]">
       <li v-for="image in block.items" :key="image.src">
-        <ZoomImage :src="image.src" :alt="image.alt" :caption="image.caption" />
+        <ZoomImage :src="image.src" :alt="image.alt" :caption="image.caption" :tall="image.tall" />
       </li>
     </ul>
   </BlockFrame>
