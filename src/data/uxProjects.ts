@@ -140,7 +140,7 @@ export const uxProjects: Project[] = [
             heading: 'Discovery method',
             items: [
               { value: '8', label: 'participants' },
-              { value: 'Business owners', label: 'who I spoke to' },
+              { value: 'Contractors and owners', label: 'who I spoke to' },
               { value: 'Week 1', label: 'when' },
             ],
             note: 'What I heard most: invoicing is slow on site · owners worry about cash before payroll',
@@ -152,11 +152,11 @@ export const uxProjects: Project[] = [
               {
                 src: '/project_img/invoice/Persona_1.jpg',
                 alt: 'Persona 1: Marcus Vance, independent field contractor',
-              }, // check
+              },
               {
                 src: '/project_img/invoice/Persona_3.jpg',
                 alt: 'Persona 2: David Chen, small business owner',
-              }, // check
+              },
             ],
           },
           {
@@ -221,7 +221,7 @@ export const uxProjects: Project[] = [
               },
               {
                 label: '2. Easy to use outdoors',
-                text: 'Contractors type numbers in bright sunlight. High-contrast colors (WCAG AAA) and 48px touch targets help them make fewer mistakes.',
+                text: 'Contractors type numbers in bright sunlight. High-contrast colors and 48px touch targets help them make fewer mistakes.',
               },
               {
                 label: '3. Cash flow at a glance',
@@ -541,7 +541,7 @@ export const uxProjects: Project[] = [
                 note: 'Average · Target: under 2 min · n=5',
               },
               {
-                value: '10 of 10', // check: old text said "5 of 5 · both groups (100%)"
+                value: '10 of 10',
                 label: 'Finished without help',
                 note: '5 of 5 in Group A and 5 of 5 in Group B',
               },
