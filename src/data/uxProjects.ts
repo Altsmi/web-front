@@ -839,4 +839,18 @@ export const uxProjects: Project[] = [
       },
     ],
   },
+  {
+    slug: 'ui-studies',
+    title: 'UI Studies',
+    summary:
+      'Small studies of single interface pieces, from wireframe to a working interaction. Each one has a problem, a decision and a short video.',
+    tags: ['Prototyping', 'Wireframing', 'Interaction design'],
+    year: '2026',
+    image: '/ui-studies/cover.jpg',
+    alt: 'Assign task modal in three states: collapsed button, open modal and confirmation',
+    role: 'UI Designer',
+    timeline: 'Ongoing',
+    tools: ['Figma'],
+    phases: [],
+  },
 ]

@@ -64,7 +64,7 @@ const { active } = useActiveSection(() => indexItems.value.map((item) => item.id
 
         <div class="grid gap-6 md:grid-cols-[3fr_2fr] md:items-end md:gap-12">
           <div class="space-y-4">
-            <p class="text-lead text-project-labels">01 / UX / UI & PRODUCT</p>
+            <p class="text-lead text-project-labels">UX / UI & PRODUCT</p>
             <h1>{{ project.title }}</h1>
             <p class="text-lead max-w-prose">{{ project.summary }}</p>
           </div>
