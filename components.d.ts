@@ -30,9 +30,11 @@ declare module 'vue' {
     SectionIndex: typeof import('./src/components/SectionIndex.vue')['default']
     StatsBlock: typeof import('./src/components/blocks/StatsBlock.vue')['default']
     StudyOverview: typeof import('./src/components/StudyOverview.vue')['default']
+    StudyVideo: typeof import('./src/components/StudyVideo.vue')['default']
     TableBlock: typeof import('./src/components/blocks/TableBlock.vue')['default']
     TextBlock: typeof import('./src/components/blocks/TextBlock.vue')['default']
     TimelineRow: typeof import('./src/components/TimelineRow.vue')['default']
+    UiStudySection: typeof import('./src/components/UiStudySection.vue')['default']
     ZoomImage: typeof import('./src/components/ZoomImage.vue')['default']
   }
 }

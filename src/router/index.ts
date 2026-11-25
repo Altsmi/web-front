@@ -32,6 +32,12 @@ const router = createRouter({
       meta: { footer: 'aboutFooter' },
     },
     {
+      path: '/work/ux-ui/ui-studies',
+      name: 'work-ux-ui-studies',
+      component: () => import('@/views/work/UiStudiesPage.vue'),
+      meta: { footer: 'default' },
+    },
+    {
       path: '/work/ux-ui/:slug',
       name: 'work-ux-ui-project',
       component: () => import('@/views/work/ProjectPage.vue'),
