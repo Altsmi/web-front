@@ -229,8 +229,7 @@ onBeforeUnmount(() => clearTimeout(timer))
       <div :key="current.slug" class="space-y-5">
         <h3 class="text-statement">{{ current.title }}</h3>
         <p class="text-caption text-quiet">
-          {{ current.tools.join(' · ')
-          }}<template v-if="current.year"> · {{ current.year }}</template>
+          {{ current.tools.join(' · ') }}
         </p>
         <p v-if="current.description" class="text-lead max-w-lg">{{ current.description }}</p>
         <button type="button" class="text-ui hover:text-accent" @click="openFront">

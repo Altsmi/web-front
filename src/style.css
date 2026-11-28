@@ -67,6 +67,11 @@
   --text-lede--font-weight: 500;
 }
 
+/* The multiply grain repaints every frame. Off while the viewer is open. */
+body.viewer-open .grain {
+  display: none;
+}
+
 /* 1. Base tag styles */
 @layer base {
   body {

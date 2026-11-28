@@ -16,7 +16,7 @@ const tags = computed(() => props.project.tools)
     type="button"
     class="group block w-full border-2 border-soft p-2 text-left"
     :aria-label="`${project.title}, ${project.images.length} images`"
-    @click="open(project)"
+    @click="open(project, 0, $event.currentTarget as HTMLElement)"
   >
     <span class="relative block overflow-hidden bg-soft">
       <img

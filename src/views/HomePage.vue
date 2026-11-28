@@ -8,13 +8,7 @@ import { designProjects } from '@/data/designProjects'
 import { visibleProjects } from '@/data/uxProjects'
 
 // The four creative pieces shown on Home. Change the slugs to swap them.
-const creativeSlugs = [
-  'edit-poster',
-  'swift_branding',
-  'arcane-branding',
-  'flower-poster',
-  'wild-poster',
-]
+const creativeSlugs = ['edit-poster', 'wild-poster', 'album-poster', 'arcane-branding']
 const creative = creativeSlugs
   .map((slug) => designProjects.find((p) => p.slug === slug))
   .filter((p) => p !== undefined)
@@ -37,7 +31,9 @@ const creative = creativeSlugs
 
       <div class="space-y-6 xl:pb-2">
         <p class="text-lead">
-          I used to design things to be looked at. Now I design things to be used.
+          <span class="block text-balance">I care about the small stuff:</span>
+          <span class="block text-balance">the button that's easy to find,</span>
+          <span class="block text-balance">the form that works with you.</span>
         </p>
         <div class="flex flex-wrap gap-3">
           <RouterLink to="/work" class="btn btn-solid">View work</RouterLink>

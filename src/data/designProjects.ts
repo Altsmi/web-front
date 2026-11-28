@@ -51,6 +51,7 @@ export const designProjects: DesignProject[] = [
     slug: 'swift_branding',
     title: 'Swift Venture Branding.',
     year: '2025',
+    cover: '/design_img/swift/swift_cover.jpg',
     tools: ['Photoshop', 'Illustrator', 'Figma'],
     description: 'A brand identity for a delivery company.',
     images: [
@@ -86,6 +87,7 @@ export const designProjects: DesignProject[] = [
     slug: 'arcane-branding',
     title: 'Arcane bookstore brand identity.',
     year: '2024',
+    cover: '/design_img/arcane/arcane_cover.jpg',
     tools: ['Photoshop', 'Illustrator', 'Figma'],
     description: 'A brand identity for an online and offline bookstore.',
     images: [

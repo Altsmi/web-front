@@ -22,7 +22,12 @@ const cur = computed(() => sp.value?.images[index.value] ?? null)
 const multi = computed(() => count.value > 1)
 
 /** Copy of the image that flies between the card and the modal. */
-const flyer = ref<{ src: string; from: Box } | null>(null)
+const flyer = ref<{ src: string; home: string | null; from: Box; ix: number; iy: number } | null>(
+  null,
+)
+const flyerTop = ref<HTMLImageElement | null>(null)
+/** The picture the card showed. Used so the flight ends on exactly what the card shows. */
+let homeSrc = ''
 const flying = ref(false)
 /** Side text fades in after the image has started moving. */
 const textIn = ref(false)
@@ -31,6 +36,22 @@ let opener: HTMLElement | null = null
 let startX = 0
 let flightId = 0
 let textTimer = 0
+let grainTimer = 0
+
+/** Only the card's picture is hidden while it flies. Border and tags stay, so nothing pops back. */
+function cardImage(): HTMLElement | null {
+  const el = getOriginEl() as HTMLElement | null
+  return el?.querySelector<HTMLElement>('img') ?? el
+}
+
+/** `currentSrc` is an absolute URL, `src` is a path. Compare them as URLs. */
+function sameImage(a: string, b: string) {
+  try {
+    return new URL(a, location.href).href === new URL(b, location.href).href
+  } catch {
+    return a === b
+  }
+}
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const px = (b: Box) => ({
@@ -40,10 +61,22 @@ const px = (b: Box) => ({
   height: `${b.height}px`,
 })
 
+const sizes = new Map<string, { w: number; h: number }>()
+
 function naturalSize(src: string) {
+  const known = sizes.get(src)
+  if (known) return Promise.resolve(known)
   return new Promise<{ w: number; h: number } | null>((resolve) => {
     const image = new Image()
-    image.onload = () => resolve({ w: image.naturalWidth, h: image.naturalHeight })
+    image.onload = () =>
+      void image
+        .decode()
+        .catch(() => {})
+        .then(() => {
+          const size = { w: image.naturalWidth, h: image.naturalHeight }
+          sizes.set(src, size)
+          resolve(size)
+        })
     image.onerror = () => resolve(null)
     image.src = src
   })
@@ -67,18 +100,64 @@ async function modalImageBox(): Promise<Box | null> {
   }
 }
 
-/** One flight: the image grows or shrinks and travels in a single move. */
-async function flyTo(from: Box, src: string, to: Box, duration: number) {
-  flyer.value = { src, from }
+/**
+ * One flight, done with transform + clip-path only (runs on the GPU, no layout).
+ * The flyer sits at the big box. The small state is a scaled, clipped copy placed over the card.
+ */
+function flightFrames(big: Box, small: Box) {
+  const s = Math.max(small.width / big.width, small.height / big.height)
+  const dx = small.left + small.width / 2 - (big.left + big.width / 2)
+  const dy = small.top + small.height / 2 - (big.top + big.height / 2)
+  const iy = Math.max(0, (big.height - small.height / s) / 2)
+  const ix = Math.max(0, (big.width - small.width / s) / 2)
+  return {
+    ix,
+    iy,
+    small: {
+      transform: `translate(${dx}px, ${dy}px) scale(${s})`,
+      clipPath: `inset(${iy}px ${ix}px)`,
+    },
+    big: { transform: 'none', clipPath: 'inset(0px 0px)' },
+  }
+}
+
+async function flyBetween(big: Box, small: Box, src: string, grow: boolean, duration: number) {
+  const f = flightFrames(big, small)
+  // Card picture and modal picture can differ (cover vs another image). Cross-fade so nothing snaps.
+  const home = homeSrc && !sameImage(homeSrc, src) ? homeSrc : null
+  flyer.value = { src, home, from: big, ix: f.ix, iy: f.iy }
   await nextTick()
+  const easing = 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+  if (home && grow) {
+    // Open: the viewer picture fades in over the card picture at the very start.
+    flyerTop.value?.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 140,
+      easing: 'ease-out',
+      fill: 'both',
+    })
+  }
+  const swapOut =
+    home && !grow
+      ? flyerTop.value?.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 140,
+          delay: Math.max(0, duration - 80),
+          easing: 'ease-out',
+          fill: 'both',
+        })
+      : undefined
   try {
-    await flyerEl.value?.animate([px(from), px(to)], {
+    await flyerEl.value?.animate(grow ? [f.small, f.big] : [f.big, f.small], {
       duration,
-      easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+      easing,
       fill: 'forwards',
     }).finished
   } catch {
     /* cancelled by a newer flight */
+  }
+  try {
+    await swapOut?.finished
+  } catch {
+    /* cancelled */
   }
 }
 
@@ -86,7 +165,8 @@ async function openFlight() {
   const id = ++flightId
   const from = origin.value
   origin.value = null
-  const originEl = getOriginEl() as HTMLElement | null
+  homeSrc = from?.src ?? ''
+  const originEl = cardImage()
   textIn.value = false
   window.clearTimeout(textTimer)
 
@@ -105,9 +185,20 @@ async function openFlight() {
   }
   if (originEl) originEl.style.visibility = 'hidden'
   textTimer = window.setTimeout(() => (textIn.value = true), 150)
-  await flyTo(from.rect, from.src, to, 400)
+  await flyBetween(to, from.rect, cur.value?.src ?? from.src, true, 400)
   if (id !== flightId) return
+  // Hand over: show the real image first, then fade the copy out on top of it.
   flying.value = false
+  await nextTick()
+  try {
+    await flyerEl.value?.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 120,
+      fill: 'forwards',
+    }).finished
+  } catch {
+    /* cancelled */
+  }
+  if (id !== flightId) return
   flyer.value = null
 }
 
@@ -115,7 +206,7 @@ async function closeFlight() {
   const id = ++flightId
   window.clearTimeout(textTimer)
   textIn.value = false
-  const originEl = getOriginEl() as HTMLElement | null
+  const originEl = cardImage()
   const home = originEl?.isConnected ? originEl.getBoundingClientRect() : null
   const from = reduced() || !home || home.width === 0 ? null : await modalImageBox()
   const src = cur.value?.src
@@ -131,16 +222,45 @@ async function closeFlight() {
   window.setTimeout(() => {
     if (id === flightId) visible.value = false
   }, 50)
-  await flyTo(
+  await flyBetween(
     from,
-    src,
     { left: home.left, top: home.top, width: home.width, height: home.height },
+    src,
+    false,
     300,
   )
   if (id !== flightId) return
+  // Hand over: show the real card picture first, then fade the copy out on top of it.
   if (originEl) originEl.style.visibility = ''
+  try {
+    await flyerEl.value?.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 120,
+      fill: 'forwards',
+    }).finished
+  } catch {
+    /* cancelled */
+  }
+  if (id !== flightId) return
   flyer.value = null
   flying.value = false
+}
+
+/** Click on the dark area around the picture closes. Click on the picture itself does not. */
+function onStageClick(event: MouseEvent) {
+  const area = stage.value?.getBoundingClientRect()
+  const size = cur.value ? sizes.get(cur.value.src) : undefined
+  if (!area || !size) return close()
+  const k = Math.min(area.width / size.w, area.height / size.h)
+  const w = size.w * k
+  const h = size.h * k
+  const left = area.left + (area.width - w) / 2
+  const top = area.top + (area.height - h) / 2
+  const inside =
+    event.clientX >= left &&
+    event.clientX <= left + w &&
+    event.clientY >= top &&
+    event.clientY <= top + h
+  if (!inside) close()
 }
 
 function trapFocus(event: KeyboardEvent) {
@@ -179,14 +299,19 @@ watch(project, async (value) => {
   if (value) {
     opener = document.activeElement as HTMLElement | null
     snap.value = { project: value }
+    for (const image of value.images) void naturalSize(image.src)
     visible.value = true
     document.body.style.overflow = 'hidden'
+    window.clearTimeout(grainTimer)
+    grainTimer = window.setTimeout(() => document.body.classList.add('viewer-open'), 260)
     window.addEventListener('keydown', onKeydown)
     await nextTick()
     void openFlight()
     closeButton.value?.focus()
   } else {
     document.body.style.overflow = ''
+    window.clearTimeout(grainTimer)
+    document.body.classList.remove('viewer-open')
     window.removeEventListener('keydown', onKeydown)
     void closeFlight()
     opener?.focus()
@@ -203,9 +328,10 @@ watch(index, async () => {
 
 onBeforeUnmount(() => {
   document.body.style.overflow = ''
+  document.body.classList.remove('viewer-open')
   window.removeEventListener('keydown', onKeydown)
   window.clearTimeout(textTimer)
-  const originEl = getOriginEl() as HTMLElement | null
+  const originEl = cardImage()
   if (originEl) originEl.style.visibility = ''
   close()
 })
@@ -225,98 +351,76 @@ onBeforeUnmount(() => {
         role="dialog"
         aria-modal="true"
         :aria-label="sp.title"
-        class="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-8"
+        class="fixed inset-0 z-50 text-paper"
       >
-        <!-- Click outside to close -->
-        <div class="absolute inset-0 bg-ink/85" aria-hidden="true" @click="close"></div>
+        <div class="absolute inset-0 bg-ink/95" aria-hidden="true" @click="close"></div>
 
+        <!-- Image: as big as the screen allows, never cropped. Click empty space to close. -->
         <div
-          class="relative flex h-[92dvh] w-full flex-col overflow-hidden border-2 border-ink bg-paper md:flex-row"
-          :class="
-            multi
-              ? 'md:h-[min(88vh,47.5rem)] md:w-[min(94vw,75.625rem)]'
-              : 'md:h-[min(80vh,40rem)] md:w-[min(92vw,63rem)]'
-          "
+          ref="stage"
+          class="absolute inset-x-4 top-28 bottom-32 md:inset-x-[6vw] md:top-36 md:bottom-36"
+          @click="onStageClick"
+          @touchstart.passive="onTouchStart"
+          @touchend.passive="onTouchEnd"
         >
-          <!-- Image -->
-          <div
-            ref="stage"
-            class="relative min-h-0 min-w-0 flex-1 bg-soft"
-            @touchstart.passive="onTouchStart"
-            @touchend.passive="onTouchEnd"
+          <Transition
+            enter-active-class="transition-opacity duration-200 ease-in-out motion-reduce:transition-none"
+            enter-from-class="opacity-0"
+            leave-active-class="transition-opacity duration-200 ease-in-out motion-reduce:transition-none"
+            leave-to-class="opacity-0"
           >
-            <!-- Cross-fade in place. Nothing slides. -->
-            <Transition
-              enter-active-class="transition-opacity duration-200 ease-in-out motion-reduce:transition-none"
-              enter-from-class="opacity-0"
-              leave-active-class="transition-opacity duration-200 ease-in-out motion-reduce:transition-none"
-              leave-to-class="opacity-0"
-            >
-              <img
-                :key="cur.src"
-                :src="cur.src"
-                :alt="cur.alt"
-                class="absolute inset-0 h-full w-full object-contain"
-                :class="flying ? 'opacity-0' : ''"
-              />
-            </Transition>
+            <img
+              :key="cur.src"
+              :src="cur.src"
+              :alt="cur.alt"
+              class="pointer-events-none absolute inset-0 h-full w-full object-contain"
+              :class="flying ? 'opacity-0' : ''"
+            />
+          </Transition>
+        </div>
 
-            <template v-if="multi">
-              <button
-                type="button"
-                aria-label="Previous image"
-                class="absolute top-1/2 left-3 z-10 flex size-12 -translate-y-1/2 items-center justify-center border-2 border-ink bg-paper text-xl font-extrabold text-ink transition-colors duration-150 hover:bg-ink hover:text-paper md:left-4"
-                @click="prev"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                aria-label="Next image"
-                class="absolute top-1/2 right-3 z-10 flex size-12 -translate-y-1/2 items-center justify-center border-2 border-ink bg-paper text-xl font-extrabold text-ink transition-colors duration-150 hover:bg-ink hover:text-paper md:right-4"
-                @click="next"
-              >
-                →
-              </button>
-            </template>
+        <!-- Title and close -->
+        <div
+          class="pointer-events-none absolute inset-x-4 top-5 flex items-start justify-between gap-6 transition-opacity duration-300 ease-in-out motion-reduce:transition-none md:inset-x-12 md:top-7"
+          :class="textIn ? 'opacity-100' : 'opacity-0'"
+        >
+          <div>
+            <h2 class="max-w-[22ch] text-2xl leading-[0.95] tracking-[-0.03em] md:text-4xl">
+              {{ sp.title }}
+            </h2>
+            <p class="text-caption mt-2 hidden text-line md:block">
+              {{ sp.tools.join(' · ') }}
+            </p>
           </div>
-
-          <!-- Name and details (fades in, no slide) -->
-          <aside
-            class="flex max-h-[42dvh] min-h-0 shrink-0 flex-col gap-4 overflow-y-auto border-t-2 border-ink p-5 transition-opacity duration-300 ease-in-out motion-reduce:transition-none md:max-h-none md:border-t-0 md:border-l-2 md:p-8"
-            :class="[
-              multi ? 'md:w-[25.625rem]' : 'md:w-[23rem]',
-              textIn ? 'opacity-100' : 'opacity-0',
-            ]"
+          <button
+            ref="closeButton"
+            type="button"
+            aria-label="Close"
+            class="pointer-events-auto flex size-11 shrink-0 items-center justify-center border-2 border-ink bg-paper text-lg font-extrabold text-ink transition-colors duration-150 hover:bg-ink hover:text-paper hover:outline-2 hover:outline-paper"
+            @click="close"
           >
-            <div class="flex items-center justify-between gap-4">
-              <p v-if="multi" class="text-ui text-lg" aria-live="polite">
-                {{ String(index + 1).padStart(2, '0') }} / {{ String(count).padStart(2, '0') }}
-              </p>
-              <span v-else></span>
-              <button
-                ref="closeButton"
-                type="button"
-                aria-label="Close"
-                class="flex size-11 shrink-0 items-center justify-center border-2 border-ink bg-paper text-lg font-extrabold transition-colors duration-150 hover:bg-ink hover:text-paper"
-                @click="close"
-              >
-                ✕
-              </button>
-            </div>
+            ✕
+          </button>
+        </div>
 
-            <h2 class="text-3xl leading-none tracking-[-0.03em] md:text-4xl">{{ sp.title }}</h2>
-            <p class="text-caption text-quiet">
-              {{ sp.tools.join(' · ') }}<template v-if="sp.year"> · {{ sp.year }}</template>
-            </p>
-            <p v-if="sp.description" class="text-lead">{{ sp.description }}</p>
-            <p v-if="multi && cur.caption" class="text-ui text-xs text-quiet">
-              {{ cur.caption }}
-            </p>
-
-            <div class="min-h-4 flex-1"></div>
-
-            <ul v-if="multi" ref="thumbs" class="flex gap-2 overflow-x-auto pb-1">
+        <!-- Floating dock -->
+        <div
+          class="absolute inset-x-0 bottom-5 flex justify-center px-3 transition-opacity duration-300 ease-in-out motion-reduce:transition-none md:bottom-7"
+          :class="textIn ? 'opacity-100' : 'opacity-0'"
+        >
+          <div
+            v-if="multi"
+            class="flex max-w-full items-center gap-3 border border-paper/50 bg-paper/15 p-3 backdrop-blur-xl md:gap-4"
+          >
+            <button
+              type="button"
+              aria-label="Previous image"
+              class="text-ui shrink-0 px-1 text-2xl transition-colors duration-150 hover:text-accent"
+              @click="prev"
+            >
+              ←
+            </button>
+            <ul ref="thumbs" class="flex min-w-0 gap-2 overflow-x-auto">
               <li v-for="(image, i) in sp.images" :key="image.src" class="shrink-0">
                 <button
                   type="button"
@@ -324,28 +428,51 @@ onBeforeUnmount(() => {
                   :aria-current="i === index ? 'true' : undefined"
                   class="block border-[3px] transition-[opacity,border-color] duration-200"
                   :class="
-                    i === index ? 'border-ink' : 'border-transparent opacity-60 hover:opacity-100'
+                    i === index ? 'border-paper' : 'border-transparent opacity-55 hover:opacity-100'
                   "
                   @click="go(i)"
                 >
-                  <img :src="image.src" alt="" class="h-20 w-16 object-cover" />
+                  <img :src="image.src" alt="" class="h-15 w-12 object-cover" />
                 </button>
               </li>
             </ul>
-            <p v-else class="text-caption hidden text-quiet md:block">Esc to close</p>
-          </aside>
+            <button
+              type="button"
+              aria-label="Next image"
+              class="text-ui shrink-0 px-1 text-2xl transition-colors duration-150 hover:text-accent"
+              @click="next"
+            >
+              →
+            </button>
+            <p class="text-ui shrink-0 pl-1 text-base" aria-live="polite">
+              {{ String(index + 1).padStart(2, '0') }} / {{ String(count).padStart(2, '0') }}
+            </p>
+          </div>
+          <p v-else class="text-ui text-xs text-line">Esc to close</p>
         </div>
       </div>
     </Transition>
 
-    <!-- The flying image lives outside the modal, so it does not fade with it -->
-    <img
+    <!-- The flying image lives outside the overlay, so it does not fade with it -->
+    <div
       v-if="flyer"
       ref="flyerEl"
-      :src="flyer.src"
-      alt=""
-      class="pointer-events-none fixed z-60 object-cover"
+      class="pointer-events-none fixed z-60 will-change-[transform,clip-path]"
       :style="px(flyer.from)"
-    />
+    >
+      <img
+        v-if="flyer.home"
+        :src="flyer.home"
+        alt=""
+        class="absolute object-cover"
+        :style="{
+          left: `${flyer.ix}px`,
+          top: `${flyer.iy}px`,
+          width: `calc(100% - ${flyer.ix * 2}px)`,
+          height: `calc(100% - ${flyer.iy * 2}px)`,
+        }"
+      />
+      <img ref="flyerTop" :src="flyer.src" alt="" class="absolute inset-0 size-full object-cover" />
+    </div>
   </Teleport>
 </template>

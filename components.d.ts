@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AboutFooter: typeof import('./src/components/AboutFooter.vue')['default']
+    BentoGrid: typeof import('./src/components/BentoGrid.vue')['default']
     BlockFrame: typeof import('./src/components/blocks/BlockFrame.vue')['default']
     BlockRenderer: typeof import('./src/components/blocks/BlockRenderer.vue')['default']
     CreativeCard: typeof import('./src/components/CreativeCard.vue')['default']
