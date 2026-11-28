@@ -30,7 +30,7 @@ onBeforeUnmount(() => observer?.disconnect())
     :src="src"
     :poster="poster"
     :aria-label="label"
-    class="block aspect-square w-full rounded border border-project-dividers bg-project-bg"
+    class="block aspect-square w-full bg-paper"
     muted
     loop
     playsinline

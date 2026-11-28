@@ -28,7 +28,7 @@ function go(id: string) {
         <button
           type="button"
           :aria-current="item.id === active ? 'true' : undefined"
-          class="text-ui min-h-11 border rounded border-project-text px-3 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+          class="text-ui min-h-11 border border-project-text px-3 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
           :class="item.id === active ? 'bg-project-text text-project-bg' : ''"
           @click="go(item.id)"
         >

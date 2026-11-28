@@ -10,51 +10,47 @@ defineProps<{
 </script>
 
 <template>
-  <section id="summary" class="scroll-mt-20 space-y-8 lg:scroll-mt-8">
-    <header class="border-t-2 border-project-text pt-4">
-      <h2>Summary</h2>
-    </header>
-
-    <dl v-if="overview" class="divide-y divide-project-dividers border-y border-project-dividers">
-      <div class="grid gap-2 py-5 md:grid-cols-[9rem_1fr] md:gap-8">
-        <dt class="text-ui text-project-labels">Challenge</dt>
-        <dd class="max-w-prose">{{ overview.challenge }}</dd>
+  <section id="summary" aria-label="Summary" class="space-y-12 md:space-y-16">
+    <dl v-if="overview" class="rule-top grid gap-8 pt-6 md:grid-cols-3 md:gap-8">
+      <div class="space-y-3">
+        <dt class="text-ui text-quiet text-sm">Challenge</dt>
+        <dd class="text-lead">{{ overview.challenge }}</dd>
       </div>
-      <div class="grid gap-2 py-5 md:grid-cols-[9rem_1fr] md:gap-8">
-        <dt class="text-ui text-project-labels">Solution</dt>
-        <dd class="max-w-prose">{{ overview.solution }}</dd>
+      <div class="space-y-3">
+        <dt class="text-ui text-quiet text-sm">Solution</dt>
+        <dd class="text-lead">{{ overview.solution }}</dd>
       </div>
-      <div class="grid gap-2 py-5 md:grid-cols-[9rem_1fr] md:gap-8">
-        <dt class="text-ui text-project-labels">Result</dt>
-        <dd class="max-w-prose">{{ overview.result }}</dd>
+      <div class="space-y-3">
+        <dt class="text-ui text-quiet text-sm">Result</dt>
+        <dd class="text-lead">{{ overview.result }}</dd>
       </div>
     </dl>
 
     <ul
       v-if="glance?.length"
-      class="grid grid-cols-[repeat(auto-fit,minmax(9rem,1fr))] gap-x-6 gap-y-8"
+      class="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-[repeat(auto-fit,minmax(9rem,1fr))]"
     >
-      <li
-        v-for="item in glance"
-        :key="item.label"
-        class="space-y-2 border-t border-project-dividers pt-4"
-      >
-        <p class="text-[2.5rem] leading-none font-bold md:text-[3.5rem]">{{ item.value }}</p>
-        <p class="text-ui">{{ item.label }}</p>
+      <li v-for="item in glance" :key="item.label" class="space-y-2 border-t-2 border-ink pt-4">
+        <p class="display-caps text-4xl leading-none tracking-[-0.04em] md:text-6xl">
+          {{ item.value }}
+        </p>
+        <p class="text-caption text-quiet">{{ item.label }}</p>
       </li>
     </ul>
 
-    <div v-if="decisions?.length" class="space-y-4">
-      <h3 class="text-caption text-project-labels">KEY DECISIONS</h3>
+    <div v-if="decisions?.length" class="space-y-6">
+      <h2 class="text-section">Key decisions</h2>
       <ul class="grid gap-6 md:grid-cols-2">
         <li
           v-for="decision in decisions"
           :key="decision.title"
-          class="space-y-4 border border-project-dividers bg-project-cards p-5 rounded"
+          class="space-y-6 border-2 border-ink p-5 md:p-8"
         >
-          <div class="space-y-1">
-            <p class="text-lead">{{ decision.title }}</p>
-            <p>{{ decision.change }}</p>
+          <div class="space-y-2">
+            <p class="display-caps text-2xl leading-tight tracking-[-0.03em] md:text-3xl">
+              {{ decision.title }}
+            </p>
+            <p class="text-lead">{{ decision.change }}</p>
           </div>
           <div class="grid gap-3" :class="decision.before ? 'grid-cols-2' : ''">
             <ZoomImage

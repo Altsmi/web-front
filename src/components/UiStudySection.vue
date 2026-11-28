@@ -11,33 +11,27 @@ const frameIndex = ref(0)
 </script>
 
 <template>
-  <section
-    :id="study.id"
-    :aria-labelledby="`${study.id}-title`"
-    class="scroll-mt-20 space-y-6 lg:scroll-mt-8"
-  >
-    <header class="flex items-baseline gap-4 border-t-2 border-project-text pt-4 md:gap-6">
-      <span class="text-display leading-none text-project-accents" aria-hidden="true">
-        {{ String(study.number).padStart(2, '0') }}
+  <section :id="study.id" :aria-labelledby="`${study.id}-title`" class="scroll-mt-8 space-y-6">
+    <header class="rule-top flex items-baseline gap-4 pt-4 md:gap-6">
+      <span class="text-caption text-quiet" aria-hidden="true">
+        [{{ String(study.number).padStart(2, '0') }}]
       </span>
-      <h2 :id="`${study.id}-title`">{{ study.title }}</h2>
+      <h2 :id="`${study.id}-title`" class="text-section">{{ study.title }}</h2>
     </header>
 
-    <div
-      class="grid gap-6 rounded border border-project-dividers bg-project-cards p-5 md:p-8 lg:grid-cols-[3fr_2fr] lg:items-center xl:gap-10"
-    >
+    <div class="grid gap-6 bg-soft p-5 md:p-8 lg:grid-cols-[3fr_2fr] lg:items-center xl:gap-10">
       <StudyVideo :src="study.video.src" :poster="study.video.poster" :label="study.video.label" />
 
       <div class="min-w-0 space-y-6">
         <p class="text-lead max-w-prose">{{ study.intro }}</p>
 
-        <dl class="divide-y divide-project-dividers border-y border-project-dividers">
+        <dl class="divide-y divide-line border-y border-line">
           <div class="space-y-1 py-4">
-            <dt class="text-caption text-project-labels">PROBLEM</dt>
+            <dt class="text-ui text-quiet text-sm">Problem</dt>
             <dd>{{ study.problem }}</dd>
           </div>
           <div class="space-y-1 py-4">
-            <dt class="text-caption text-project-labels">DECISION</dt>
+            <dt class="text-ui text-quiet text-sm">Decision</dt>
             <dd>{{ study.decision }}</dd>
           </div>
         </dl>
@@ -46,7 +40,7 @@ const frameIndex = ref(0)
           type="button"
           :aria-expanded="open"
           :aria-controls="`${study.id}-details`"
-          class="text-ui min-h-11 rounded border-2 border-project-text px-4 transition-colors hover:border-project-accents hover:text-project-accents focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+          class="btn btn-outline"
           @click="open = !open"
         >
           {{ open ? 'Hide details −' : 'See details +' }}
@@ -67,12 +61,8 @@ const frameIndex = ref(0)
             <button
               type="button"
               :aria-pressed="frameIndex === index"
-              class="text-ui min-h-11 rounded border-2 px-4 transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
-              :class="
-                frameIndex === index
-                  ? 'border-project-text bg-project-text text-project-bg'
-                  : 'border-project-text hover:border-project-accents hover:text-project-accents'
-              "
+              class="btn px-4 py-2 text-sm"
+              :class="frameIndex === index ? 'btn-solid' : 'btn-outline'"
               @click="frameIndex = index"
             >
               {{ frame.label }}
@@ -87,10 +77,10 @@ const frameIndex = ref(0)
       </div>
 
       <div class="min-w-0 space-y-4">
-        <p class="text-caption text-project-labels">MORE DECISIONS</p>
-        <ul class="divide-y divide-project-dividers border-y border-project-dividers">
+        <p class="text-ui text-quiet text-sm">More decisions</p>
+        <ul class="divide-y divide-line border-y border-line">
           <li v-for="note in study.notes" :key="note.label" class="space-y-1 py-4">
-            <p class="text-lead">{{ note.label }}</p>
+            <p class="text-card-title">{{ note.label }}</p>
             <p>{{ note.text }}</p>
           </li>
         </ul>

@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
       <button
         ref="closeButton"
         type="button"
-        class="text-ui fixed z-10 rounded top-4 right-4 border-3 border-project-dividers px-4 py-2 text-project-te bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
+        class="text-ui fixed z-10 top-4 right-4 border-3 border-project-dividers px-4 py-2 text-project-te bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
         @click="close"
         @keydown.tab.prevent
       >
@@ -57,8 +57,8 @@ onBeforeUnmount(() => {
         :alt="current.alt"
         :class="
           current.tall
-            ? 'mx-auto block h-auto w-full max-w-6xl rounded'
-            : 'max-h-full max-w-full object-contain rounded'
+            ? 'mx-auto block h-auto w-full max-w-6xl '
+            : 'max-h-full max-w-full object-contain '
         "
       />
     </div>

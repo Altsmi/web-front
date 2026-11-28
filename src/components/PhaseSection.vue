@@ -33,31 +33,26 @@ function toggle(index: number) {
   <section
     :id="phase.id"
     :aria-labelledby="`${phase.id}-title`"
-    class="scroll-mt-20 space-y-6 lg:scroll-mt-8"
+    class="rule-top grid scroll-mt-8 gap-6 pt-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-12 lg:grid-cols-[16rem_minmax(0,1fr)]"
   >
-    <header class="flex items-baseline gap-4 border-t-2 border-project-text pt-4 md:gap-6">
-      <span
-        v-if="phase.number"
-        class="text-display leading-none text-project-accents"
-        aria-hidden="true"
-      >
-        {{ String(phase.number).padStart(2, '0') }}
-      </span>
-      <h2 :id="`${phase.id}-title`">{{ phase.title }}</h2>
+    <header class="space-y-1">
+      <p v-if="phase.number" class="text-caption text-quiet" aria-hidden="true">
+        [{{ String(phase.number).padStart(2, '0') }}]
+      </p>
+      <h2 :id="`${phase.id}-title`" class="text-section">{{ phase.title }}</h2>
     </header>
 
-    <div
-      class="grid gap-6 border border-project-dividers bg-project-cards p-5 md:p-8 xl:gap-10 rounded"
-      :class="phase.visual?.length ? 'xl:grid-cols-[3fr_2fr]' : ''"
-    >
-      <div class="min-w-0 space-y-6">
-        <p class="text-lead max-w-prose">{{ phase.takeaway }}</p>
-        <ul class="divide-y divide-project-dividers border-y border-project-dividers">
-          <li v-for="point in phase.points" :key="point" class="py-3">{{ point }}</li>
+    <div class="min-w-0 space-y-10">
+      <div class="space-y-6">
+        <p class="text-lead max-w-3xl">{{ phase.takeaway }}</p>
+        <ul class="border-t border-line">
+          <li v-for="point in phase.points" :key="point" class="border-b border-line py-3">
+            {{ point }}
+          </li>
         </ul>
       </div>
 
-      <div v-if="phase.visual?.length" class="min-w-0 space-y-4">
+      <div v-if="phase.visual?.length" class="space-y-4">
         <ZoomImage
           v-for="image in phase.visual"
           :key="image.src"
@@ -67,38 +62,34 @@ function toggle(index: number) {
           :tall="image.tall"
         />
       </div>
-    </div>
 
-    <div v-if="groups.length" class="space-y-4">
-      <p class="text-caption text-project-labels">DETAILS</p>
-      <ul class="flex flex-wrap gap-2">
-        <li v-for="(group, index) in groups" :key="group.label">
-          <button
-            :id="`${phase.id}-tab-${index}`"
-            type="button"
-            :aria-expanded="openIndex === index"
-            :aria-controls="`${phase.id}-panel`"
-            class="text-ui min-h-11 rounded border-2 px-4 transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents"
-            :class="
-              openIndex === index
-                ? 'border-project-text bg-project-text text-project-bg'
-                : 'border-project-text hover:border-project-accents hover:text-project-accents'
-            "
-            @click="toggle(index)"
-          >
-            {{ group.label }}
-          </button>
-        </li>
-      </ul>
+      <div v-if="groups.length" class="space-y-4">
+        <p class="text-ui text-quiet text-sm">Details</p>
+        <ul class="flex flex-wrap gap-2">
+          <li v-for="(group, index) in groups" :key="group.label">
+            <button
+              :id="`${phase.id}-tab-${index}`"
+              type="button"
+              :aria-expanded="openIndex === index"
+              :aria-controls="`${phase.id}-panel`"
+              class="btn px-4 py-2 text-sm"
+              :class="openIndex === index ? 'btn-solid' : 'btn-outline'"
+              @click="toggle(index)"
+            >
+              {{ group.label }}
+            </button>
+          </li>
+        </ul>
 
-      <div
-        v-if="openGroup"
-        :id="`${phase.id}-panel`"
-        role="region"
-        :aria-labelledby="`${phase.id}-tab-${openIndex}`"
-        class="pt-4 pb-8"
-      >
-        <BlockRenderer :blocks="openGroup.blocks" />
+        <div
+          v-if="openGroup"
+          :id="`${phase.id}-panel`"
+          role="region"
+          :aria-labelledby="`${phase.id}-tab-${openIndex}`"
+          class="pt-4 pb-8"
+        >
+          <BlockRenderer :blocks="openGroup.blocks" />
+        </div>
       </div>
     </div>
   </section>

@@ -1,51 +1,104 @@
 <script setup lang="ts">
-import SectionIndex from '@/components/SectionIndex.vue'
-import { useActiveSection } from '@/composables/useActiveSection'
-import DesignSection from '@/views/work/DesignSection.vue'
-import DevSection from '@/views/work/DevSection.vue'
-import UxUiSection from '@/views/work/UxUiSection.vue'
+import { RouterLink } from 'vue-router'
+import SectionHeader from '@/components/SectionHeader.vue'
+import CreativeTile from '@/components/CreativeTile.vue'
+import WorkCard from '@/components/WorkCard.vue'
+import { aboutStatement, aboutIntro, background } from '@/data/about'
+import { designProjects } from '@/data/designProjects'
+import { visibleProjects } from '@/data/uxProjects'
 
-const items = [
-  { id: 'ux-ui', label: '01 UX / UI' },
-  { id: 'design', label: '02 Graphic' },
-  { id: 'dev', label: '03 Code' },
-]
-
-const { active } = useActiveSection(() => items.map((item) => item.id))
+// The four creative pieces shown on Home. Change the slugs to swap them.
+const creativeSlugs = ['edit-poster', 'swift_branding', 'arcane-branding', 'flower-poster']
+const creative = creativeSlugs
+  .map((slug) => designProjects.find((p) => p.slug === slug))
+  .filter((p) => p !== undefined)
 </script>
 
 <template>
-  <div class="flex w-full flex-1 flex-col">
-    <header class="border-b border-project-dividers">
-      <div
-        class="flex flex-col items-center gap-10 px-4 py-8 md:px-10 lg:flex-row lg:justify-between lg:gap-10 lg:px-20 lg:py-6"
+  <div class="shell flex-1 space-y-24 pt-10 md:space-y-32 md:pt-24">
+    <!-- Hero -->
+    <section
+      aria-labelledby="hero-title"
+      class="grid gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(16rem,26rem)] xl:items-end xl:gap-12"
+    >
+      <h1
+        id="hero-title"
+        class="text-[clamp(3.5rem,14.2vw,15.6rem)] leading-[0.95] tracking-[-0.03em]"
       >
-        <div class="flex shrink-0 items-center justify-center gap-3 md:gap-6">
-          <picture class="shrink-0">
-            <source media="(min-width: 768px)" srcset="/logo.svg" />
-            <img src="/logo_classic.svg" alt="" class="h-22 w-auto md:h-auto" />
-          </picture>
-          <h1 class="text-display sr-only md:not-sr-only">Shpylka</h1>
-        </div>
+        <span class="block">Illya-</span>
+        <span class="block">Shpylka</span>
+      </h1>
 
-        <p class="text-lead w-full max-w-lg text-left">
-          Hello! I’m a
-          <span class="font-bold text-project-accents">UX/UI designer</span> with a background in
-          graphic design, typography, and interactive media.
+      <div class="space-y-6 xl:pb-2">
+        <p class="text-ui">UX/UI designer</p>
+        <p class="text-lead">
+          I’m based in Toronto. I come from graphic design, so I care about how things look, and I
+          test how they work.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <RouterLink to="/work" class="btn btn-solid">View work</RouterLink>
+          <a
+            href="/Illya_Shpylka_Resume_UX-UI.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            Resume
+          </a>
+        </div>
+        <p class="text-ui flex flex-wrap justify-between gap-x-6 gap-y-1 pt-2 text-sm">
+          <span>Toronto, ON</span>
+          <span>Open to work</span>
+          <span>2026</span>
         </p>
       </div>
-    </header>
+    </section>
 
-    <div class="flex-1 px-4 md:px-10 lg:px-20">
-      <div class="grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-12 lg:pt-16">
-        <SectionIndex :items="items" :active="active" label="Portfolio sections" />
+    <!-- UX/UI work -->
+    <section class="space-y-8 md:space-y-10">
+      <SectionHeader title="UX/UI work:" link-label="All work →" to="/work" />
+      <ul class="grid gap-12 md:grid-cols-2 md:gap-8">
+        <li v-for="project in visibleProjects" :key="project.slug">
+          <WorkCard :project="project" />
+        </li>
+      </ul>
+    </section>
 
-        <div class="min-w-0">
-          <UxUiSection />
-          <DesignSection />
-          <DevSection />
-        </div>
+    <!-- Creative work -->
+    <section class="space-y-8 md:space-y-10">
+      <SectionHeader title="Creative work:" link-label="Full grid →" to="/creative" />
+      <ul class="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-6 lg:grid-cols-4">
+        <li v-for="project in creative" :key="project.slug">
+          <CreativeTile :project="project" crop />
+        </li>
+      </ul>
+    </section>
+
+    <!-- About -->
+    <section
+      aria-labelledby="about-title"
+      class="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:gap-16"
+    >
+      <img
+        src="/Illya.jpeg"
+        alt="Illya Shpylka"
+        class="aspect-420/572 w-full bg-soft object-cover"
+      />
+      <div class="space-y-8">
+        <h2 id="about-title" class="text-statement">{{ aboutStatement }}</h2>
+        <p class="text-lead max-w-3xl">{{ aboutIntro[0] }}</p>
+        <ul class="rule-top">
+          <li
+            v-for="row in background.slice(0, 3)"
+            :key="row.title"
+            class="grid grid-cols-[6rem_1fr] items-baseline gap-4 border-b border-line py-4 md:grid-cols-[8rem_1fr]"
+          >
+            <span class="text-caption text-quiet uppercase">{{ row.label }}</span>
+            <span class="font-medium">{{ row.title }}, {{ row.meta }}</span>
+          </li>
+        </ul>
+        <RouterLink to="/about" class="btn btn-outline">More about me</RouterLink>
       </div>
-    </div>
+    </section>
   </div>
 </template>

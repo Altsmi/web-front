@@ -1,14 +1,7 @@
 import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
-import AboutView from '@/views/AboutView.vue'
 import { uxProjects } from '@/data/uxProjects'
 import { waitForPageLeave } from './scrollSignal'
-
-declare module 'vue-router' {
-  interface RouteMeta {
-    footer?: 'default' | 'aboutFooter'
-  }
-}
 
 async function waitForElement(selector: string) {
   for (let i = 0; i < 60 && !document.querySelector(selector); i++) {
@@ -23,32 +16,37 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage,
-      meta: { footer: 'default' },
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: () => import('@/views/WorkPage.vue'),
+    },
+    {
+      path: '/creative',
+      name: 'creative',
+      component: () => import('@/views/CreativePage.vue'),
     },
     {
       path: '/about',
       name: 'about',
-      component: AboutView,
-      meta: { footer: 'aboutFooter' },
+      component: () => import('@/views/AboutView.vue'),
     },
     {
       path: '/work/ux-ui/ui-studies',
       name: 'work-ux-ui-studies',
       component: () => import('@/views/work/UiStudiesPage.vue'),
-      meta: { footer: 'default' },
     },
     {
       path: '/work/ux-ui/:slug',
       name: 'work-ux-ui-project',
       component: () => import('@/views/work/ProjectPage.vue'),
       props: true,
-      meta: { footer: 'default' },
-      beforeEnter: (to) =>
-        uxProjects.some((p) => p.slug === to.params.slug) || { path: '/', hash: '#ux-ui' },
+      beforeEnter: (to) => uxProjects.some((p) => p.slug === to.params.slug) || { path: '/work' },
     },
-    { path: '/work/design', redirect: { path: '/', hash: '#design' } },
-    { path: '/work/dev', redirect: { path: '/', hash: '#dev' } },
-    { path: '/work/:pathMatch(.*)*', redirect: { path: '/', hash: '#ux-ui' } },
+    { path: '/work/design', redirect: '/creative' },
+    { path: '/work/dev', redirect: '/work' },
+    { path: '/work/:pathMatch(.*)*', redirect: '/work' },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',

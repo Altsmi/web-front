@@ -25,7 +25,7 @@ const { open } = useLightbox()
         :src="src"
         :alt="alt"
         loading="lazy"
-        class="block w-full rounded"
+        class="block w-full"
         :class="cover ? 'h-full object-cover' : tall ? 'h-full object-cover object-top' : 'h-auto'"
       />
       <template v-if="tall">

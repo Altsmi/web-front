@@ -10,6 +10,10 @@ export interface Project {
   image: string
   alt: string
   featured?: boolean
+  /** Kept in the data and reachable by URL, but not listed on Home or Work. */
+  hidden?: boolean
+  /** Short label for cards, e.g. "Invoicing app". */
+  kind?: string
   link?: string
   role: string
   timeline: string
@@ -24,10 +28,11 @@ export interface Project {
 export const projectPath = (p: Project) => p.link ?? `/work/ux-ui/${p.slug}`
 
 export const uxProjects: Project[] = [
-  kinfolk,
+  { ...kinfolk, hidden: true },
   {
     slug: 'ninox',
     title: 'Ninox',
+    kind: 'Invoicing app',
     summary:
       'An invoicing app. Contractors send an invoice from the job site in under 2 minutes. Business owners see who has paid and who hasn’t.',
     tags: ['Research', 'Wireframing', 'Prototyping', 'Usability testing'],
@@ -842,6 +847,7 @@ export const uxProjects: Project[] = [
   {
     slug: 'ui-studies',
     title: 'UI Studies',
+    kind: 'Interaction design',
     summary:
       'Small studies of single interface pieces, from wireframe to a working interaction. Each one has a problem, a decision and a short video.',
     tags: ['Prototyping', 'Wireframing', 'Interaction design'],
@@ -854,3 +860,6 @@ export const uxProjects: Project[] = [
     phases: [],
   },
 ]
+
+/** Projects shown on Home, Work and in "next project" links. */
+export const visibleProjects = uxProjects.filter((p) => !p.hidden)

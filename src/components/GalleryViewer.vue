@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
           <button
             ref="closeButton"
             type="button"
-            class="text-ui rounded border-2 bg-project-bg border-project-text px-4 py-2 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
+            class="text-ui border-2 bg-project-bg border-project-text px-4 py-2 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
             @click="close"
           >
             Close ✕
@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             aria-label="Previous image"
-            class="text-ui rounded absolute top-1/2 left-2 flex size-11 -translate-y-1/2 items-center justify-center border-2 border-project-text bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents md:left-6 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
+            class="text-ui absolute top-1/2 left-2 flex size-11 -translate-y-1/2 items-center justify-center border-2 border-project-text bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents md:left-6 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
             @click="prev"
           >
             ←
@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             aria-label="Next image"
-            class="text-ui absolute rounded top-1/2 right-2 flex size-11 -translate-y-1/2 items-center justify-center border-2 border-project-text bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents md:right-6 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
+            class="text-ui absolute top-1/2 right-2 flex size-11 -translate-y-1/2 items-center justify-center border-2 border-project-text bg-project-bg focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-project-accents md:right-6 hover:bg-project-cards hover:border-project-dividers hover:text-project-accents transition-all duration-150"
             @click="next"
           >
             →

@@ -200,7 +200,7 @@ export const designProjects: DesignProject[] = [
     ],
   },
   {
-    slug: 'climate-poster',
+    slug: 'clothing-poster',
     title: 'Clothing Fest poster series',
     year: '2024',
     tools: ['Illustrator', 'Photoshop'],
