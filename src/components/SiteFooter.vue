@@ -39,12 +39,6 @@
           </li>
         </ul>
       </div>
-
-      <div class="flex items-center justify-between gap-4 text-sm md:text-lg">
-        <p class="uppercase">Toronto, ON</p>
-        <img src="/logo_classic.svg" alt="" class="h-7 w-auto md:h-10" />
-        <p>© 2026</p>
-      </div>
     </div>
   </footer>
 </template>

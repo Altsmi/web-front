@@ -36,9 +36,6 @@ function toggle(index: number) {
     class="rule-top grid scroll-mt-8 gap-6 pt-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-12 lg:grid-cols-[16rem_minmax(0,1fr)]"
   >
     <header class="space-y-1">
-      <p v-if="phase.number" class="text-caption text-quiet" aria-hidden="true">
-        [{{ String(phase.number).padStart(2, '0') }}]
-      </p>
       <h2 :id="`${phase.id}-title`" class="text-section">{{ phase.title }}</h2>
     </header>
 

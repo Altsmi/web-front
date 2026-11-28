@@ -13,9 +13,6 @@ const frameIndex = ref(0)
 <template>
   <section :id="study.id" :aria-labelledby="`${study.id}-title`" class="scroll-mt-8 space-y-6">
     <header class="rule-top flex items-baseline gap-4 pt-4 md:gap-6">
-      <span class="text-caption text-quiet" aria-hidden="true">
-        [{{ String(study.number).padStart(2, '0') }}]
-      </span>
       <h2 :id="`${study.id}-title`" class="text-section">{{ study.title }}</h2>
     </header>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CreativeTile from '@/components/CreativeTile.vue'
+import CreativeCard from '@/components/CreativeCard.vue'
 import { designProjects } from '@/data/designProjects'
 </script>
 
@@ -12,9 +12,13 @@ import { designProjects } from '@/data/designProjects'
       </p>
     </header>
 
-    <ul class="columns-1 gap-8 sm:columns-2 lg:columns-3">
-      <li v-for="project in designProjects" :key="project.slug" class="mb-10 break-inside-avoid">
-        <CreativeTile :project="project" />
+    <ul class="columns-1 gap-4 md:columns-2 md:gap-6">
+      <li
+        v-for="project in designProjects"
+        :key="project.slug"
+        class="mb-4 break-inside-avoid md:mb-6"
+      >
+        <CreativeCard :project="project" />
       </li>
     </ul>
   </div>

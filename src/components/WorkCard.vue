@@ -23,9 +23,6 @@ const { tag, attrs, isExternal } = useProjectLink(() => projectPath(props.projec
       </p>
     </div>
 
-    <p class="max-w-xl">{{ project.summary }}</p>
-    <p class="text-caption text-quiet">{{ project.tags.join(' · ') }}</p>
-
     <span
       class="text-ui inline-block underline decoration-2 underline-offset-4 group-hover:text-accent"
     >

@@ -8,6 +8,7 @@ export interface DesignProject {
   slug: string
   title: string
   year?: string
+  cover?: string
   tools: string[]
   description?: string
   fit?: 'cover' | 'contain'
@@ -18,6 +19,7 @@ export const designProjects: DesignProject[] = [
   {
     slug: 'farm-boy-poster',
     title: 'Farm Boy Poster Design',
+    cover: '/design_img/edit/cover.jpg',
     year: '2026',
     tools: ['Illustrator', 'Photoshop'],
     description: 'A poster for Farm Boy',

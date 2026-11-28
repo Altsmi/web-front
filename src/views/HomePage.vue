@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import SectionHeader from '@/components/SectionHeader.vue'
-import CreativeTile from '@/components/CreativeTile.vue'
+import CreativeDeck from '@/components/CreativeDeck.vue'
 import WorkCard from '@/components/WorkCard.vue'
 import { aboutStatement, aboutIntro, background } from '@/data/about'
 import { designProjects } from '@/data/designProjects'
 import { visibleProjects } from '@/data/uxProjects'
 
 // The four creative pieces shown on Home. Change the slugs to swap them.
-const creativeSlugs = ['edit-poster', 'swift_branding', 'arcane-branding', 'flower-poster']
+const creativeSlugs = [
+  'edit-poster',
+  'swift_branding',
+  'arcane-branding',
+  'flower-poster',
+  'wild-poster',
+]
 const creative = creativeSlugs
   .map((slug) => designProjects.find((p) => p.slug === slug))
   .filter((p) => p !== undefined)
@@ -30,10 +36,8 @@ const creative = creativeSlugs
       </h1>
 
       <div class="space-y-6 xl:pb-2">
-        <p class="text-ui">UX/UI designer</p>
         <p class="text-lead">
-          I’m based in Toronto. I come from graphic design, so I care about how things look, and I
-          test how they work.
+          I used to design things to be looked at. Now I design things to be used.
         </p>
         <div class="flex flex-wrap gap-3">
           <RouterLink to="/work" class="btn btn-solid">View work</RouterLink>
@@ -46,11 +50,6 @@ const creative = creativeSlugs
             Resume
           </a>
         </div>
-        <p class="text-ui flex flex-wrap justify-between gap-x-6 gap-y-1 pt-2 text-sm">
-          <span>Toronto, ON</span>
-          <span>Open to work</span>
-          <span>2026</span>
-        </p>
       </div>
     </section>
 
@@ -67,23 +66,12 @@ const creative = creativeSlugs
     <!-- Creative work -->
     <section class="space-y-8 md:space-y-10">
       <SectionHeader title="Creative work:" link-label="Full grid →" to="/creative" />
-      <ul class="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-6 lg:grid-cols-4">
-        <li v-for="project in creative" :key="project.slug">
-          <CreativeTile :project="project" crop />
-        </li>
-      </ul>
+      <CreativeDeck :projects="creative" />
     </section>
-
     <!-- About -->
     <section
-      aria-labelledby="about-title"
-      class="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:gap-16"
+      class="rule-top grid gap-10 pt-10 md:grid-cols-[minmax(0,8fr)_minmax(0,5fr)] md:gap-16 md:pt-16"
     >
-      <img
-        src="/Illya.jpeg"
-        alt="Illya Shpylka"
-        class="aspect-420/572 w-full bg-soft object-cover"
-      />
       <div class="space-y-8">
         <h2 id="about-title" class="text-statement">{{ aboutStatement }}</h2>
         <p class="text-lead max-w-3xl">{{ aboutIntro[0] }}</p>
@@ -99,6 +87,11 @@ const creative = creativeSlugs
         </ul>
         <RouterLink to="/about" class="btn btn-outline">More about me</RouterLink>
       </div>
+      <img
+        src="/Illya.jpeg"
+        alt="Illya Shpylka"
+        class="aspect-420/572 w-full bg-soft object-cover md:order-2"
+      />
     </section>
   </div>
 </template>

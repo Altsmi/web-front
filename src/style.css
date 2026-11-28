@@ -1,15 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.cdnfonts.com/css/tasa-orbiter');
 @import 'tailwindcss';
 
-/* ==========================================================================
-   DESIGN SYSTEM · Editorial
-   Everything below is a Tailwind v4 theme token, so it becomes a utility:
-     colors  → bg-paper, text-ink, border-ink, bg-soft, text-quiet, text-accent
-     fonts   → font-display, font-sans
-     sizes   → text-hero, text-title, text-section, text-card, text-statement,
-               text-cta, text-takeaway, text-lede
-   ========================================================================== */
 @theme {
   /* Palette */
   --color-paper: #f2f2f0; /* page background */
@@ -31,7 +23,7 @@
 
   /* Fonts */
   --font-display: 'TASA Orbiter Display', 'TASA Orbiter', sans-serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Instrument Sans', sans-serif;
   --font-main: var(--font-display); /* legacy alias */
 
   /* Type scale. Sizes are fluid: they hit the Figma size at a 1440px screen. */

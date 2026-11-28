@@ -38,7 +38,7 @@ const count = computed(() => props.project.images.length)
     </h3>
 
     <p class="text-caption text-quiet">
-      {{ project.tools.join(' · ') }}<template v-if="project.year"> · {{ project.year }}</template>
+      {{ project.tools.join(' · ') }}
     </p>
   </article>
 </template>
