@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import AboutFavorites from '@/components/AboutFavorites.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
-import { aboutIntro, aboutStatement, background, principles, tools } from '@/data/about'
+import { aboutIntro, aboutStatement, background } from '@/data/about'
 </script>
 
 <template>
-  <div class="shell flex-1 space-y-20 pt-10 md:space-y-28 md:pt-24">
+  <div class="shell flex-1 space-y-20 pt-10 pb-16 md:space-y-28 md:pt-24 md:pb-24">
     <header>
       <h1 class="text-hero">About</h1>
     </header>
@@ -40,27 +41,7 @@ import { aboutIntro, aboutStatement, background, principles, tools } from '@/dat
       </ul>
     </section>
 
-    <!-- How I work -->
-    <section class="space-y-8">
-      <SectionHeader title="How I work:" />
-      <ul class="grid gap-10 md:grid-cols-3 md:gap-10">
-        <li v-for="item in principles" :key="item.title" class="space-y-3">
-          <h3 class="text-card leading-none!">{{ item.title }}</h3>
-          <p>{{ item.text }}</p>
-        </li>
-      </ul>
-      <div class="flex flex-wrap items-center gap-3 pt-2">
-        <span class="text-ui">Tools:</span>
-        <ul class="flex flex-wrap gap-2">
-          <li
-            v-for="tool in tools"
-            :key="tool"
-            class="text-ui border-2 border-ink px-4 py-1.5 text-sm"
-          >
-            {{ tool }}
-          </li>
-        </ul>
-      </div>
-    </section>
+    <!-- Personal -->
+    <AboutFavorites />
   </div>
 </template>

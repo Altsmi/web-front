@@ -1,59 +1,50 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import CreativeCard from '@/components/CreativeCard.vue'
 import ImageLightbox from '@/components/ImageLightbox.vue'
-import Pill from '@/components/Pill.vue'
-import SectionIndex from '@/components/SectionIndex.vue'
-import UiStudySection from '@/components/UiStudySection.vue'
-import { useActiveSection } from '@/composables/useActiveSection'
+import ProjectFooter from '@/components/ProjectFooter.vue'
+import ProjectHero from '@/components/ProjectHero.vue'
+import ProjectStory from '@/components/ProjectStory.vue'
+import type { DesignProject } from '@/data/designProjects'
 import { uiStudies } from '@/data/uiStudies'
+import { uxProjects, visibleProjects } from '@/data/uxProjects'
 
-const pills = ['Prototyping', 'Wireframing', 'Interaction design', 'Figma']
+const project = computed(() => uxProjects.find((p) => p.slug === 'ui-studies'))
 
-const indexItems = computed(() =>
-  uiStudies.map((study) => ({
-    id: study.id,
-    label: `${String(study.number).padStart(2, '0')} ${study.title}`,
-  })),
-)
+const next = computed(() => {
+  if (visibleProjects.length < 2) return undefined
+  const i = visibleProjects.findIndex((p) => p.slug === 'ui-studies')
+  return visibleProjects[(i + 1) % visibleProjects.length]
+})
 
-const { active } = useActiveSection(() => indexItems.value.map((item) => item.id))
+// Each study is one card. The video is the preview and the first slide in the viewer,
+// then come the wireframe, typography, grid and components images.
+const studies: DesignProject[] = uiStudies.map((study) => ({
+  slug: study.id,
+  title: study.title,
+  tools: ['Figma'],
+  images: [
+    { src: study.video.poster, video: study.video.src, alt: study.video.label },
+    ...study.frames.map((frame) => ({ src: frame.src, alt: frame.alt })),
+  ],
+}))
 </script>
 
 <template>
-  <article class="shell flex-1 space-y-16 pt-8 md:space-y-24 md:pt-16">
-    <header class="space-y-8">
-      <RouterLink to="/work" class="text-ui inline-block hover:text-accent">← All work</RouterLink>
+  <article v-if="project" class="flex-1">
+    <ProjectHero :project="project" />
 
-      <div class="space-y-6">
-        <p class="text-caption text-quiet">UX/UI · 2026 · INTERACTION DESIGN</p>
-        <h1>UI Studies</h1>
-        <p class="text-lead max-w-3xl">
-          Small studies of single interface pieces, from wireframe to a working interaction. Each
-          one has a problem, a decision and a short video.
-        </p>
-      </div>
+    <div class="shell space-y-16 pt-16 pb-16 md:space-y-24 md:pt-24 md:pb-24">
+      <ProjectStory :project="project" />
 
-      <ul class="rule-top flex flex-wrap gap-2 pt-6" aria-label="Skills">
-        <Pill v-for="item in pills" :key="item">{{ item }}</Pill>
+      <ul class="columns-1 gap-4 md:columns-2 md:gap-6">
+        <li v-for="study in studies" :key="study.slug" class="mb-4 break-inside-avoid md:mb-6">
+          <CreativeCard :project="study" />
+        </li>
       </ul>
-    </header>
-
-    <div class="grid gap-8 lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-12">
-      <SectionIndex :items="indexItems" :active="active" label="Studies" />
-
-      <div class="min-w-0 space-y-12 md:space-y-16">
-        <UiStudySection v-for="study in uiStudies" :key="study.id" :study="study" />
-      </div>
     </div>
 
-    <nav
-      aria-label="Project navigation"
-      class="rule-top flex flex-wrap items-center justify-between gap-6 pt-6"
-    >
-      <RouterLink to="/work" class="text-ui hover:text-accent">← All work</RouterLink>
-    </nav>
-
+    <ProjectFooter :next="next" />
     <ImageLightbox />
   </article>
 </template>

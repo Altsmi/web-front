@@ -2,6 +2,7 @@ export interface DesignImage {
   src: string
   alt: string
   caption?: string
+  video?: string
 }
 
 export interface DesignProject {

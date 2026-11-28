@@ -42,10 +42,6 @@ export const principles: Principle[] = [
     title: 'Test with real people.',
     text: 'I put my designs in front of people and change them based on what I see.',
   },
-  {
-    title: 'Keep it simple.',
-    text: 'Plain words, clear layouts, and no steps that nobody needs.',
-  },
 ]
 
 export const tools = ['Figma', 'FigJam', 'Maze', 'Vue', 'Tailwind', 'TypeScript']

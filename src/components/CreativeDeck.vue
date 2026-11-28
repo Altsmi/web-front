@@ -172,56 +172,63 @@ onBeforeUnmount(() => clearTimeout(timer))
     class="grid items-center gap-10 lg:grid-cols-[minmax(0,628fr)_minmax(0,584fr)] lg:gap-x-32"
   >
     <!-- Deck -->
-    <div
-      class="relative mx-auto aspect-628/686 w-full max-w-[40rem] touch-pan-y select-none lg:mx-0"
-      ref="stage"
-      role="group"
-      aria-roledescription="carousel"
-      aria-label="Creative work"
-      tabindex="0"
-      @keydown="onKeydown"
-      @pointerdown="onPointerDown"
-      @pointermove="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointercancel="onPointerUp"
-    >
-      <button
-        v-for="(project, index) in projects"
-        :key="project.slug"
-        type="button"
-        class="absolute top-[8.75%] left-0 block h-[90.4%] w-[79.6%] overflow-hidden border-2 border-ink bg-soft text-left transition-[transform,opacity] duration-500 ease-out motion-reduce:transition-none"
-        :style="cardStyle(index)"
-        :aria-label="position(index) === 0 ? `Open ${project.title}` : `Show ${project.title}`"
-        :inert="position(index) > 2"
-        :data-front="position(index) === 0 ? 'true' : undefined"
-        @click="onCard(index, $event)"
+    <div class="mx-auto w-full max-w-[40rem] lg:mx-0">
+      <div
+        class="relative aspect-628/686 w-full touch-pan-y select-none"
+        ref="stage"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="Creative work"
+        tabindex="0"
+        @keydown="onKeydown"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerUp"
       >
-        <img
-          :src="project.cover ?? project.images[0]?.src"
-          :alt="position(index) === 0 ? (project.images[0]?.alt ?? '') : ''"
-          draggable="false"
-          class="h-full w-full object-cover"
-        />
-        <span
-          class="pointer-events-none absolute inset-0 bg-paper transition-opacity duration-500 motion-reduce:transition-none"
-          :style="{ opacity: shade(index) }"
-          aria-hidden="true"
-        ></span>
-        <span
-          class="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap gap-1.5 transition-opacity duration-300"
-          :class="position(index) === 0 && leaving !== index ? 'opacity-100' : 'opacity-0'"
-          aria-hidden="true"
+        <button
+          v-for="(project, index) in projects"
+          :key="project.slug"
+          type="button"
+          class="absolute top-[8.75%] left-0 block h-[90.4%] w-[79.6%] overflow-hidden border-2 border-ink bg-soft text-left transition-[transform,opacity] duration-500 ease-out motion-reduce:transition-none"
+          :style="cardStyle(index)"
+          :aria-label="position(index) === 0 ? `Open ${project.title}` : `Show ${project.title}`"
+          :inert="position(index) > 2"
+          :data-front="position(index) === 0 ? 'true' : undefined"
+          @click="onCard(index, $event)"
         >
-          <span class="text-ui bg-paper px-3 py-1.5 text-xs text-ink">{{ project.title }}</span>
+          <img
+            :src="project.cover ?? project.images[0]?.src"
+            :alt="position(index) === 0 ? (project.images[0]?.alt ?? '') : ''"
+            draggable="false"
+            class="h-full w-full object-cover"
+          />
           <span
-            v-for="tool in project.tools"
-            :key="tool"
-            class="text-ui bg-ink px-3 py-1.5 text-xs text-paper"
+            class="pointer-events-none absolute inset-0 bg-paper transition-opacity duration-500 motion-reduce:transition-none"
+            :style="{ opacity: shade(index) }"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap gap-1.5 transition-opacity duration-300"
+            :class="position(index) === 0 && leaving !== index ? 'opacity-100' : 'opacity-0'"
+            aria-hidden="true"
           >
-            {{ tool }}
+            <span class="text-ui bg-paper px-3 py-1.5 text-xs text-ink">{{ project.title }}</span>
+            <span
+              v-for="tool in project.tools"
+              :key="tool"
+              class="text-ui bg-ink px-3 py-1.5 text-xs text-paper"
+            >
+              {{ tool }}
+            </span>
           </span>
-        </span>
-      </button>
+        </button>
+      </div>
+
+      <p class="text-caption text-quiet mt-4" aria-hidden="true">
+        <span class="pointer-coarse:hidden">Drag or click to browse</span>
+        <span class="hidden pointer-coarse:inline">Swipe to browse</span>
+      </p>
     </div>
 
     <!-- Info for the front card -->

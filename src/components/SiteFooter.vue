@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <footer class="shell mt-24 md:mt-32">
+  <footer class="shell mt-24 md:mt-12">
     <div class="rule-top space-y-8 pt-8 pb-8 md:pb-10">
       <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <a

@@ -369,7 +369,22 @@ onBeforeUnmount(() => {
             leave-active-class="transition-opacity duration-200 ease-in-out motion-reduce:transition-none"
             leave-to-class="opacity-0"
           >
+            <video
+              v-if="cur.video"
+              :key="cur.video"
+              :src="cur.video"
+              :poster="cur.src"
+              :aria-label="cur.alt"
+              class="absolute inset-0 m-auto max-h-full max-w-full"
+              :class="flying ? 'opacity-0' : ''"
+              :autoplay="!reduced()"
+              muted
+              loop
+              playsinline
+              controls
+            ></video>
             <img
+              v-else
               :key="cur.src"
               :src="cur.src"
               :alt="cur.alt"
@@ -432,7 +447,16 @@ onBeforeUnmount(() => {
                   "
                   @click="go(i)"
                 >
-                  <img :src="image.src" alt="" class="h-15 w-12 object-cover" />
+                  <span class="relative block">
+                    <img :src="image.src" alt="" class="h-15 w-12 object-cover" />
+                    <span
+                      v-if="image.video"
+                      class="absolute inset-0 flex items-center justify-center bg-ink/40 text-xs"
+                      aria-hidden="true"
+                    >
+                      ▶
+                    </span>
+                  </span>
                 </button>
               </li>
             </ul>

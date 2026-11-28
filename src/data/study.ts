@@ -18,16 +18,13 @@ export interface Decision {
   after: ImageItem
 }
 
-export interface BentoImage extends ImageItem {
-  cols: 2 | 3 | 4 | 6
-  rows: 1 | 2 | 3
-  /** Crop from the top (screens) instead of the center (mockups, diagrams). */
-  top?: boolean
-}
-
+/**
+ * A titled group of images. Each row is one line: 1 image is full width,
+ * 2, 3 or 4 images sit side by side in equal columns.
+ */
 export interface Showcase {
   title: string
-  tiles: BentoImage[]
+  rows: ImageItem[][]
 }
 
 export interface Phase {

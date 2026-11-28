@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AboutFavorites: typeof import('./src/components/AboutFavorites.vue')['default']
     AboutFooter: typeof import('./src/components/AboutFooter.vue')['default']
     BentoGrid: typeof import('./src/components/BentoGrid.vue')['default']
     BlockFrame: typeof import('./src/components/blocks/BlockFrame.vue')['default']
@@ -29,6 +30,9 @@ declare module 'vue' {
     PhaseBlock: typeof import('./src/components/blocks/PhaseBlock.vue')['default']
     PhaseSection: typeof import('./src/components/PhaseSection.vue')['default']
     Pill: typeof import('./src/components/Pill.vue')['default']
+    ProjectFooter: typeof import('./src/components/ProjectFooter.vue')['default']
+    ProjectHero: typeof import('./src/components/ProjectHero.vue')['default']
+    ProjectStory: typeof import('./src/components/ProjectStory.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SectionHeader: typeof import('./src/components/SectionHeader.vue')['default']
